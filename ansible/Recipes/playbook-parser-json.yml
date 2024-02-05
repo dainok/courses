@@ -1,0 +1,19 @@
+#!/usr/bin/env ansible-playbook
+- name: PARSERS
+  hosts: all
+  gather_facts: false
+  connection: local
+  tasks:
+    - name: SETTING OUTPUT
+      ansible.builtin.command:
+        cmd: 'echo {\"a\": 1, \"b\": 2, \"c\": 3}'
+      register: output
+    - name: PARSING
+      ansible.utils.cli_parse:
+        text: "{{ output.stdout_lines[0] }}"
+        parser:
+          name: ansible.utils.json
+        set_fact: output_parsed
+    - name: PRINTING PARSED OUTPUT
+      ansible.builtin.debug:
+        msg: "{{ output_parsed }}"

@@ -1,0 +1,11 @@
+#!/usr/bin/env ansible-playbook
+- name: VAULT
+  hosts: all
+  gather_facts: true
+  connection: local
+  vars_files:
+    - secrets.vault
+  tasks:
+    - name: PRINT PASSWORD
+      debug:
+        msg: "Password is {{ ansible_password }}. Use 'password' to open the secrets.vault"

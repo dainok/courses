@@ -1,0 +1,17 @@
+#!/bin/bash
+# ZTP script downloaded via HTTP with DHCP option 67
+
+export CONFIG_FILE="/tmp/config.txt"
+
+source /pkg/bin/ztp_helper.sh
+
+if [ -f $config_file ]; then
+  /bin/rm -f $CONFIG_FILE
+fi
+
+SN=$(dmidecode | grep -m 1 "Serial Number:" | awk '{print $NF}')
+PN=$(dmidecode | grep -m 1 "Product Name:" | awk '{print $NF}')
+PN=$(xrcmd "show inventory location 0/RP" | grep -m1 "PID" | awk '{print $2}')
+RESULT=$(wget -O- --post-data="serial=${SN}&model=${PN}" {{ url }} > $CONFIG_FILE)
+
+xrapply_with_reason "Initial ZTP configuration" $CONFIG_FILE

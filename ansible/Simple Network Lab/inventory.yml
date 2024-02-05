@@ -1,0 +1,12 @@
+all:
+  hosts:
+    r1.example.com:
+      ansible_host: 169.254.1.21
+routers:
+  hosts:
+    r[1:9].example.com:
+  vars:
+    ansible_user: admin
+    ansible_password: cisco
+    ansible_connection: ansible.netcommon.network_cli
+    ansible_network_os: cisco.ios.ios

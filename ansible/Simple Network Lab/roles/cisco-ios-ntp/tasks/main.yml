@@ -1,0 +1,15 @@
+# Configure NTP given a lists of NTP servers
+# Modules:
+#   - ios_ntp_global: https://docs.ansible.com/ansible/latest/collections/cisco/ios/ios_ntp_global_module.html
+# Requirements:
+#   - ntp_peers: list of NTP peers in term of FQDNs or IP addresses
+
+- name: BUILDING NTP LIST
+  ansible.builtin.set_fact:
+    ntp_peers_config_list: "{{ ntp_peers_config_list|default([]) + [{'peer': item}] }}"
+  with_items: "{{ ntp_peers }}"
+- name: CONFIGURING NTP PEERS
+  cisco.ios.ios_ntp_global:
+    config:
+      peers: "{{ ntp_peers_config_list }}"
+    state: replaced

@@ -1,0 +1,38 @@
+# Configure NTP given a lists of NTP servers
+# Modules:
+#   - ios_command: https://docs.ansible.com/ansible/latest/collections/cisco/ios/ios_command_module.html
+# Requirements: none
+
+- name: SAVING CONFIG BLOCK
+  when: not ansible_check_mode
+  block:
+    - name: GETTING STARTUP CONFIG
+      tags: always
+      cisco.ios.ios_command:
+        commands: show startup-config
+      register: show_startup_config_output
+    - name: GETTING LAST RUNNING CONFIG
+      tags: always
+      cisco.ios.ios_command:
+        commands: show running-config
+      register: show_running_config_output
+    - name: EVALUATING RUNNING AND STARTUP CONFIG
+      tags: always
+      ansible.utils.fact_diff:
+        before: "{{ show_startup_config_output.stdout[0] }}"
+        after: "{{ show_running_config_output.stdout[0] }}"
+        plugin:
+          vars:
+            skip_lines:
+              - "^Current configuration.*"
+              - "^Building configuration.*"
+              - "^Using \\d+ out of.*"
+              - "^\\s*$"
+              - "^! Last configuration change at.*"
+              - "^! NVRAM config last updated at.*"
+      register: config_differ
+    - name: SAVING CONFIGURATION
+      tags: always
+      cisco.ios.ios_command:
+        commands: write memory
+      when: config_differ.changed

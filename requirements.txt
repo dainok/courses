@@ -1,0 +1,11 @@
+ansible==8.1.0
+ansible-lint==6.22.0
+ansible-navigator==3.4.2
+ansible-pylibssh==1.1.0
+ansible-rulebook==1.0.4
+ansible-runner==2.3.4
+Flask==2.3.3
+jc==1.23.6
+ntc_templates
+python-slugify==8.0.1
+PyYAML==6.0.1

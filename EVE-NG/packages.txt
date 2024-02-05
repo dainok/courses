@@ -1,0 +1,14 @@
+build-essential
+dnsmasq
+iptables-persistent
+libbz2-dev
+libffi-dev
+libgdbm-dev
+libncurses5-dev
+libnss3-dev
+libreadline-dev
+libsqlite3-dev
+libssl-dev
+python3-pip
+wget
+zlib1g-dev

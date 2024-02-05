@@ -1,0 +1,28 @@
+#!/usr/bin/env ansible-playbook
+- name: SYSTEM CONFIGURATION
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: CONFIGURING FQDN
+      tags: system,fqdn
+      cisco.ios.ios_system:
+        hostname: "{{ inventory_hostname_short }}"
+        domain_name: "example.com"
+    - name: CONFIGURING DNS
+      tags: system,dns
+      cisco.ios.ios_system:
+        lookup_enabled: true
+        name_servers:
+          - 8.8.4.4
+          - 8.8.8.8
+- name: ROUTING
+  hosts: routers
+  gather_facts: false
+  tasks:
+    - name: DELETING LOOPBACK10
+      tags: cleanup
+      cisco.ios.ios_l3_interfaces:
+        config:
+          - name: Loopback10
+        state: deleted
+      register: delete_output

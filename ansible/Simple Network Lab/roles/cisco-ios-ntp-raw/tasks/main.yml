@@ -1,0 +1,27 @@
+# Configure NTP given a lists of NTP servers
+# Modules:
+#   - ios_config: https://docs.ansible.com/ansible/latest/collections/cisco/ios/ios_config_module.html
+# Requirements:
+#   - ntp_peers: list of NTP peers in term of FQDNs or IP addresses
+
+- name: ADDING NTP PEERS
+  cisco.ios.ios_config:
+    lines:
+      - "ntp peer {{ item }}"
+    running_config: "{{ running_config }}"
+    replace: line
+    save_when: never
+  with_items: "{{ ntp_peers }}"
+  register: output
+- name: GETTING CURRENT NTP PEERS
+  ansible.builtin.set_fact:
+    current_ntp_peers: "{{ running_config | regex_findall('^ntp peer .*$', multiline=True) | regex_replace('ntp peer ', '')}}"
+- name: REMOVING NTP SERVERS
+  cisco.ios.ios_config:
+    lines:
+      - "no ntp peer {{ item }}"
+    running_config: "{{ running_config }}"
+    replace: line
+    save_when: never
+  with_items: "{{ current_ntp_peers }}"
+  when: item not in ntp_peers
