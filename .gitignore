@@ -161,7 +161,9 @@ cython_debug/
 
 # Temporary files
 .DS_Store
+*.bkp
 *.log
+*.swp
 
 # Large files
 *.bin
