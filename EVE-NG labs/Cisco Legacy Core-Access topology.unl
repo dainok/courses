@@ -4,7 +4,7 @@
   <body>Practice with network and automation fundamentals.</body>
   <topology>
     <nodes>
-      <node id="1" name="SW1" type="iol" template="iol" image="i86bi_linux_l2-adventerprisek9-ms.ssa.20190423.bin" ethernet="2" nvram="1024" ram="1024" serial="0" delay="0" sat="-1" icon="Switch L3.png" config="1" left="270" top="42">
+      <node id="1" name="SW1" type="iol" template="iol" image=i86bi_linux_l2-adventerprisek9-ms.SSA.high_iron_20190423.bin" ethernet="2" nvram="1024" ram="1024" serial="0" delay="0" sat="-1" icon="Switch L3.png" config="1" left="270" top="42">
         <interface id="0" name="e0/0" type="ethernet" network_id="1" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
         <interface id="16" name="e0/1" type="ethernet" network_id="2" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
         <interface id="32" name="e0/2" type="ethernet" network_id="3" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
@@ -13,7 +13,7 @@
         <interface id="33" name="e1/2" type="ethernet" network_id="6" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
         <interface id="49" name="e1/3" type="ethernet" network_id="7" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
       </node>
-      <node id="2" name="SW2" type="iol" template="iol" image="i86bi_linux_l2-adventerprisek9-ms.ssa.20190423.bin" ethernet="2" nvram="1024" ram="1024" serial="0" delay="0" sat="-1" icon="Switch L3.png" config="1" left="414" top="42">
+      <node id="2" name="SW2" type="iol" template="iol" image=i86bi_linux_l2-adventerprisek9-ms.SSA.high_iron_20190423.bin" ethernet="2" nvram="1024" ram="1024" serial="0" delay="0" sat="-1" icon="Switch L3.png" config="1" left="414" top="42">
         <interface id="0" name="e0/0" type="ethernet" network_id="1" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
         <interface id="16" name="e0/1" type="ethernet" network_id="2" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
         <interface id="32" name="e0/2" type="ethernet" network_id="3" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
@@ -22,22 +22,22 @@
         <interface id="33" name="e1/2" type="ethernet" network_id="10" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
         <interface id="49" name="e1/3" type="ethernet" network_id="11" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
       </node>
-      <node id="3" name="SW3" type="iol" template="iol" image="i86bi_linux_l2-adventerprisek9-ms.ssa.20190423.bin" ethernet="1" nvram="1024" ram="1024" serial="0" delay="0" sat="-1" icon="Switch.png" config="1" left="129" top="286">
+      <node id="3" name="SW3" type="iol" template="iol" image=i86bi_linux_l2-adventerprisek9-ms.SSA.high_iron_20190423.bin" ethernet="1" nvram="1024" ram="1024" serial="0" delay="0" sat="-1" icon="Switch.png" config="1" left="129" top="286">
         <interface id="0" name="e0/0" type="ethernet" network_id="1" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
         <interface id="16" name="e0/1" type="ethernet" network_id="4" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
         <interface id="32" name="e0/2" type="ethernet" network_id="8" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
       </node>
-      <node id="4" name="SW4" type="iol" template="iol" image="i86bi_linux_l2-adventerprisek9-ms.ssa.20190423.bin" ethernet="1" nvram="1024" ram="1024" serial="0" delay="0" sat="-1" icon="Switch.png" config="1" left="270" top="286">
+      <node id="4" name="SW4" type="iol" template="iol" image=i86bi_linux_l2-adventerprisek9-ms.SSA.high_iron_20190423.bin" ethernet="1" nvram="1024" ram="1024" serial="0" delay="0" sat="-1" icon="Switch.png" config="1" left="270" top="286">
         <interface id="0" name="e0/0" type="ethernet" network_id="1" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
         <interface id="16" name="e0/1" type="ethernet" network_id="5" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
         <interface id="32" name="e0/2" type="ethernet" network_id="9" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
       </node>
-      <node id="5" name="SW5" type="iol" template="iol" image="i86bi_linux_l2-adventerprisek9-ms.ssa.20190423.bin" ethernet="1" nvram="1024" ram="1024" serial="0" delay="0" sat="-1" icon="Switch.png" config="1" left="414" top="286">
+      <node id="5" name="SW5" type="iol" template="iol" image=i86bi_linux_l2-adventerprisek9-ms.SSA.high_iron_20190423.bin" ethernet="1" nvram="1024" ram="1024" serial="0" delay="0" sat="-1" icon="Switch.png" config="1" left="414" top="286">
         <interface id="0" name="e0/0" type="ethernet" network_id="1" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
         <interface id="16" name="e0/1" type="ethernet" network_id="6" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
         <interface id="32" name="e0/2" type="ethernet" network_id="10" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
       </node>
-      <node id="6" name="SW6" type="iol" template="iol" image="i86bi_linux_l2-adventerprisek9-ms.ssa.20190423.bin" ethernet="1" nvram="1024" ram="1024" serial="0" delay="0" sat="-1" icon="Switch.png" config="1" left="555" top="286">
+      <node id="6" name="SW6" type="iol" template="iol" image=i86bi_linux_l2-adventerprisek9-ms.SSA.high_iron_20190423.bin" ethernet="1" nvram="1024" ram="1024" serial="0" delay="0" sat="-1" icon="Switch.png" config="1" left="555" top="286">
         <interface id="0" name="e0/0" type="ethernet" network_id="1" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
         <interface id="16" name="e0/1" type="ethernet" network_id="7" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
         <interface id="32" name="e0/2" type="ethernet" network_id="11" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>

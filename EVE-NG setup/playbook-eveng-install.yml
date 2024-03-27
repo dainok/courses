@@ -100,6 +100,7 @@
         state: link
   post_tasks:
     - name: FIXING PERMISSIONS
+      tags: always
       ansible.builtin.command:
         cmd: /opt/unetlab/wrappers/unl_wrapper -a fixpermissions
       changed_when: false

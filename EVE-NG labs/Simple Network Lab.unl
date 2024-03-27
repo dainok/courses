@@ -5,7 +5,7 @@
 Ping an Internet address from R1.</body>
   <topology>
     <nodes>
-      <node id="1" name="R1" type="iol" template="iol" image="i86bi_linux_l3-adventerprisek9-m2.157.20180503.bin" ethernet="1" nvram="1024" ram="1024" serial="0" delay="0" sat="-1" icon="Router.png" config="1" left="174" top="57">
+      <node id="1" name="R1" type="iol" template="iol" image="i86bi_LinuxL3-AdvEnterpriseK9-M2_157_3_May_2018.bin" ethernet="1" nvram="1024" ram="1024" serial="0" delay="0" sat="-1" icon="Router.png" config="1" left="174" top="57">
         <interface id="0" name="e0/0" type="ethernet" network_id="1" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
       </node>
     </nodes>
