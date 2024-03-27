@@ -35,6 +35,18 @@
         owner: root
         group: root
         mode: '0644'
+    - name: COPYING IPTABLES CONFIGURATION FILE
+      ansible.builtin.copy:
+        src: rules.v4
+        dest: /etc/iptables/rules.v4
+        owner: root
+        group: root
+        mode: '0644'
+    - name: ENABLING IP FORWARDING
+      ansible.posix.sysctl:
+        name: net.ipv4.ip_forward
+        value: '1'
+        state: present
     - name: ADD APT KEY
       ansible.builtin.apt_key:
         id: 8F0F37B05231581CB15A2A9BC0B81F82DF8B1B28
@@ -66,6 +78,7 @@
         DEBIAN_FRONTEND: noninteractive
       when: apt_upgrade
     - name: UPLOADING IMAGES
+      tags: never, upload
       ansible.builtin.copy:
         src: "{{ item }}"
         dest: /opt/unetlab/addons
@@ -75,6 +88,16 @@
       with_items:
         - iol
         - qemu
+    - name: DOWNLOADING LABS
+      ansible.builtin.git:
+        repo: https://github.com/dainok/courses
+        dest: /opt/courses
+        version: master
+    - name: LINKING LABS
+      ansible.builtin.file:
+        src: "/opt/courses/EVE-NG labs"
+        dest: "/opt/unetlab/labs/DevNetOps labs"
+        state: link
   post_tasks:
     - name: FIXING PERMISSIONS
       ansible.builtin.command:
