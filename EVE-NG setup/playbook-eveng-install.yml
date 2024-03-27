@@ -1,5 +1,5 @@
 #!/usr/bin/env ansible-playbook
-- name: INSTALL EVE-NG 
+- name: INSTALL EVE-NG
   hosts: eve-ng.example.com
   gather_facts: false
   vars:
@@ -62,10 +62,19 @@
         name: "{{ packages }}"
         force_apt_get: true
         autoremove: true
-        state: latest
       environment:
         DEBIAN_FRONTEND: noninteractive
       when: apt_upgrade
+    - name: UPLOADING IMAGES
+      ansible.builtin.copy:
+        src: "{{ item }}"
+        dest: /opt/unetlab/addons
+        owner: root
+        group: root
+        mode: '0644'
+      with_items:
+        - iol
+        - qemu
   post_tasks:
     - name: FIXING PERMISSIONS
       ansible.builtin.command:
