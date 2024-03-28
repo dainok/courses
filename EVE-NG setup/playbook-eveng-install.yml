@@ -6,10 +6,6 @@
     python_version: 3.10.14
     apt_removed_packages:
       - network-manager
-    systemd_enabled:
-      - dnsmasq
-      - networking
-      - ssh
   roles:
     - role: dainok.common.linux_debian_apt_install_remove_upgrade
       tags: install
@@ -21,14 +17,39 @@
       tags: install
     - role: dainok.common.linux_debian_openssh
       tags: install
-    - role: dainok.common.linux_systemd_enable_disable
-      tags: install
   pre_tasks:
     - name: SETTING INITIAL PARAMETERS
       tags: always
       ansible.builtin.set_fact:
         inventory_domain: "{{ inventory_hostname.split('.', 1)[1] | lower }}"
   tasks:
+    - name: ADD APT KEY
+      ansible.builtin.apt_key:
+        id: 8F0F37B05231581CB15A2A9BC0B81F82DF8B1B28
+        url: https://www.eve-ng.net/focal/eczema@ecze.com.gpg.key
+        state: present
+    - name: COPYING APT SOURCE FILE
+      ansible.builtin.copy:
+        src: eve-ng.list
+        dest: /etc/apt/sources.list.d/eve-ng.list
+        owner: root
+        group: root
+        mode: '0644'
+    - name: UPDATING APT CACHE
+      ansible.builtin.apt:
+        update_cache: true
+      environment:
+        DEBIAN_FRONTEND: noninteractive
+    - name: READING PACKAGE LIST
+      ansible.builtin.set_fact:
+        packages: "{{ lookup('file', 'packages.txt') | split }}"
+    - name: INSTALLING PACKAGES
+      ansible.builtin.apt:
+        name: "{{ packages }}"
+        force_apt_get: true
+        autoremove: true
+      environment:
+        DEBIAN_FRONTEND: noninteractive
     - name: COPYING INTERFACE CONFIGURATION FILE
       ansible.builtin.copy:
         src: interfaces
@@ -48,18 +69,6 @@
         name: net.ipv4.ip_forward
         value: '1'
         state: present
-    - name: ADD APT KEY
-      ansible.builtin.apt_key:
-        id: 8F0F37B05231581CB15A2A9BC0B81F82DF8B1B28
-        url: https://www.eve-ng.net/focal/eczema@ecze.com.gpg.key
-        state: present
-    - name: COPYING APT SOURCE FILE
-      ansible.builtin.copy:
-        src: eve-ng.list
-        dest: /etc/apt/sources.list.d/eve-ng.list
-        owner: root
-        group: root
-        mode: '0644'
     - name: COPYING DNSMASQ CONFIGURATION FILE
       ansible.builtin.copy:
         src: dnsmasq.conf
@@ -67,17 +76,6 @@
         owner: root
         group: root
         mode: '0644'
-    - name: READING PACKAGE LIST
-      ansible.builtin.set_fact:
-        packages: "{{ lookup('file', 'packages.txt') | split }}"
-    - name: INSTALLING PACKAGES
-      ansible.builtin.apt:
-        name: "{{ packages }}"
-        force_apt_get: true
-        autoremove: true
-      environment:
-        DEBIAN_FRONTEND: noninteractive
-      when: apt_upgrade
     - name: UPLOADING IMAGES
       tags: never, upload
       ansible.builtin.copy:
