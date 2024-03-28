@@ -1,5 +1,5 @@
 ansible==8.1.0
-ansible-lint==6.22.0
+ansible-lint==24.2.1
 ansible-navigator==3.4.2
 ansible-pylibssh==1.1.0
 ansible-rulebook==1.0.4

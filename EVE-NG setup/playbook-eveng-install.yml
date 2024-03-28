@@ -101,30 +101,34 @@
         state: link
     - name: ADDING DEVELOPMENT USER
       ansible.builtin.user:
-        name: dev
+        name: "{{ item }}"
         shell: /bin/bash
-        groups: dev
+        groups: "{{ item }}"
+      with_items: "{{ dev_users }}"
     - name: CREATE SOURCE DIRECTORY
       ansible.builtin.file:
-        path: /home/dev/src
+        path: "/home/{{ item }}/src"
         state: directory
-        owner: dev
-        group: dev
+        owner: "{{ item }}"
+        group: "{{ item }}"
         mode: '0755'
+      with_items: "{{ dev_users }}"
     - name: CREATE SSH DIRECTORY
       ansible.builtin.file:
-        path: /home/dev/.ssh
+        path: "/home/{{ item }}/.ssh"
         state: directory
-        owner: dev
-        group: dev
+        owner: "{{ item }}"
+        group: "{{ item }}"
         mode: '0700'
+      with_items: "{{ dev_users }}"
     - name: UPLOADING SSH CLIENT CONFIGURATION
       ansible.builtin.copy:
         src: ssh_config
-        dest: /home/dev/.ssh/config
-        owner: dev
-        group: dev
+        dest: "/home/{{ item }}/.ssh/config"
+        owner: "{{ item }}"
+        group: "{{ item }}"
         mode: '0644'
+      with_items: "{{ dev_users }}"
     - name: PREPARING PYTHON ENVIRONMENT
       tags: never, python
       block:
@@ -156,12 +160,14 @@
         - name: CREATING PYTHON VENV
           ansible.builtin.pip:
             requirements: /opt/courses/requirements.txt
-            virtualenv: /home/dev/venv
+            virtualenv: "/home/{{ item }}/venv"
             virtualenv_python: /usr/local/bin/python3.10
+          with_items: "{{ dev_users }}"
         - name: AUTOMATICALLY LOAD PYTHON VENV
           ansible.builtin.lineinfile:
-            path: /home/dev/.profile
+            path: "/home/{{ item }}/.profile"
             line: source ~/venv/bin/activate
+          with_items: "{{ dev_users }}"
   post_tasks:
     - name: FIXING PERMISSIONS
       tags: always

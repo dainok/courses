@@ -1,7 +1,6 @@
 all:
   hosts:
     eve-ng.example.com:
-      ansible_user: root
       ansible_host: 172.25.82.167
   vars:
     ansible_become: true
@@ -10,3 +9,5 @@ all:
     timezone: Europe/Rome
     keyboard_layout: it
     ssh_root_login: "yes"
+    dev_users:
+      - dev
