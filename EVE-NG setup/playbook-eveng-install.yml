@@ -97,6 +97,10 @@
         src: "/opt/courses/EVE-NG labs"
         dest: "/opt/unetlab/labs/DevNetOps labs"
         state: link
+    - name: ADDING DEVELOPMENT GROUP
+      ansible.builtin.group:
+        name: "{{ item }}"
+      with_items: "{{ dev_users }}"
     - name: ADDING DEVELOPMENT USER
       ansible.builtin.user:
         name: "{{ item }}"
