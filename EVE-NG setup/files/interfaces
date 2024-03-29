@@ -19,8 +19,8 @@ iface pnet0 inet static
     bridge_stp off
 
 # Cloud devices
-auto pnet1
-iface pnet1 inet static
+auto pnet9
+iface pnet9 inet static
     address 169.254.1.1
     netmask 255.255.255.0
     bridge_ports none
