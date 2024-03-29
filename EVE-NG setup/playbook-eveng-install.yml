@@ -76,6 +76,15 @@
         owner: root
         group: root
         mode: '0644'
+    - name: MARK EVE-NG SERVER AS CONFIGURED
+      ansible.builtin.file:
+        path: /opt/ovf/.configured
+        state: touch
+        mode: '0644'
+        owner: root
+        group: root
+        modification_time: preserve
+        access_time: preserve
     - name: UPLOADING IMAGES
       tags: never, upload
       ansible.builtin.copy:
