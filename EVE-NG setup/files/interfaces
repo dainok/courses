@@ -6,7 +6,6 @@ auto lo
 iface lo inet loopback
 
 # The primary network interface
-iface eth0 inet manual
 auto pnet0
 iface pnet0 inet static
     pre-up ip link set dev eth0 up
