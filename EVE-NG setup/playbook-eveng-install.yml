@@ -105,7 +105,7 @@
       ansible.builtin.user:
         name: "{{ item }}"
         shell: /bin/bash
-        groups: "{{ item }}"
+        group: "{{ item }}"
       with_items: "{{ dev_users }}"
     - name: CREATE SOURCE DIRECTORY
       ansible.builtin.file:
@@ -160,10 +160,12 @@
             chdir: "/usr/src/Python-{{ python_version }}"
             target: install
         - name: CREATING PYTHON VENV
+          become: true
+          become_user: "{{ item }}"
           ansible.builtin.pip:
             requirements: /opt/courses/requirements.txt
             virtualenv: "/home/{{ item }}/venv"
-            virtualenv_python: /usr/local/bin/python3.10
+            virtualenv_command: /usr/local/bin/python3.10 -m venv
           with_items: "{{ dev_users }}"
         - name: AUTOMATICALLY LOAD PYTHON VENV
           ansible.builtin.lineinfile:
