@@ -2,6 +2,11 @@ all:
   hosts:
     eve-ng.example.com:
       ansible_host: 172.25.82.171
+      netmask: 255.255.255.0
+      gateway: 172.25.82.254
+      dns_servers:
+        - 8.8.4.4
+        - 8.8.8.8
   vars:
     ansible_become: true
     ansible_method: sudo

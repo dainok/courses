@@ -5,15 +5,13 @@
 auto lo
 iface lo inet loopback
 
-# The primary network interface
+# EVE-NG management network
 auto pnet0
 iface pnet0 inet static
     pre-up ip link set dev eth0 up
-    address 172.25.82.220
-    netmask 255.255.255.0
-    gateway 172.25.82.254
-    dns-domain example.com
-    dns-nameservers 8.8.8.8 8.8.4.4
+    address {{ ansible_host }}
+    netmask {{ netmask }}
+    gateway {{ gateway }}
     bridge_ports eth0
     bridge_stp off
 

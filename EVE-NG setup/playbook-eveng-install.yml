@@ -5,7 +5,15 @@
   vars:
     python_version: 3.10.14
     apt_removed_packages:
+      - cloud-init
+      - netplan.io
       - network-manager
+    systemd_masked:
+      - networkd-dispatcher
+      - systemd-networkd
+      - systemd-networkd.socket
+      - systemd-networkd-wait-online
+      - systemd-resolved
   roles:
     - role: dainok.common.linux_debian_apt_install_remove_upgrade
       tags: install
@@ -51,9 +59,16 @@
       environment:
         DEBIAN_FRONTEND: noninteractive
     - name: COPYING INTERFACE CONFIGURATION FILE
-      ansible.builtin.copy:
-        src: interfaces
+      ansible.builtin.template:
+        src: interfaces.j2
         dest: /etc/network/interfaces
+        owner: root
+        group: root
+        mode: '0644'
+    - name: COPYING NAMESERVER CONFIGURATION FILE
+      ansible.builtin.template:
+        src: resolv.conf.j2
+        dest: /etc/resolv.conf
         owner: root
         group: root
         mode: '0644'
