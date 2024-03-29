@@ -111,7 +111,16 @@
       with_items:
         - iol
         - qemu
+    - name: CREATING COURSE DIRECTORY
+      ansible.builtin.file:
+        path: /opt/courses
+        state: directory
+        owner: www-data
+        group: www-data
+        mode: '0755'
     - name: DOWNLOADING LABS
+      become: true
+      become_user: www-data
       ansible.builtin.git:
         repo: https://github.com/dainok/courses
         dest: /opt/courses
