@@ -1,0 +1,39 @@
+all:
+  hosts:
+    r1.example.com:
+      ansible_host: 169.254.1.21
+    r2.example.com:
+      ansible_host: 169.254.1.22
+    sw1.example.com:
+      ansible_host: 169.254.1.101
+    sw2.example.com:
+      ansible_host: 169.254.1.102
+    sw3.example.com:
+      ansible_host: 169.254.1.103
+    sw4.example.com:
+      ansible_host: 169.254.1.104
+    sw5.example.com:
+      ansible_host: 169.254.1.105
+    sw6.example.com:
+      ansible_host: 169.254.1.106
+  vars:
+    ansible_connection: ansible.netcommon.network_cli
+    ansible_network_os: cisco.ios.ios
+routers:
+  hosts:
+    r[1:2].example.com:
+  vars:
+    ansible_user: admin
+    ansible_ssh_pass: cisco
+switches:
+  hosts:
+    sw[1:6].example.com:
+  vars:
+    ansible_user: admin
+    ansible_ssh_pass: cisco
+core:
+  hosts:
+    sw[1:2].example.com:
+access:
+  hosts:
+    sw[3:6].example.com:
