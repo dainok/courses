@@ -4,7 +4,6 @@
   gather_facts: false
   vars:
     ntp_server_1: 194.239.208.213
-    #ntp_server_2: 130.60.204.10
-    ntp_server_2: 130.60.204.1
+    ntp_server_2: 130.60.204.10
   roles:
     - role: cisco_ios_ntp
