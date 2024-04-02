@@ -1,0 +1,8 @@
+#!/usr/bin/env ansible-playbook
+- name: TEST HOST REACHABILITY
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: PING
+      ansible.netcommon.net_ping:
+        dest: "{{ ansible_host }}"
