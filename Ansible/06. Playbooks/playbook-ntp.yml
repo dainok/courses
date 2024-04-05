@@ -7,3 +7,7 @@
     ntp_server_2: 130.60.204.10
   roles:
     - role: cisco_ios_ntp
+  post_tasks:
+    - name: SAVING CONFIG
+      cisco.ios.ios_config:
+        save_when: modified
