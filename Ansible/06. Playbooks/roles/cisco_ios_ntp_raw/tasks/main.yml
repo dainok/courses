@@ -1,0 +1,13 @@
+---
+- name: CONFIGURE NTP PEERS
+  cisco.ios.ios_config:
+    lines:
+      - "ntp peer {{ ntp_server_1 }}"
+      - "ntp peer {{ ntp_server_2 }}"
+- name: GETTING NTP PEERS
+  cisco.ios.ios_command:
+    commands:
+      - "show running-config | include ntp peer"
+  register: show_run_ntp_peer
+- debug:
+    msg: "{{ show_run_ntp_peer }}"
