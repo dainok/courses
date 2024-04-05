@@ -1,6 +1,0 @@
-#!/usr/bin/env ansible-playbook
-- name: LOOPS AND NESTED LOOPS
-  hosts: all
-  gather_facts: false
-  roles:
-    - role: loops

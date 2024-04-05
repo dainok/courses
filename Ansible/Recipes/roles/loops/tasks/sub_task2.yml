@@ -1,5 +1,0 @@
-# Print loop variable
-- name: MIDDLE LOOP VARIABLE
-  connection: local
-  ansible.builtin.debug:
-    msg: Now reading {{ outer_item }} / {{ inner_item }} from inner loop
