@@ -1,0 +1,3 @@
+- name: MIDDLE LOOP VARIABLE (sub_task2.yml)
+  ansible.builtin.debug:
+    msg: Now reading {{ os_item }} / {{ color_item }}
