@@ -1,4 +1,3 @@
----
 - name: CONFIGURE NTP PEERS
   cisco.ios.ios_config:
     lines:
@@ -18,6 +17,6 @@
 - name: REMOVING NTP PEERS
   cisco.ios.ios_config:
     lines:
-        - "no ntp peer {{ item }}"
+      - "no ntp peer {{ item }}"
   with_items: "{{ current_ntp_peers }}"
   when: item not in expected_ntp_peers

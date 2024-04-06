@@ -10,6 +10,7 @@ import json
 
 INVENTORY_CSV = "inventory.csv"
 
+
 def main():
     """Main function."""
     inventory = {
@@ -18,21 +19,15 @@ def main():
             "vars": {
                 "ansible_connection": "ansible.netcommon.network_cli",
                 "ansible_network_os": "cisco.ios.ios",
-            }
+            },
         },
         "routers": {
             "hosts": [],
-            "vars": {
-                "ansible_ssh_pass": "cisco",
-                "ansible_user": "admin"
-            }
+            "vars": {"ansible_ssh_pass": "cisco", "ansible_user": "admin"},
         },
         "switches": {
             "hosts": [],
-            "vars": {
-                "ansible_ssh_pass": "cisco",
-                "ansible_user": "admin"
-            }
+            "vars": {"ansible_ssh_pass": "cisco", "ansible_user": "admin"},
         },
         "core": {
             "hosts": [],

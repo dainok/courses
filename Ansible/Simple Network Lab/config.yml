@@ -1,9 +1,0 @@
-dns_servers:
-  - 8.8.4.4
-  - 8.8.8.8
-ntp_peers:
-  - 0.pool.ntp.org
-  - 1.pool.ntp.org
-  - 2.pool.ntp.org
-  - 3.pool.ntp.org
-  - 4.pool.ntp.org

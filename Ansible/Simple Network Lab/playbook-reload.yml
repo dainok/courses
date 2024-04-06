@@ -13,12 +13,12 @@
                 prompt: Proceed with reload
                 answer: "y"
           async: 1
-          poll: 0  # Immediately moves on to the next task 
+          poll: 0  # Immediately moves on to the next task
         - name: WAITING FOR REBOOT
           ansible.builtin.wait_for:
             delay: 30  # Wait 30 seconds before polling
-            connect_timeout: 3 #  Wait 3 seconds before dropping the connection
-            sleep: 10 #  Wait 10 seconds between polls
+            connect_timeout: 3  #  Wait 3 seconds before dropping the connection
+            sleep: 10  #  Wait 10 seconds between polls
             port: 22
             host: "{{ansible_host}}"
             timeout: 600  # Wait 10 minutes for device reachability

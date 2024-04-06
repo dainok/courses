@@ -1,0 +1,5 @@
+# https://github.com/DavidAnson/markdownlint/tree/main/doc
+MD013:
+  line_length: -1
+  code_blocks: false
+  tables: false

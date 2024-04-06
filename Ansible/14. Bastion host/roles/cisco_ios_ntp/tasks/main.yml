@@ -1,4 +1,3 @@
----
 - name: CONFIGURE NTP PEERS
   cisco.ios.ios_ntp_global:
     config:
