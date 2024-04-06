@@ -1,0 +1,12 @@
+#!/usr/bin/env ansible-playbook
+- name: PERSONAL LOGIN
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: READING OUTPUT
+      cisco.ios.ios_command:
+        commands: show ip interface brief
+      register: output
+    - name: PRINTING OUTPUT
+      ansible.builtin.debug:
+        msg: "{{ output.stdout[0] }}"

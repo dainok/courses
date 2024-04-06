@@ -4,7 +4,7 @@
 class FilterModule(object):
     """Ansible filter."""
 
-    def get_to_dict(self, items: list, key:str=None) -> dict:
+    def get_to_dict(self, items: list, key: str = None) -> dict:
         """Convert a list of dict into a dict of dict."""
         return {item[key]: item for item in items}
 

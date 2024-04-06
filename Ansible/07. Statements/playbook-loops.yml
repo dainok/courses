@@ -31,17 +31,17 @@
       - name: r3
   tasks:
     - name: LOOP with_items
-      debug:
+      ansible.builtin.debug:
         msg: "{{ item }}"
       with_items: "{{ colors }}"
     - name: LOOP loop
-      debug:
+      ansible.builtin.debug:
         msg: "{{ item }}"
       loop: "{{ colors }}"
     - name: LOOP loop (flatten)
-      debug:
+      ansible.builtin.debug:
         msg: "{{ item }}"
-      loop: "{{ colors|flatten(levels=1) }}"
+      loop: "{{ colors | flatten(levels=1) }}"
     - name: LOOP with_dict
       ansible.builtin.debug:
         msg: "{{ item.key }} - {{ item.value }}"
@@ -49,13 +49,13 @@
     - name: LOOP loop ON DICT
       ansible.builtin.debug:
         msg: "{{ item.key }} - {{ item.value }}"
-      loop: "{{ os_to_vendors|dict2items }}"
+      loop: "{{ os_to_vendors | dict2items }}"
     - name: LOOP loop ON DICT (sorted)
       ansible.builtin.debug:
         msg: "{{ item.0 }} - {{ item.1 }}"
-      loop: "{{ os_to_vendors|dictsort }}"
+      loop: "{{ os_to_vendors | dictsort }}"
     - name: LOOP ON NESTED
-      debug:
+      ansible.builtin.debug:
         msg: "{{ item.0.name }}:{{ item.1.name }}"
       loop: "{{ q('ansible.builtin.subelements', devices, 'interfaces', {'skip_missing': True}) }}"
     - name: CALLING OUTER LOOP (main.yml)

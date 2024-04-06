@@ -1,5 +1,5 @@
 #!/usr/bin/env ansible-playbook
-- name: PARSERS
+- name: TEXTFSM PARSERS
   hosts: all
   gather_facts: false
   tasks:

@@ -10,7 +10,7 @@
   register: show_run_ntp_peer
 - name: GETTING NTP PEERS
   ansible.builtin.set_fact:
-    current_ntp_peers: "{{ show_run_ntp_peer['stdout'][0] | regex_findall('^ntp peer .*$', multiline=True) | regex_replace('ntp peer ', '')}}"
+    current_ntp_peers: "{{ show_run_ntp_peer['stdout'][0] | regex_findall('^ntp peer .*$', multiline=True) | regex_replace('ntp peer ', '') }}"
     expected_ntp_peers:
       - "{{ ntp_server_1 }}"
       - "{{ ntp_server_2 }}"

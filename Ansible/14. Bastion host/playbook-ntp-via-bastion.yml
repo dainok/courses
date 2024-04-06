@@ -1,5 +1,5 @@
 #!/usr/bin/env ansible-playbook
-- name: NTP PEERS
+- name: BASTION HOST
   hosts: all
   gather_facts: false
   vars:
