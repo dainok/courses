@@ -7,8 +7,8 @@ ansible-runner==2.3.4
 Flask==2.3.3
 genie==24.3
 jc==1.23.6
-ntc_templates
+ntc_templates==4.0.1
 pyats==24.3
 python-slugify==8.0.1
 PyYAML==6.0.1
-ttp_templates
+ttp-templates==0.3.6
