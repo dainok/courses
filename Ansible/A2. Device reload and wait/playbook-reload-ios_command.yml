@@ -10,7 +10,7 @@
     - name: CHECKING CONFIGURATION REGISTER
       ansible.builtin.fail:
         msg: The configuration register must be 0x2101
-      when: "'Configuration register is 0x2101' not in output['stdout'][0]"
+      when: "'0x2101' not in output['stdout'][0]"
     - name: RELOAD DEVICE AND WAIT FOR REACHABILITY
       block:
         - name: RELOADING DEVICE
