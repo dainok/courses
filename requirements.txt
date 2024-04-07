@@ -6,6 +6,7 @@ ansible-rulebook==1.0.4
 ansible-runner==2.3.4
 Flask==2.3.3
 genie==24.3
+hvac==2.1.0
 jc==1.23.6
 ntc_templates==4.0.1
 pyats==24.3
