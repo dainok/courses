@@ -17,7 +17,6 @@
     - name: RELOAD DEVICE AND WAIT FOR REACHABILITY
       block:
         - name: RELOADING DEVICE
-          # Configuration register 0x2101 should be checked before reload
           cisco.ios.ios_command:
             commands:
               - command: reload
