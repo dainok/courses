@@ -11,6 +11,9 @@
       ansible.builtin.fail:
         msg: The configuration register must be 0x2101
       when: "'0x2101' not in output['stdout'][0]"
+    - name: SAVING CONFIGURATION
+      cisco.ios.ios_config:
+        save_when: modified
     - name: RELOAD DEVICE AND WAIT FOR REACHABILITY
       block:
         - name: RELOADING DEVICE
