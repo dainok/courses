@@ -1,0 +1,25 @@
+#!/usr/bin/env ansible-playbook
+- name: PING
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: PING WITH cli_command
+      ansible.netcommon.cli_command:
+        command: ping
+        check_all: true
+        prompt:
+          - Protocol
+          - Target IP address
+          - Repeat count
+          - Datagram size
+          - Timeout in seconds
+          - Extended commands
+          - Sweep range of sizes
+        answer:
+          - ip
+          - 8.8.8.8
+          - 3
+          - 40
+          - 1
+          - n
+          - n
