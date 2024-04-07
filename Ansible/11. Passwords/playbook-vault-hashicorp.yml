@@ -1,5 +1,5 @@
 #!/usr/bin/env ansible-playbook
-- name: ANSIBLE VAULT
+- name: HASHICORP VAULT
   hosts: all
   gather_facts: false
   vars:
