@@ -1,12 +1,20 @@
 #!/usr/bin/env ansible-playbook
-- name: SYSTEM CONFIGURATION
+- name: RELOAD ROUTERS
   hosts: all
   gather_facts: false
   tasks:
+    - name: READING SHOW VERSION
+      cisco.ios.ios_command:
+        commands: show version
+      register: output
+    - name: CHECKING CONFIGURATION REGISTER
+      ansible.builtin.fail:
+        msg: The configuration register must be 0x2101
+      when: "'Configuration register is 0x2101' not in output['stdout'][0]"
     - name: RELOAD DEVICE AND WAIT FOR REACHABILITY
       block:
         - name: RELOADING DEVICE
-          # Configuration register should be checked before reload
+          # Configuration register 0x2101 should be checked before reload
           cisco.ios.ios_command:
             commands:
               - command: reload
@@ -20,6 +28,9 @@
             connect_timeout: 3  #  Wait 3 seconds before dropping the connection
             sleep: 10  #  Wait 10 seconds between polls
             port: 22
-            host: "{{ansible_host}}"
+            host: "{{ ansible_host }}"
             timeout: 600  # Wait 10 minutes for device reachability
           connection: local
+    - name: READING OUTPUT
+      cisco.ios.ios_command:
+        commands: show ip interface brief
