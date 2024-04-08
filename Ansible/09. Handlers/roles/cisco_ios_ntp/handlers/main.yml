@@ -1,0 +1,4 @@
+- name: SAVE CONFIG
+  cisco.ios.ios_config:
+    save_when: always
+  notify: SAVE CONFIG
