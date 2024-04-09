@@ -1,0 +1,14 @@
+# Convert a list of IP into a list of peers
+- name: SETTING NTP PEER LIST
+  ansible.builtin.set_fact:
+    ntp_peers_config_list: >-
+      [
+        {% for host in ntp_servers %}
+          {"peer": "{{ host }}"},
+        {% endfor %}
+      ]
+- name: CONFIGURE NTP PEERS
+  cisco.ios.ios_ntp_global:
+    config:
+      peers: "{{ ntp_peers_config_list }}"
+    state: replaced
