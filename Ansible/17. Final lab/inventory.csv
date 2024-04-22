@@ -1,0 +1,9 @@
+FQDN;IP Address;Groups
+r1.example.com;169.254.1.21;routers
+r2.example.com;169.254.1.22;routers
+sw1.example.com;169.254.1.101;switches,core
+sw2.example.com;169.254.1.102;switches,core
+sw3.example.com;169.254.1.103;switches,access
+sw4.example.com;169.254.1.104;switches,access
+sw5.example.com;169.254.1.105;switches,access
+sw6.example.com;169.254.1.106;switches,access

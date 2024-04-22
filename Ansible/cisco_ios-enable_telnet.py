@@ -2,7 +2,8 @@
 """
 Connect to a Cisco IOS device via telnet and enable SSH.
 
-Depends on: pip install netmiko==4.3.0"""
+Depends on: pip install netmiko==4.3.0
+"""
 
 import sys
 import os
@@ -17,8 +18,8 @@ if not password:
     sys.exit(1)
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--hostname', required=True, help="device hostname")
-parser.add_argument('--username', required=True, help="privileged username")
+parser.add_argument("--hostname", required=True, help="device hostname")
+parser.add_argument("--username", required=True, help="privileged username")
 args = parser.parse_args()
 
 device = {
@@ -35,10 +36,12 @@ net_connect = ConnectHandler(**device, device_type="cisco_ios_telnet")
 output += net_connect.send_config_set("ip domain name tndigit.it")
 output += net_connect.send_config_set("crypto key generate rsa modulus 2048")
 output += net_connect.send_config_set("ip ssh version 2")
-output += net_connect.send_config_set([
-    "line vty 0 15",
-    "transport input telnet ssh",
-])
+output += net_connect.send_config_set(
+    [
+        "line vty 0 15",
+        "transport input telnet ssh",
+    ]
+)
 net_connect.disconnect()
 pprint(output)
 
