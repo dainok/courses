@@ -1,0 +1,35 @@
+#!/usr/bin/env ansible-playbook
+- name: PANOS TEST PLAYBOOK
+  hosts: all
+  gather_facts: false
+  connection: local
+  pre_tasks:
+    - name: SETTING PROVIDER
+      ansible.builtin.set_fact:
+        provider:
+          ip_address: "{{ ansible_host }}"
+          password: "{{ ansible_ssh_pass }}"
+          port: "{{ ansible_port }}"
+          username: "{{ ansible_user }}"
+  tasks:
+    - name: GET PANOS FACTS
+      paloaltonetworks.panos.panos_facts:
+        provider: '{{ provider }}'
+        gather_subset: ['all']
+    - name: PRINT MODULE VARIABLES (vars)
+      ansible.builtin.debug:
+        msg: "{{ vars }}"
+    - name: PRINT ENVIRONMENT VARIABLES (environment)
+      ansible.builtin.debug:
+        msg: "{{ environment }}"
+    - name: PRINT GROUP NAMES VARIABLES (group_names)
+      ansible.builtin.debug:
+        msg: "{{ group_names }}"
+      tags: group_names
+    - name: PRINT GROUPS VARIABLES (groups)
+      ansible.builtin.debug:
+        msg: "{{ groups }}"
+      tags: groups
+    - name: PRINT HOST VARIABLES (hostvars)
+      ansible.builtin.debug:
+        msg: "{{ hostvars }}"

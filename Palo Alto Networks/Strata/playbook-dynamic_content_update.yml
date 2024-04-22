@@ -1,0 +1,91 @@
+#!/usr/bin/env ansible-playbook
+- name: UPDATE ANTIVIRUS/CONTENT/WILDFIRE
+  hosts: all
+  gather_facts: false
+  connection: local
+  vars:
+    contents:
+      - anti-virus
+      - content
+      - wildfire
+    grace_period: 4 # Hours
+  pre_tasks:
+    - name: SETTING PROVIDER
+      ansible.builtin.set_fact:
+        provider:
+          ip_address: "{{ ansible_host }}"
+          password: "{{ ansible_ssh_pass }}"
+          port: "{{ ansible_port }}"
+          username: "{{ ansible_user }}"
+  tasks:
+    - name: UPDATING CONTENTS
+      ansible.builtin.include_tasks: content_update.yml
+      with_items: "{{ contents }}"
+      loop_control:
+        loop_var: content
+
+    # # Fetch latest contents
+    # - name: RETRIEVING REMOTE ANTIVIRUS LIST
+    #   paloaltonetworks.panos.panos_op:
+    #     provider: "{{ provider }}"
+    #     cmd: "request anti-virus upgrade check"
+    #   register: check
+    #   changed_when: false
+    # - name: RETRIEVING REMOTE CONTENT LIST
+    #   paloaltonetworks.panos.panos_op:
+    #     provider: "{{ provider }}"
+    #     cmd: "request content upgrade check"
+    #   register: check
+    #   changed_when: false
+    # - name: RETRIEVING REMOTE WILDFIRE LIST
+    #   paloaltonetworks.panos.panos_op:
+    #     provider: "{{ provider }}"
+    #     cmd: "request wildfire upgrade check"
+    #   register: check
+    #   changed_when: false
+
+
+    # # Get installed contents
+    # - name: CHECKING ANTIVIRUS
+    #   paloaltonetworks.panos.panos_op:
+    #     provider: "{{ provider }}"
+    #     cmd: request anti-virus upgrade info
+    #   register: request_antivirus_upgrade_info
+    #   changed_when: false
+    # - name: CHECKING CONTENT
+    #   paloaltonetworks.panos.panos_op:
+    #     provider: "{{ provider }}"
+    #     cmd: request content upgrade info
+    #   register: request_content_upgrade_info
+    #   changed_when: false
+    # - name: CHECKING WILDFIRE
+    #   paloaltonetworks.panos.panos_op:
+    #     provider: "{{ provider }}"
+    #     cmd: request wildfire upgrade info
+    #   register: request_wildfire_upgrade_info
+    #   changed_when: false
+    # # Retrieve lastet and installed versions
+    # - name: GETTING INSTALLED AND LATEST VERSIONS
+    #   ansible.builtin.set_fact:
+    #     installed_antivirus_version: "{{ request_antivirus_upgrade_info['stdout'] | panos_content }}"
+    #     latest_antivirus_version: "{{ request_antivirus_upgrade_info['stdout'] | panos_content(latest=1) }}"
+    #     installed_content_version: "{{ request_content_upgrade_info['stdout'] | panos_content }}"
+    #     latest_content_version: "{{ request_content_upgrade_info['stdout'] | panos_content(latest=1) }}"
+    #     installed_wildfire_version: "{{ request_wildfire_upgrade_info['stdout'] | panos_content }}"
+    #     latest_wildfire_version: "{{ request_wildfire_upgrade_info['stdout'] | panos_content(latest=1) }}"
+    # # Update if necessary
+    # - name: UPDATING ANTIVIRUS
+    #   include: content_update.yml
+    #   vars:
+    #       content_type: anti-virus
+    #   when: installed_antivirus_version != latest_antivirus_version
+    # - name: UPDATING CONTENT
+    #   include: content_update.yml
+    #   vars:
+    #       content_type: content
+    #   when: installed_content_version != latest_content_version
+    # - name: UPDATING WILDFIRE
+    #   include: content_update.yml
+    #   vars:
+    #       content_type: wildfire
+    #   when: installed_wildfire_version != latest_wildfire_version
