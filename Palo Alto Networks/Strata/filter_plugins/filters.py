@@ -12,7 +12,7 @@ class FilterModule(object):
     def panos_content(self, output: dict, latest: bool = False) -> str:
         """
         Return the installed content version.
-        
+
         If latest == True, return the latest content version.
         """
         current_version = None
