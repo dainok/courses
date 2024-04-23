@@ -10,7 +10,7 @@
   ansible.builtin.set_fact:
     is_grace_period: "{{ content_info.stdout | panos_content_period(hours=grace_period) }}"
 # Update content list (check)
-- name: "UPDATING {{ content | default('CONTENT') }} LIST"
+- name: "UPDATING LIST {{ content | default('CONTENT') }}"
   paloaltonetworks.panos.panos_op:
     provider: "{{ provider }}"
     cmd: "request {{ content }} upgrade check"
@@ -31,33 +31,33 @@
 - name: "UPDATING {{ content | default('CONTENT') }}"
   when: installed_content_version != latest_content_version
   block:
-  # Download content
-  - name: "DOWNLOADING LATEST {{ content | default('CONTENT') }}"
-    paloaltonetworks.panos.panos_op:
-      provider: "{{ provider }}"
-      cmd: "request {{ content }} upgrade download latest"
-    register: content_download
-  # Wait for job copletition
-  - name: "CHECKING {{ content | default('CONTENT') }} DOWNLOAD RESULT"
-    paloaltonetworks.panos.panos_op:
-      provider: "{{ provider }}"
-      cmd: "show jobs id {{ (content_download.stdout | from_json).response.result.job }}"
-    register: content_download_check
-    until: content_download_check is not failed and (content_download_check.stdout | from_json).response.result.job.status == "FIN"
-    retries: 15
-    delay: 60
-  # Install latest content
-  - name: "INSTALLING LATEST {{ content | default('CONTENT') }}"
-    paloaltonetworks.panos.panos_op:
-      provider: "{{ provider }}"
-      cmd: "request {{ content }} upgrade install version latest"
-    register: content_install_latest
-  # Wait for job completition
-  - name: "CHECKING {{ content | default('CONTENT') }} INSTALL RESULT"
-    paloaltonetworks.panos.panos_op:
-      provider: "{{ provider }}"
-      cmd: "show jobs id {{ (content_install_latest.stdout | from_json).response.result.job }}"
-    register: content_install_check
-    until: content_install_check is not failed and (content_install_check.stdout | from_json).response.result.job.status == "FIN"
-    retries: 15
-    delay: 60
+    # Download content
+    - name: "DOWNLOADING LATEST {{ content | default('CONTENT') }}"
+      paloaltonetworks.panos.panos_op:
+        provider: "{{ provider }}"
+        cmd: "request {{ content }} upgrade download latest"
+      register: content_download
+    # Wait for job copletition
+    - name: "CHECKING DOWNLOAD RESULT {{ content | default('CONTENT') }}"
+      paloaltonetworks.panos.panos_op:
+        provider: "{{ provider }}"
+        cmd: "show jobs id {{ (content_download.stdout | from_json).response.result.job }}"
+      register: content_download_check
+      until: content_download_check is not failed and (content_download_check.stdout | from_json).response.result.job.status == "FIN"
+      retries: 15
+      delay: 60
+    # Install latest content
+    - name: "INSTALLING LATEST {{ content | default('CONTENT') }}"
+      paloaltonetworks.panos.panos_op:
+        provider: "{{ provider }}"
+        cmd: "request {{ content }} upgrade install version latest"
+      register: content_install_latest
+    # Wait for job completition
+    - name: "CHECKING INSTALL RESULT {{ content | default('CONTENT') }}"
+      paloaltonetworks.panos.panos_op:
+        provider: "{{ provider }}"
+        cmd: "show jobs id {{ (content_install_latest.stdout | from_json).response.result.job }}"
+      register: content_install_check
+      until: content_install_check is not failed and (content_install_check.stdout | from_json).response.result.job.status == "FIN"
+      retries: 15
+      delay: 60
