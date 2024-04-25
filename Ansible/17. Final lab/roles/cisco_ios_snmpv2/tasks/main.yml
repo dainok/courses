@@ -6,5 +6,5 @@
     config:
       communities:
         - name: "{{ snmp_community }}"
-          rw: false
+          ro: true
     state: replaced

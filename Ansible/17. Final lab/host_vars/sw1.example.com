@@ -2,8 +2,10 @@ interfaces:
   Ethernet0/1:
     profile: unused
   Ethernet0/2:
-    profile: unused
+    description: to Hypervisor
+    profile: hypervisor
   Ethernet0/3:
+    description: to Firewall
     profile: firewall
   Ethernet1/0:
     description: to SW3

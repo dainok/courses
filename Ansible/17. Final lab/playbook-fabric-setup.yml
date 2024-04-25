@@ -11,6 +11,8 @@
       tags: snmp
     - role: cisco_ios_vlan
       tags: vlan
+    - role: cisco_ios_interface_profile
+      tags: interface
   post_tasks:
     - name: SAVING CONFIG
       tags: always
