@@ -6,7 +6,7 @@ Configures hostname, domain name, DNS servers and DNS lookup on Cisco IOS device
 Requirements
 ------------
 
-Role requires collection `cisco.ios==8.0.0`.
+Role requires collection `cisco.ios=>8.0.0`.
 
 Role Variables
 --------------
