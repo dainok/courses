@@ -1,0 +1,4 @@
+collections:
+- name: cisco.ios
+  version: 8.0.0
+  source: https://galaxy.ansible.com
