@@ -1,0 +1,33 @@
+---
+# https://ansible.readthedocs.io/projects/builder/en/latest/definition/
+
+# This is an example for ansible-builder version 3, in this example
+# This example installs bind-utils,git-core with bindep.txt and terraform, azure-cli binaries to the main image in append_base 
+# Also pynetbox as a python package, awx.awx, community.general as ansible galaxy modules.
+
+# This example is using awx-ee:23.8.0 as base image
+
+version: 3
+
+images:
+  base_image:
+    name: quay.io/ansible/awx-ee:23.8.0
+
+dependencies:
+  system: dependencies/bindep.txt
+  python: dependencies/requirements.txt
+  galaxy: dependencies/requirements.yml
+
+additional_build_steps:
+  # prepend_base:
+  #   - RUN echo "Additional steps for prepend_base"
+  append_base:
+    # - RUN echo "Additional steps for append_base"
+    - RUN yum install -y yum-utils
+    - RUN yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+    - RUN yum -y install terraform
+    - RUN rpm --import https://packages.microsoft.com/keys/microsoft.asc
+    - RUN dnf install -y https://packages.microsoft.com/config/rhel/8/packages-microsoft-prod.rpm
+    - RUN dnf -y install azure-cli
+  #prepend_galaxy:
+    # - RUN echo "Additional steps for prepend_galaxy"
