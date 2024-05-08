@@ -1,6 +1,6 @@
-Ciphers +aes128-cbc
+KexAlgorithms +diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1,diffie-hellman-group1-sha1
+Ciphers +aes128-ctr,aes192-ctr,aes256-ctr
 HostKeyAlgorithms +ssh-rsa
-KexAlgorithms +diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1
 
 Host *
     ServerAliveInterval 5
