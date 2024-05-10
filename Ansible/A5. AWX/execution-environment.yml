@@ -1,4 +1,3 @@
----
 # See:
 # - https://ansible.readthedocs.io/projects/builder/en/latest/definition/
 # - https://www.linkedin.com/pulse/creating-custom-ee-awx-phil-griffiths/
@@ -11,9 +10,9 @@ images:
   base_image:
     name: quay.io/ansible/awx-ee:24.3.1
 additional_build_steps:
-  # prepend_base:
-  #   - RUN echo "Additional steps for prepend_base"
-  # append_base:
-  #   - RUN echo "Additional steps for append_base"
-  # prepend_galaxy:
-  #   - RUN echo "Additional steps for prepend_galaxy"
+  prepend_base:
+    - RUN echo "Additional steps for prepend_base"
+  append_base:
+    - RUN echo "Additional steps for append_base"
+  prepend_galaxy:
+    - RUN echo "Additional steps for prepend_galaxy"
