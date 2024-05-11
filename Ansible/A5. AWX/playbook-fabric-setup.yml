@@ -39,7 +39,7 @@
           ansible.builtin.debug:
             msg: "{{ ssh_key_permissions.stdout_lines }}"
         - command:
-            cmd: cat /opt/bastionhost_id_rsa
+            cmd: find /opt
           register: a
         - debug:
             msg: "{{ a }}"
