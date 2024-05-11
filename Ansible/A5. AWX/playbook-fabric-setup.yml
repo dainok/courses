@@ -31,7 +31,7 @@
           when: not ssh_key.stat.exists
     - delegate_to: localhost
       command:
-        cmd: ls -l /opt
+        cmd: ls -al /opt / /home
       register: aaa
     - debug:
         msg: "{{ aaa }}"
