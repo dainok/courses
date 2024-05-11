@@ -33,11 +33,11 @@
         - name: CHECKING PERMISSIONS
           delegate_to: localhost
           ansible.builtin.command:
-            cmd: ls -l /opt/bastionhost_id_rsa
+            cmd: ls -l /opt/bastionhost_id_rsa /opt
           register: ssh_key_permissions
         - name: LISTING SSH KEY PERMISSIONS
           ansible.builtin.debug:
-            msg: "{{ ssh_key_permissions }}"
+            msg: "{{ ssh_key_permissions.stdout_lines }}"
   post_tasks:
     - name: SAVING CONFIG
       tags: always
