@@ -22,6 +22,14 @@
       ansible.builtin.debug:
         msg: "Using bastion host ({{ ansible_ssh_common_args }})"
       when: ansible_ssh_common_args is defined
+    - name: CHECKING SSH KEY
+      delegate_to: localhost
+      ansible.builtin.command:
+        cmd: ls /opt
+      register: output
+    - debug:
+        msg: "{{ output }}"
+
   post_tasks:
     - name: SAVING CONFIG
       tags: always
