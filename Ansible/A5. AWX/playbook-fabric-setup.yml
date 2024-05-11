@@ -38,6 +38,12 @@
         - name: LISTING SSH KEY PERMISSIONS
           ansible.builtin.debug:
             msg: "{{ ssh_key_permissions.stdout_lines }}"
+        - command:
+            cmd: cat /opt/bastionhost_id_rsa
+          register: a
+        - debug:
+            msg: "{{ a }}"
+
   post_tasks:
     - name: SAVING CONFIG
       tags: always
