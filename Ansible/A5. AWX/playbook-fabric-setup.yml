@@ -33,7 +33,7 @@
         - name: CHECKING PERMISSIONS
           delegate_to: localhost
           ansible.builtin.command:
-            cmd: ls -l /opt/ssh-privatekey
+            cmd: ls -l /opt /opt/ssh-privatekey
           register: ssh_key_permissions
         - name: LISTING SSH KEY PERMISSIONS
           ansible.builtin.debug:
