@@ -14,10 +14,14 @@
     - role: cisco_ios_interface_profile
       tags: interface
   pre_tasks:
-    - name: SETTING BASTION HOST
-      ansible.builtin.set_fact:
-        ansible_ssh_common_args: >-
-          -o ProxyCommand="ssh -o IdentityFile=/opt/bastionhost_id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -W %h:%p -q dev@172.25.82.110"
+    # - name: SETTING BASTION HOST
+    #   ansible.builtin.set_fact:
+    #     ansible_ssh_common_args: >-
+    #       -o ProxyCommand="ssh -o IdentityFile=/opt/bastionhost_id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -W %h:%p -q dev@172.25.82.110"
+    - name: USING BATION HOST
+      ansible.builtin.debug:
+        msg: "Using bastion host ({{ ansible_ssh_common_args }})"
+      when: ansible_ssh_common_args is defined
   post_tasks:
     - name: SAVING CONFIG
       tags: always
