@@ -14,22 +14,21 @@
     - role: cisco_ios_interface_profile
       tags: interface
   pre_tasks:
-    # - name: SETTING BASTION HOST
-    #   ansible.builtin.set_fact:
-    #     ansible_ssh_common_args: >-
-    #       -o ProxyCommand="ssh -o IdentityFile=/opt/bastionhost_id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -W %h:%p -q dev@172.25.82.110"
-    - name: USING BATION HOST
-      ansible.builtin.debug:
-        msg: "Using bastion host ({{ ansible_ssh_common_args }})"
+    - name: CHECKING BASTION HOST
       when: ansible_ssh_common_args is defined
-    - name: CHECKING SSH KEY
-      delegate_to: localhost
-      ansible.builtin.command:
-        cmd: ls /opt
-      register: output
-    - debug:
-        msg: "{{ output }}"
-
+      block:
+        - name: BASTION HOST CONFIGURATION
+          ansible.builtin.debug:
+            msg: "ansible_ssh_common_args: {{ ansible_ssh_common_args }}"
+        - name: CHECKING SSH KEY
+          delegate_to: localhost
+          ansible.builtin.stat:
+            path: /opt/bastionhost_id_rsa
+          register: ssh_key
+        - name: FAIL IF SSH KEY IS MISSINT
+          ansible.builtin.fail:
+            msg: "/opt/bastionhost_id_rsa is missing"
+          when: not ssh_key.stat.exists
   post_tasks:
     - name: SAVING CONFIG
       tags: always
