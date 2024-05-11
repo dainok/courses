@@ -33,7 +33,7 @@
         - name: CHECKING PERMISSIONS
           delegate_to: localhost
           ansible.builtin.command:
-            cmd: ls -l /opt /opt/bastionhost_id_rsa/ /opt/bastionhost_id_rsa/ssh-privatekey
+            cmd: ls -al /opt /opt/bastionhost_id_rsa/ /opt/bastionhost_id_rsa/ssh-privatekey
           register: ssh_key_permissions
         - name: LISTING SSH KEY PERMISSIONS
           ansible.builtin.debug:
