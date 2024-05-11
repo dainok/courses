@@ -16,6 +16,7 @@
   pre_tasks:
     - name: CHECKING BASTION HOST
       when: ansible_ssh_common_args is defined
+      run_once: true
       block:
         - name: BASTION HOST CONFIGURATION
           ansible.builtin.debug:
@@ -25,20 +26,18 @@
           ansible.builtin.stat:
             path: /opt/bastionhost_id_rsa
           register: ssh_key
-        - name: FAIL IF SSH KEY IS MISSINT
+        - name: FAIL IF SSH KEY IS MISSING
           ansible.builtin.fail:
             msg: "/opt/bastionhost_id_rsa is missing"
           when: not ssh_key.stat.exists
-    - delegate_to: localhost
-      command:
-        cmd: ls -al /opt / /home
-      register: aaa
-    - debug:
-        msg: "{{ aaa }}"
-    - debug:
-        msg: "{{ ssh_key }}"
-      
-      
+        - name: CHECKING PERMISSIONS
+          delegate_to: localhost
+          ansible.builtin.command:
+            cmd: ls -l /opt/bastionhost_id_rsa
+          register: ssh_key_permissions
+        - name: LISTING SSH KEY PERMISSIONS
+          ansible.builtin.debug:
+            msg: "{{ ssh_key_permissions }}"
   post_tasks:
     - name: SAVING CONFIG
       tags: always
