@@ -29,6 +29,16 @@
           ansible.builtin.fail:
             msg: "/opt/bastionhost_id_rsa is missing"
           when: not ssh_key.stat.exists
+    - delegate_to: localhost
+      command:
+        cmd: ls -l /opt
+      register: aaa
+    - debug:
+        msg: "{{ aaa }}"
+    - debug:
+        msg: "{{ ssh_key }}"
+      
+      
   post_tasks:
     - name: SAVING CONFIG
       tags: always
