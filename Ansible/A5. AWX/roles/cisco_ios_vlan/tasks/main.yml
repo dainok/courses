@@ -1,0 +1,21 @@
+# tasks file for roles/cisco_ios_vlan
+# Convert a list of VLAN to be used with ios_vlans module
+- name: SETTING VLAN LIST
+  ansible.builtin.set_fact:
+    vlans_config_list: >-
+      [
+        {% for vlan in vlans %}
+          {
+            "vlan_id": "{{ vlan.id }}",
+            "name": "{{ vlan.name }}",
+            "mtu": 1500,
+            "state": "active",
+            "shutdown": "disabled",
+          },
+        {% endfor %}
+      ]
+# Configuring VLANs
+- name: ADDING VLANS
+  cisco.ios.ios_vlans:
+    config: "{{ vlans_config_list }}"
+    state: replaced

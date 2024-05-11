@@ -1,0 +1,16 @@
+# tasks file for roles/cisco_ios_system
+# Set and normalize hostname and domain
+- name: SETTING FACTS
+  ansible.builtin.set_fact:
+    device_hostname: "{{ inventory_hostname_short | upper }}"
+    device_domain: "{{ inventory_hostname.split('.', 1)[1] | lower }}"
+# Configure hostname
+- name: CONFIGURING HOSTNAME AND DOMAIN NAME
+  cisco.ios.ios_system:
+    hostname: "{{ device_hostname }}"
+    domain_name: "{{ device_domain }}"
+# Configure DNS lookup
+- name: CONFIGURING DNS LOOKUP
+  cisco.ios.ios_system:
+    lookup_enabled: "{{ dns_lookup }}"
+    name_servers: "{{ dns_servers }}"

@@ -1,0 +1,9 @@
+# tasks file for roles/cisco_ios_snmpv2
+# Configure the SNMPv2 read-only community
+- name: CONFIGURING SNMPv2 COMMUNITY
+  cisco.ios.ios_snmp_server:
+    config:
+      communities:
+        - name: "{{ snmp_community }}"
+          ro: true
+    state: replaced
