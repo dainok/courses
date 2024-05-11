@@ -38,7 +38,8 @@
         - name: LISTING SSH KEY PERMISSIONS
           ansible.builtin.debug:
             msg: "{{ ssh_key_permissions.stdout_lines }}"
-        - command:
+        - name: TESTING SSH KEY
+          ansible.builtin.command:
             cmd: cat /opt/bastionhost_id_rsa/ssh-privatekey
           register: a
         - debug:
