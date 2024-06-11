@@ -10,9 +10,10 @@ genie==24.3
 hvac==2.1.0
 jc==1.23.6
 ntc_templates==4.0.1
-pan-os-python==1.12.0
-pan-python==0.25.0
+pan-os-python==1.12.1
+pan-python==0.17.0
 pyats==24.3
 python-slugify==8.0.1
 PyYAML==6.0.1
 ttp-templates==0.3.6
+xmltodict==0.13.0
