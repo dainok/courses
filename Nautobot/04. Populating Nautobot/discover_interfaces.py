@@ -45,8 +45,8 @@ headers = {
 # Get device ID
 url = f"{nautobot_base_url}/api/dcim/devices/?name={device_name}"
 req = requests.get(url, headers=headers).json()
-if req["count"] != 1:
-    raise ValueError(f"Found {req['count']} occorrences of {device_name}")
+if req["count"] < 1:
+    raise ValueError(f"{device_name} not found")
 device_id = req["results"][0]["id"]
 
 # For each interface
