@@ -1,0 +1,69 @@
+# tasks file for roles/cisco_ios_port_profile
+# Get running-config
+- name: GETTING RUNNING CONFIGURATION
+  cisco.ios.ios_command:
+    commands:
+      - show running-config
+  register: show_running_config
+
+# Generate interface profile list and configurations
+- name: SETTING INTERFACE PROFILES
+  ansible.builtin.set_fact:
+    interface_profiles: >-
+      {
+        {% for interface in interfaces %}
+          {% if interface.role %}
+            "{{ interface.name }}": "{{ interface.role.name }}",
+          {% endif %}
+        {% endfor %}
+      }
+    interface_cfgs: >-
+      [
+        {% for interface in interfaces %}
+          {% if interface.role %}
+            {
+              "name": "{{ interface.name }}",
+              {% if interface.enabled %}
+                "description": "{{ interface.description }} ({{ interface.role.name }})",
+                "enabled": true,
+              {% else %}
+                "enabled": false,
+              {% endif %}
+            },
+          {% endif %}
+        {% endfor %}
+      ]
+
+# Filter
+- name: FILTERING INTERFACES
+  ansible.builtin.set_fact:
+    interface_profiles: >-
+      {
+        {% for interface_name, profile in interface_profiles.items() %}
+          {% if interface_name == interface_limit %}
+            "{{ interface_name }}": "{{ profile }}",
+          {% endif %}
+        {% endfor %}
+      }
+    interface_cfgs: >-
+      [
+        {% for interface in interface_cfgs %}
+          {% if interface.name == interface_limit %}
+            {{ interface }},
+          {% endif %}
+        {% endfor %}
+      ]
+  when: interface_limit is defined
+
+# Attach profile to interface
+- name: ATTACHING PROFILE TO INTERFACE
+  ansible.builtin.include_tasks: "profile_{{ interface.value }}.yml"
+  with_dict: "{{ interface_profiles }}"
+  loop_control:
+    loop_var: interface
+
+# Set description and activate interface if used
+- name: "SETTING INTERFACE STATUS"
+  cisco.ios.ios_interfaces:
+    config: "{{ interface_cfgs }}"
+    state: merged
