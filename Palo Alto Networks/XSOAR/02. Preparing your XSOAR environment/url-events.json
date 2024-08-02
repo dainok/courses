@@ -1,0 +1,21 @@
+// Inspired by https://www.youtube.com/watch?v=BhpkZA9t1HA&list=PLD6FJ8WNiIqUVEA2e5LZhmqNnwFcFhDTZ
+[
+    {
+        "type": "url allowed",
+        "eventID": 1,
+        "sourceIP": "10.8.8.8",
+        "occurred": "2021-04-23T19:17:44.000Z",
+        "sourceUser": "marco@example.com",
+        "url": "https://www.example.com/new",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0"
+    },
+    {
+        "type": "url blocker",
+        "eventID": 2,
+        "sourceIP": "10.8.8.89",
+        "occurred": "2021-04-23T19:17:45.000Z",
+        "sourceUser": "andrea@example.com",
+        "url": "https://www.exampe.com/new",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0"
+    }
+]
