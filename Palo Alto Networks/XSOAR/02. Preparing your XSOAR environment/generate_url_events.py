@@ -7,13 +7,14 @@ import json
 
 EVENTS = 1000 # Number of events to generate
 EVENT_TYPES = ["url allowed", "url blocked"] # Dictionary of event types
-STARTING_DATE = "2021-01-01T00:00:00"
+STARTING_DATE = "2024-05-01T00:00:00"
 TIME_DELTA = 7200 # 2 hours
 FIRSTNAMES_DICT = "dict-firstnames.txt"
 LASTNAMES_DICT = "dict-lastnames.txt"
 USER_AGENTS_DICT = "dict-user-agents.txt"
 TLDS_DICT = "dict-tlds.txt"
 SUBDOMAINS_DICT = "dict-subdomains.txt"
+URLCATEGORIES_DICT = "dict-url-categories.txt"
 
 TEMPLATE = {
     "type": None,
@@ -43,6 +44,8 @@ def main():
         tlds = fh.readlines()
     with open(SUBDOMAINS_DICT, "r") as fh:
         subdomains = fh.readlines()
+    with open(URLCATEGORIES_DICT, "r") as fh:
+        url_categories = fh.readlines()
 
     output = []
     event_timestamp = datetime.strptime(STARTING_DATE, "%Y-%m-%dT%H:%M:%S")
@@ -57,6 +60,7 @@ def main():
         event["occurred"] = f"{event_timestamp.isoformat()}.000Z"
         event["sourceUser"] = f"{pick(firstnames)}.{pick(lastnames)}@example.corp"
         event["url"] = f"https://{pick(subdomains)}.{pick(lastnames)}.{pick(tlds)}/{pick(lastnames)}"
+        event["urlCategory"] = pick(url_categories).upper()
         event["userAgent"] = pick(user_agents)
         output.append(event)
         
