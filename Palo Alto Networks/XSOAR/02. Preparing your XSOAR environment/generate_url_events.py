@@ -24,6 +24,7 @@ TEMPLATE = {
     "sourceUser": None,
     "url": None,
     "userAgent": None,
+    "name": None,
 }
 
 
@@ -62,6 +63,7 @@ def main():
         event["url"] = f"https://{pick(subdomains)}.{pick(lastnames)}.{pick(tlds)}/{pick(lastnames)}"
         event["urlCategory"] = pick(url_categories).upper()
         event["userAgent"] = pick(user_agents)
+        event["name"] = f"Alert {event['type'].capitalize()} - {event['sourceUser']}"
         output.append(event)
         
     # Print events
