@@ -55,7 +55,7 @@ def main():
         event["eventID"] = event_id
         event["sourceIP"] = f"10.{randint(1, 254)}.{randint(1, 254)}.{randint(1, 254)}"
         event["occurred"] = f"{event_timestamp.isoformat()}.000Z"
-        event["sourceUser"] = f"{pick(firstnames)}.{pick(lastnames)}"
+        event["sourceUser"] = f"{pick(firstnames)}.{pick(lastnames)}@example.corp"
         event["url"] = f"https://{pick(subdomains)}.{pick(lastnames)}.{pick(tlds)}/{pick(lastnames)}"
         event["userAgent"] = pick(user_agents)
         output.append(event)
