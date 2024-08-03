@@ -5,7 +5,8 @@ from random import randint
 from datetime import datetime, timedelta, timezone
 import json
 
-EVENTS = 1000 # Number of events to generate
+EVENTS = 5000 # Number of events to generate
+PROBABILITY_OF_MALICIOUS_EVENT = 25 # Chances to get a malicious event
 EVENT_TYPES = ["url allowed", "url blocked"] # Dictionary of event types
 STARTING_DATE = "2024-05-01T00:00:00"
 TIME_DELTA = 7200 # 2 hours
@@ -14,7 +15,8 @@ LASTNAMES_DICT = "dict-lastnames.txt"
 USER_AGENTS_DICT = "dict-user-agents.txt"
 TLDS_DICT = "dict-tlds.txt"
 SUBDOMAINS_DICT = "dict-subdomains.txt"
-URLCATEGORIES_DICT = "dict-url-categories.txt"
+BENIGN_URLCATEGORIES_DICT = "dict-benign-url-categories.txt"
+MALICIOUS_URLCATEGORIES_DICT = "dict-malicious-url-categories.txt"
 
 TEMPLATE = {
     "type": None,
@@ -45,8 +47,10 @@ def main():
         tlds = fh.readlines()
     with open(SUBDOMAINS_DICT, "r") as fh:
         subdomains = fh.readlines()
-    with open(URLCATEGORIES_DICT, "r") as fh:
-        url_categories = fh.readlines()
+    with open(BENIGN_URLCATEGORIES_DICT, "r") as fh:
+        benign_url_categories = fh.readlines()
+    with open(MALICIOUS_URLCATEGORIES_DICT, "r") as fh:
+        malicious_url_categories = fh.readlines()
 
     output = []
     event_timestamp = datetime.strptime(STARTING_DATE, "%Y-%m-%dT%H:%M:%S")
@@ -61,7 +65,10 @@ def main():
         event["occurred"] = f"{event_timestamp.isoformat()}.000Z"
         event["sourceUser"] = f"{pick(firstnames)}.{pick(lastnames)}@example.corp"
         event["url"] = f"https://{pick(subdomains)}.{pick(lastnames)}.{pick(tlds)}/{pick(lastnames)}"
-        event["urlCategory"] = pick(url_categories).upper()
+        if randint(0,100) <=  PROBABILITY_OF_MALICIOUS_EVENT:
+            event["urlCategory"] = pick(malicious_url_categories)
+        else:
+            event["urlCategory"] = pick(benign_url_categories)
         event["userAgent"] = pick(user_agents)
         event["name"] = f"Alert {event['type'].capitalize()} - {event['sourceUser']}"
         output.append(event)
