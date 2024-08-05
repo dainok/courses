@@ -5,7 +5,7 @@ from random import randint
 from datetime import datetime, timedelta, timezone
 import json
 
-EVENTS = 5000 # Number of events to generate
+EVENTS = 1000 # Number of events to generate
 PROBABILITY_OF_MALICIOUS_EVENT = 25 # Chances to get a malicious event
 EVENT_TYPES = ["url allowed", "url blocked"] # Dictionary of event types
 STARTING_DATE = "2024-05-01T00:00:00"
