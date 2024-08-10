@@ -9,5 +9,6 @@
     - role: cisco_ios_ntp
   post_tasks:
     - name: SAVING CONFIG
+      tags: always
       cisco.ios.ios_config:
         save_when: modified
