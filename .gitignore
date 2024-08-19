@@ -176,3 +176,6 @@ cython_debug/
 *.zip
 iourc
 *.bkp
+
+# Secret files
+secrets.yml
