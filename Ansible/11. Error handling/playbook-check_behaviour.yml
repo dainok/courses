@@ -1,0 +1,14 @@
+#!/usr/bin/env ansible-playbook
+- name: Check mode tests
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Forced in check mode
+      cisco.ios.ios_command:
+        commands:
+          - "dir"
+      check_mode: false
+    - name: Standard behaviour
+      cisco.ios.ios_command:
+        commands:
+          - "dir"
