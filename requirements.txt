@@ -1,7 +1,7 @@
 ansible==8.1.0
 ansible-lint==24.2.2
 ansible-navigator==3.4.2
-ansible-pylibssh==1.1.0
+ansible-pylibssh==1.2.2
 ansible-rulebook==1.0.4
 ansible-runner==2.3.4
 dateparser==1.2.0
