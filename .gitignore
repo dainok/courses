@@ -164,6 +164,7 @@ cython_debug/
 *.bkp
 *.log
 *.swp
+*.unl.jpeg.*
 
 # Large files
 *.bin
