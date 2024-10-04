@@ -1,0 +1,213 @@
+#!/usr/bin/env ansible-playbook
+- name: INSTALL EVE-NG
+  hosts: eve-ng.example.com
+  gather_facts: false
+  vars:
+    python_version: 3.10.14
+    apt_removed_packages:
+      - cloud-init
+      - netplan.io
+      - network-manager
+    systemd_masked:
+      - networkd-dispatcher
+      - systemd-networkd
+      - systemd-networkd.socket
+      - systemd-networkd-wait-online
+      - systemd-resolved
+  roles:
+    - role: dainok.common.linux_debian_apt_install_remove_upgrade
+      tags: install
+    - role: dainok.common.linux_hostname
+      tags: install
+    - role: dainok.common.linux_debian_timezone
+      tags: install
+    - role: dainok.common.linux_debian_keyboard
+      tags: install
+    - role: dainok.common.linux_debian_openssh
+      tags: install
+  pre_tasks:
+    - name: SETTING INITIAL PARAMETERS
+      tags: always
+      ansible.builtin.set_fact:
+        inventory_domain: "{{ inventory_hostname.split('.', 1)[1] | lower }}"
+  tasks:
+    - name: ADD APT KEY
+      ansible.builtin.apt_key:
+        id: 8F0F37B05231581CB15A2A9BC0B81F82DF8B1B28
+        url: https://www.eve-ng.net/focal/eczema@ecze.com.gpg.key
+        state: present
+    - name: COPYING APT SOURCE FILE
+      ansible.builtin.copy:
+        src: eve-ng5.list
+        dest: /etc/apt/sources.list.d/eve-ng.list
+        owner: root
+        group: root
+        mode: '0644'
+    - name: UPDATING APT CACHE
+      ansible.builtin.apt:
+        update_cache: true
+      environment:
+        DEBIAN_FRONTEND: noninteractive
+    - name: READING PACKAGE LIST
+      ansible.builtin.set_fact:
+        packages: "{{ lookup('file', 'packages.txt') | split }}"
+    - name: INSTALLING PACKAGES
+      ansible.builtin.apt:
+        name: "{{ packages }}"
+        force_apt_get: true
+        autoremove: true
+      environment:
+        DEBIAN_FRONTEND: noninteractive
+    - name: COPYING INTERFACE CONFIGURATION FILE
+      ansible.builtin.template:
+        src: interfaces.j2
+        dest: /etc/network/interfaces
+        owner: root
+        group: root
+        mode: '0644'
+    - name: COPYING NAMESERVER CONFIGURATION FILE
+      ansible.builtin.template:
+        src: resolv.conf.j2
+        dest: /etc/resolv.conf
+        owner: root
+        group: root
+        mode: '0644'
+    - name: COPYING IPTABLES CONFIGURATION FILE
+      ansible.builtin.copy:
+        src: rules.v4
+        dest: /etc/iptables/rules.v4
+        owner: root
+        group: root
+        mode: '0644'
+    - name: ENABLING IP FORWARDING
+      ansible.posix.sysctl:
+        name: net.ipv4.ip_forward
+        value: '1'
+        state: present
+    - name: COPYING DNSMASQ CONFIGURATION FILE
+      ansible.builtin.copy:
+        src: dnsmasq.conf
+        dest: /etc/dnsmasq.conf
+        owner: root
+        group: root
+        mode: '0644'
+    - name: MARK EVE-NG SERVER AS CONFIGURED
+      ansible.builtin.file:
+        path: /opt/ovf/.configured
+        state: touch
+        mode: '0644'
+        owner: root
+        group: root
+        modification_time: preserve
+        access_time: preserve
+    - name: UPLOADING IMAGES
+      tags: never, upload
+      ansible.builtin.copy:
+        src: "{{ item }}"
+        dest: /opt/unetlab/addons
+        owner: root
+        group: root
+        mode: '0644'
+      with_items:
+        - iol
+        - qemu
+    - name: CREATING COURSE DIRECTORY
+      ansible.builtin.file:
+        path: /opt/courses
+        state: directory
+        owner: www-data
+        group: www-data
+        mode: '0755'
+    - name: DOWNLOADING LABS
+      become: true
+      become_user: www-data
+      ansible.builtin.git:
+        repo: https://github.com/dainok/courses
+        dest: /opt/courses
+        version: master
+    - name: LINKING LABS
+      ansible.builtin.file:
+        src: "/opt/courses/EVE-NG labs"
+        dest: "/opt/unetlab/labs/DevNetOps labs"
+        state: link
+    - name: ADDING DEVELOPMENT GROUP
+      ansible.builtin.group:
+        name: "{{ item }}"
+      with_items: "{{ dev_users }}"
+    - name: ADDING DEVELOPMENT USER
+      ansible.builtin.user:
+        name: "{{ item }}"
+        shell: /bin/bash
+        group: "{{ item }}"
+      with_items: "{{ dev_users }}"
+    - name: CREATE SOURCE DIRECTORY
+      ansible.builtin.file:
+        path: "/home/{{ item }}/src"
+        state: directory
+        owner: "{{ item }}"
+        group: "{{ item }}"
+        mode: '0755'
+      with_items: "{{ dev_users }}"
+    - name: CREATE SSH DIRECTORY
+      ansible.builtin.file:
+        path: "/home/{{ item }}/.ssh"
+        state: directory
+        owner: "{{ item }}"
+        group: "{{ item }}"
+        mode: '0700'
+      with_items: "{{ dev_users }}"
+    - name: UPLOADING SSH CLIENT CONFIGURATION
+      ansible.builtin.copy:
+        src: ssh_config
+        dest: "/home/{{ item }}/.ssh/config"
+        owner: "{{ item }}"
+        group: "{{ item }}"
+        mode: '0644'
+      with_items: "{{ dev_users }}"
+    - name: PREPARING PYTHON ENVIRONMENT
+      tags: never, python
+      block:
+        - name: DOWNLOADING PYTHON
+          ansible.builtin.get_url:
+            url: "https://www.python.org/ftp/python/{{ python_version }}/Python-{{ python_version }}.tgz"
+            dest: "/usr/src/Python-{{ python_version }}.tgz"
+            owner: root
+            group: root
+            mode: '0644'
+        - name: UNPACKING PYTHON
+          ansible.builtin.unarchive:
+            src: "/usr/src/Python-{{ python_version }}.tgz"
+            dest: /usr/src
+            remote_src: true
+        - name: CONFIGURING
+          ansible.builtin.command:
+            chdir: "/usr/src/Python-{{ python_version }}"
+            cmd: ./configure --enable-optimizations
+          changed_when: false
+        - name: COMPILING PYTHON
+          community.general.make:
+            chdir: "/usr/src/Python-{{ python_version }}"
+            target: all
+        - name: INSTALLING PYTHON
+          community.general.make:
+            chdir: "/usr/src/Python-{{ python_version }}"
+            target: install
+        - name: CREATING PYTHON VENV
+          become: true
+          become_user: "{{ item }}"
+          ansible.builtin.pip:
+            requirements: /opt/courses/requirements.txt
+            virtualenv: "/home/{{ item }}/venv"
+            virtualenv_command: /usr/local/bin/python3.10 -m venv
+          with_items: "{{ dev_users }}"
+        - name: AUTOMATICALLY LOAD PYTHON VENV
+          ansible.builtin.lineinfile:
+            path: "/home/{{ item }}/.profile"
+            line: source ~/venv/bin/activate
+          with_items: "{{ dev_users }}"
+  post_tasks:
+    - name: FIXING PERMISSIONS
+      tags: always
+      ansible.builtin.command:
+        cmd: /opt/unetlab/wrappers/unl_wrapper -a fixpermissions
+      changed_when: false
