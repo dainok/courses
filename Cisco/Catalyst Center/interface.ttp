@@ -1,0 +1,28 @@
+<vars>
+default_values = {
+    "description": None,
+    "swport_mode": None,
+    "access_vlan": None,
+    "voice_vlan": None,
+    "swport_negotiate": True,
+    "tracking_policy": None,
+    "load_interval": None,
+    "stp_portfast": False,
+    "stp_guardroot": False,
+    "disabled": False
+}
+</vars>
+<group name="interfaces" default="default_values">
+interface {{ interface }}
+ description {{ description | re(".*") }}
+ switchport mode {{ swport_mode }}
+ switchport access vlan {{ access_vlan | to_int}}
+ switchport voice vlan {{ voice_vlan | to_int }}
+ switchport nonegotiate {{ swport_negotiate | set(False) }}
+ device-tracking attach-policy {{ tracking_policy }}
+ load-interval {{ load_interval | to_int }}
+ spanning-tree portfast {{ stp_portfast | set(True) }}
+ spanning-tree guard root {{ stp_guardroot | set(True) }}
+ shutdown {{ disabled | set(True) }}
+! {{ _end_ }}
+</group>
