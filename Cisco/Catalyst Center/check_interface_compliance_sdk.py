@@ -8,6 +8,7 @@ from ttp import ttp
 total_interfaces = 0
 compliant_interfaces = 0
 
+
 def compare_interface(profile, interface, ignore_value=None):
     if not ignore_value:
         # Set default
@@ -93,7 +94,7 @@ for item in device_list:
         "id": id,
         "os_type": os_type,
         "os_version": os_version,
-        "running_config": running_config
+        "running_config": running_config,
     }
 
 
@@ -101,10 +102,7 @@ for item in device_list:
 with open("interface.ttp", "r") as fh:
     ttp_template = fh.read()
 for hostname, details in device_details.items():
-    parser = ttp(
-        data=device_details[hostname]["running_config"],
-        template=ttp_template
-    )
+    parser = ttp(data=device_details[hostname]["running_config"], template=ttp_template)
     parser.parse()
     device_details[hostname]["interface_config"] = parser.result()[0][0]["interfaces"]
 
@@ -137,7 +135,9 @@ for hostname, details in device_details.items():
 
                 # Test interface compliance
                 is_compliant = compare_interface(
-                    profiles[profile["name"]], interface, ignore_value=config["ignore_value"]
+                    profiles[profile["name"]],
+                    interface,
+                    ignore_value=config["ignore_value"],
                 )
                 if is_compliant:
                     # Interface is compliant, update counter
@@ -177,13 +177,17 @@ for interface in interfaces:
 
     if current_device and device != current_device:
         # Add to summary and reset counters
-        summary.append([
-            "device",
-            current_device,
-            int(device_compliant_interfaces / device_total_interfaces * 100) if device_total_interfaces > 0 else "NA",
-            device_compliant_interfaces,
-            device_total_interfaces,
-        ])
+        summary.append(
+            [
+                "device",
+                current_device,
+                int(device_compliant_interfaces / device_total_interfaces * 100)
+                if device_total_interfaces > 0
+                else "NA",
+                device_compliant_interfaces,
+                device_total_interfaces,
+            ]
+        )
         current_device = device
         device_total_interfaces = 0
         device_compliant_interfaces = 0
@@ -198,20 +202,28 @@ for interface in interfaces:
 else:
     if current_device:
         # Append last items
-        summary.append([
-            "device",
-            current_device,
-            int(device_compliant_interfaces / device_total_interfaces * 100) if device_total_interfaces > 0 else "NA",
-            device_compliant_interfaces,
-            device_total_interfaces,
-        ])
-        summary.append([
-            "overall",
-            "",
-            int(overall_compliant_interfaces / overall_total_interfaces * 100) if overall_total_interfaces > 0 else "NA",
-            overall_compliant_interfaces,
-            overall_total_interfaces,
-        ])
+        summary.append(
+            [
+                "device",
+                current_device,
+                int(device_compliant_interfaces / device_total_interfaces * 100)
+                if device_total_interfaces > 0
+                else "NA",
+                device_compliant_interfaces,
+                device_total_interfaces,
+            ]
+        )
+        summary.append(
+            [
+                "overall",
+                "",
+                int(overall_compliant_interfaces / overall_total_interfaces * 100)
+                if overall_total_interfaces > 0
+                else "NA",
+                overall_compliant_interfaces,
+                overall_total_interfaces,
+            ]
+        )
 
 
 # Create XLSXxlsx
@@ -233,9 +245,7 @@ for interface in interfaces:
     interface_ws.append(interface)
 for name, profile in profiles.items():
     profile["profile"] = name
-    profile_ws.append(
-        profile.get(key) for key in xlsx_headers
-    )
+    profile_ws.append(profile.get(key) for key in xlsx_headers)
 
 # Add filters
 interface_ws.auto_filter.ref = interface_ws.dimensions
