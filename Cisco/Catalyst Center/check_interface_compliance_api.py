@@ -1,35 +1,36 @@
 #!/usr/bin/env python3
-import openpyxl
 import re
+import requests
 import yaml
-from dnacentersdk import api
+import openpyxl
 from ttp import ttp
 
 total_interfaces = 0
 compliant_interfaces = 0
 
 
-def compare_interface(profile, interface, ignore_value=None):
+def compare_interface(template, interface, ignore_value=None):
     if not ignore_value:
         # Set default
         ignore_value = []
 
-    for key, value in profile.items():
+    for key, value in template.items():
         if key not in interface:
-            # Profile config does not exist in interface
+            # template config does not exist in interface
             return False
         if key in ignore_value and interface[key] is not None:
-            # Profile config value exists, value is ignored
+            # tempate config value exists, value is ignored
             continue
         if interface[key] is False and value is not False:
-            # Profile requires False
+            # template requires False
             return False
         if interface[key] is True and value is not True:
-            # Profile requires True
+            # template requires True
             return False
         if interface[key] != value:
-            # Profile config value differs from interface
+            # tempate config value differs from interface
             return False
+        # print(f"{key}|{value}|{interface[key]}")
     return True
 
 
@@ -67,18 +68,25 @@ with open("config.yml") as fh:
 
 
 # Connect to DNAC
-api_version = "2.3.7.6"
-dnac = api.DNACenterAPI(
-    base_url=config["dnac_url"],
-    username=config["dnac_username"],
-    password=config["dnac_password"],
-    verify=config["verify_cert"],
-    version=api_version,
+url = f"{config['dnac_url']}/dna/system/api/v1/auth/token"
+response = requests.post(
+    url,
+    auth=(config['dnac_username'], config['dnac_password']),
+    verify=config['verify_cert']
 )
+headers = {
+    "Accept": "application/json",
+    "X-Auth-Token": response.json()["Token"]
+}
 
 
 # Get devices
-device_list = dnac.devices.get_device_list()["response"]
+url = f"{config['dnac_url']}/dna/intent/api/v1/network-device"
+device_list = requests.get(
+    url,
+    headers=headers,
+    verify=config['verify_cert']
+).json()["response"]
 device_details = {}
 for item in device_list:
     if item["family"] != "Switches and Hubs":
@@ -89,7 +97,12 @@ for item in device_list:
     hostname = item["hostname"].upper()
     os_type = item["softwareType"]
     os_version = item["softwareVersion"]
-    running_config = dnac.devices.get_device_config_by_id(id)["response"]
+    config_url = f"{config['dnac_url']}/dna/intent/api/v1/network-device/{id}/config"
+    running_config = requests.get(
+        config_url,
+        headers=headers,
+        verify=config['verify_cert']
+    ).json()["response"]
     device_details[hostname] = {
         "id": id,
         "os_type": os_type,
