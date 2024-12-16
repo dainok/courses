@@ -17,7 +17,7 @@ def read_config():
     try:
         with open("secrets.yml", "r") as fh:
             config = yaml.safe_load(fh)
-    except FileNotFoundError as err:
+    except FileNotFoundError:
         # File not found, create an empty file
         config = {}
 
@@ -33,15 +33,14 @@ def main():
         save_config(config)
 
     # Test the token
-    headers = {
-        "Authorization": f"Bearer {config['access_token']}"
-    }
+    headers = {"Authorization": f"Bearer {config['access_token']}"}
     uri = "https://www.patreon.com/api/oauth2/api/current_user"
-    req = requests.get(uri, headers=headers)
+    req = requests.get(uri, headers=headers, timeout=30)
     if req.status_code == 200:
         print("Token is valid")
     else:
         print(f"Got {req.status_code} error from Patreon")
+
 
 if __name__ == "__main__":
     main()

@@ -33,7 +33,8 @@ device_interfaces = {
     item["interface"]: {
         "description": item["description"],
         "status": "Active" if item["link_status"] == "up" else "Decommissioning",
-    } for item in show_interfaces
+    }
+    for item in show_interfaces
 }
 
 # Ingesting data to Nautobot
@@ -44,7 +45,7 @@ headers = {
 
 # Get device ID
 url = f"{nautobot_base_url}/api/dcim/devices/?name={device_name}"
-req = requests.get(url, headers=headers).json()
+req = requests.get(url, headers=headers, timeout=30).json()
 if req["count"] < 1:
     raise ValueError(f"{device_name} not found")
 device_id = req["results"][0]["id"]
@@ -52,7 +53,7 @@ device_id = req["results"][0]["id"]
 # For each interface
 for interface_name, interface in device_interfaces.items():
     url = f"{nautobot_base_url}/api/dcim/interfaces/?device_id={device_id}&name={interface_name}"
-    req = requests.get(url, headers=headers).json()
+    req = requests.get(url, headers=headers, timeout=30).json()
     if req["count"] == 0:
         # Create interface
         headers["Content-Type"] = "application/json"
@@ -62,6 +63,6 @@ for interface_name, interface in device_interfaces.items():
             "name": interface_name,
             "description": interface["description"],
             "status": interface["status"],
-            "type": "other"
+            "type": "other",
         }
-        requests.post(url, headers=headers, json=data).json()
+        requests.post(url, headers=headers, json=data, timeout=30).json()

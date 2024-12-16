@@ -10,6 +10,7 @@ compliant_interfaces = 0
 
 
 def compare_interface(template, interface, ignore_value=None):
+    """Compare an interface against a profile."""
     if not ignore_value:
         # Set default
         ignore_value = []
@@ -71,21 +72,17 @@ with open("config.yml") as fh:
 url = f"{config['dnac_url']}/dna/system/api/v1/auth/token"
 response = requests.post(
     url,
-    auth=(config['dnac_username'], config['dnac_password']),
-    verify=config['verify_cert']
+    auth=(config["dnac_username"], config["dnac_password"]),
+    verify=config["verify_cert"],
+    timeout=30,
 )
-headers = {
-    "Accept": "application/json",
-    "X-Auth-Token": response.json()["Token"]
-}
+headers = {"Accept": "application/json", "X-Auth-Token": response.json()["Token"]}
 
 
 # Get devices
 url = f"{config['dnac_url']}/dna/intent/api/v1/network-device"
 device_list = requests.get(
-    url,
-    headers=headers,
-    verify=config['verify_cert']
+    url, headers=headers, verify=config["verify_cert"], timeout=30
 ).json()["response"]
 device_details = {}
 for item in device_list:
@@ -99,9 +96,7 @@ for item in device_list:
     os_version = item["softwareVersion"]
     config_url = f"{config['dnac_url']}/dna/intent/api/v1/network-device/{id}/config"
     running_config = requests.get(
-        config_url,
-        headers=headers,
-        verify=config['verify_cert']
+        config_url, headers=headers, verify=config["verify_cert"], timeout=30
     ).json()["response"]
     device_details[hostname] = {
         "id": id,

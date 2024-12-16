@@ -1,5 +1,4 @@
----
 collections:
-- ansible.netcommon
-- awx.awx
-- community.general
+  - ansible.netcommon
+  - awx.awx
+  - community.general

@@ -10,6 +10,7 @@ compliant_interfaces = 0
 
 
 def compare_interface(profile, interface, ignore_value=None):
+    """Compare an interface against a profile."""
     if not ignore_value:
         # Set default
         ignore_value = []

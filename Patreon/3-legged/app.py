@@ -24,7 +24,7 @@ def read_config():
     try:
         with open("secrets.yml", "r") as fh:
             config = yaml.safe_load(fh)
-    except FileNotFoundError as err:
+    except FileNotFoundError:
         # File not found, create an empty file
         config = {}
     app.config.update(
@@ -36,15 +36,13 @@ def read_config():
 
 @app.route("/")
 def main():
-    """WebApp home."""
+    """Home page."""
     read_config()
     if app.config["access_token"]:
         # Access token exists, let's test it
-        headers = {
-            "Authorization": f"Bearer {app.config['access_token']}"
-        }
+        headers = {"Authorization": f"Bearer {app.config['access_token']}"}
         uri = "https://www.patreon.com/api/oauth2/api/current_user"
-        req = requests.get(uri, headers=headers)
+        req = requests.get(uri, headers=headers, timeout=30)
         if req.status_code == 200:
             return "Token is valid"
 
@@ -54,16 +52,16 @@ def main():
         return f'<a href="{uri}">Login with Patreon</a>'
 
     # App has not been configured, prompt for parameters
-    return f'''
+    return """
         <form action="/config" method="post">
             <b>Client ID:<b> <input type="text" name="client_id"><br>
             <b>Client Secret:</b> <input type="password" name="client_secret"><br>
             <input type="submit" value="Configure">
         </form>
-    '''
+    """
 
 
-@app.route("/config", methods = ['POST'])
+@app.route("/config", methods=["POST"])
 def config():
     """Receive parameters."""
     client_id = request.form.get("client_id")
@@ -71,7 +69,7 @@ def config():
     if client_id and client_secret:
         # Both parameters are set
         app.config.update(
-            client_id= client_id,
+            client_id=client_id,
             client_secret=client_secret,
         )
         save_config()
@@ -96,7 +94,7 @@ def callback():
             "client_secret": app.config["client_secret"],
             "redirect_uri": app.config["redirect_uri"],
         }
-        req = requests.post(uri, data=data, headers=headers)
+        req = requests.post(uri, data=data, headers=headers, timeout=30)
         if req.status_code == 200:
             # Authorization code is good, let's save the access token
             data = req.json()
