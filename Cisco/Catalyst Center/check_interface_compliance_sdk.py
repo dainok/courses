@@ -8,30 +8,26 @@ from ttp import ttp
 total_interfaces = 0
 compliant_interfaces = 0
 
-def compare_interface(template, interface, ignore_value=None):
+def compare_interface(profile, interface, ignore_value=None):
     if not ignore_value:
         # Set default
         ignore_value = []
 
-    for key, value in template.items():
+    for key, value in profile.items():
         if key not in interface:
-            # template config does not exist in interface
-            print(f"{key} not in {interface}")
+            # Profile config does not exist in interface
             return False
         if key in ignore_value and interface[key] is not None:
-            # tempate config value exists, value is ignored
+            # Profile config value exists, value is ignored
             continue
         if interface[key] is False and value is not False:
-            # template requires False
-            print(f"{key} not exist")
+            # Profile requires False
             return False
         if interface[key] is True and value is not True:
-            # template requires True
-            print(f"{key} is not true")
+            # Profile requires True
             return False
         if interface[key] != value:
-            # tempate config value differs from interface
-            print(f"{key} is not {value}")
+            # Profile config value differs from interface
             return False
     return True
 
@@ -165,21 +161,21 @@ for hostname, details in device_details.items():
         interfaces.append(new_interface)
 
 
-# Add Summary
+# Calcolating the summary
 overall_total_interfaces = 0
 overall_compliant_interfaces = 0
 device_total_interfaces = 0
 device_compliant_interfaces = 0
 current_device = None
 for interface in interfaces:
-    device = interface[1]
+    device = interface[0]
     if not current_device:
         # Initial set
         current_device = device
-    has_profile = True if interface[3] else False
-    is_compliant = interface[4]
+    has_profile = True if interface[2] else False
+    is_compliant = interface[3]
 
-    if device != current_device:
+    if current_device and device != current_device:
         # Add to summary and reset counters
         summary.append([
             "device",
@@ -196,28 +192,29 @@ for interface in interfaces:
         overall_total_interfaces = overall_total_interfaces + 1
         device_total_interfaces = device_total_interfaces + 1
 
-    if has_profile and is_compliant:
-        overall_compliant_interfaces = overall_compliant_interfaces + 1
-        device_compliant_interfaces = device_compliant_interfaces + 1
+        if is_compliant:
+            overall_compliant_interfaces = overall_compliant_interfaces + 1
+            device_compliant_interfaces = device_compliant_interfaces + 1
+else:
+    if current_device:
+        # Append last items
+        summary.append([
+            "device",
+            current_device,
+            int(device_compliant_interfaces / device_total_interfaces * 100) if device_total_interfaces > 0 else "NA",
+            device_compliant_interfaces,
+            device_total_interfaces,
+        ])
+        summary.append([
+            "overall",
+            "",
+            int(overall_compliant_interfaces / overall_total_interfaces * 100) if overall_total_interfaces > 0 else "NA",
+            overall_compliant_interfaces,
+            overall_total_interfaces,
+        ])
 
-# Append last items
-summary.append([
-    "device",
-    current_device,
-    int(device_compliant_interfaces / device_total_interfaces * 100) if device_total_interfaces > 0 else "NA",
-    device_compliant_interfaces,
-    device_total_interfaces,
-])
-summary.append([
-    "overall",
-    "",
-    int(overall_compliant_interfaces / overall_total_interfaces * 100) if overall_total_interfaces > 0 else "NA",
-    overall_compliant_interfaces,
-    overall_total_interfaces,
-])
 
-
-# Create XLSX
+# Create XLSXxlsx
 wb = openpyxl.Workbook()
 summary_ws = wb.active
 summary_ws.title = "Summary"
