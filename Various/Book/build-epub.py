@@ -17,7 +17,6 @@ with open("ebook.yml", "r") as fh:
 # Parameters
 title = book_metadata.get("title")
 serie = book_metadata.get("serie")
-# subtitle = book_metadata.get("subtitle")
 description = book_metadata.get("description")
 version = book_metadata.get("version")
 chapter_files = book_metadata.get("chapters")
