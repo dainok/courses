@@ -1,0 +1,79 @@
+/**************************************************************************
+ * Pages
+ **************************************************************************/
+
+@page :blank {
+    @bottom-left-corner {
+        content: none;
+    }
+    @bottom-right-corner {
+        content: none;
+    }
+    @bottom-center {
+        content: none;
+    }
+    @top-center {
+        content: none;
+    }
+}
+
+@page clean {
+    @bottom-left-corner {
+        content: none;
+    }
+    @bottom-right-corner {
+        content: none;
+    }
+    @bottom-center {
+        content: none;
+    }
+    @top-center {
+        content: none;
+    }
+}
+
+@page full {
+    @bottom-left-corner {
+        content: none;
+    }
+    @bottom-right-corner {
+        content: none;
+    }
+    @bottom-center {
+        content: none;
+    }
+    @top-center {
+        content: none;
+    }
+}
+
+/**************************************************************************
+ * Page breaks
+ **************************************************************************/
+
+@media print {
+    section {
+        break-after: left;
+    }
+}
+
+/**************************************************************************
+ * TOC (PDF only)
+ **************************************************************************/
+
+@media print {
+    /* Table of contents */
+    ol.toc li {
+        border-bottom: 1pt dotted #1a1a1a;
+        margin-top: .25em;
+    }
+    ol.toc a {
+        color: #1a1a1a;
+        text-decoration: none;
+    }
+    .tocpagenr::after {
+       content: target-counter(attr(href), page);
+       float: right;
+    }
+
+}
