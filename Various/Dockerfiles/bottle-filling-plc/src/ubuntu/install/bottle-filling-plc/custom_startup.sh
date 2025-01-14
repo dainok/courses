@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -ex
-START_COMMAND="/home/kasm-default-profile/venv/bin/python /home/kasm-default-profile/virtuaplant/plants/bottle-filling/world.py"
+source /home/kasm-default-profile/venv/bin/activate
+cd /home/kasm-default-profile/virtuaplant/plants/bottle-filling
+START_COMMAND="python world.py"
 PGREP="world"
 export MAXIMIZE="true"
 export MAXIMIZE_NAME="Bottle Filling - PLC"

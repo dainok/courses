@@ -5,7 +5,7 @@ cd /home/kasm-default-profile/virtuaplant/plants/oil-refinery
 START_COMMAND="python oil_hmi.py"
 PGREP="oil_hmi"
 export MAXIMIZE="true"
-export MAXIMIZE_NAME="Bottle Filling - HMI"
+export MAXIMIZE_NAME="Oil Refinery - HMI"
 MAXIMIZE_SCRIPT=$STARTUPDIR/maximize_window.sh
 DEFAULT_ARGS=""
 ARGS=${APP_ARGS:-$DEFAULT_ARGS}
