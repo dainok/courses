@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -ex
-START_COMMAND="/home/kasm-default-profile/venv/bin/python /home/kasm-default-profile/virtuaplant/plants/oil-refinery/oil_world.py"
+source /home/kasm-default-profile/venv/bin/activate
+cd /home/kasm-default-profile/virtuaplant/plants/oil-refinery
+START_COMMAND="python oil_world.py -t 0.0.0.0"
 PGREP="oil_world"
 export MAXIMIZE="true"
 export MAXIMIZE_NAME="Oil Refinery - PLC"
