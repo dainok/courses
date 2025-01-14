@@ -1,4 +1,4 @@
-ARG BASE_TAG="18"
+ARG BASE_TAG="20"
 ARG BASE_IMAGE="virtuaplant"
 FROM dainok/$BASE_IMAGE:$BASE_TAG
 USER root
