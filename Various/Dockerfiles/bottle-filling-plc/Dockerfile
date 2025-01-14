@@ -1,6 +1,6 @@
-ARG BASE_TAG="develop"
-ARG BASE_IMAGE="core-ubuntu-focal"
-FROM kasmweb/$BASE_IMAGE:$BASE_TAG
+ARG BASE_TAG="18"
+ARG BASE_IMAGE="virtuaplant"
+FROM dainok/$BASE_IMAGE:$BASE_TAG
 USER root
 
 ENV HOME /home/kasm-default-profile
@@ -11,16 +11,9 @@ WORKDIR $HOME
 ######### Customize Container Here ###########
 
 COPY ./src/ubuntu/install/bottle-filling-plc $INST_SCRIPTS/bottle-filling-plc/
-RUN bash $INST_SCRIPTS/bottle-filling-plc/install_bottle-filling-plc.sh  && rm -rf $INST_SCRIPTS/bottle-filling-plc/
-
 COPY ./src/ubuntu/install/bottle-filling-plc/custom_startup.sh $STARTUPDIR/custom_startup.sh
 RUN chmod +x $STARTUPDIR/custom_startup.sh
 RUN chmod 755 $STARTUPDIR/custom_startup.sh
-
-# Update the desktop environment to be optimized for a single application
-RUN cp $HOME/.config/xfce4/xfconf/single-application-xfce-perchannel-xml/* $HOME/.config/xfce4/xfconf/xfce-perchannel-xml/
-RUN cp /usr/share/backgrounds/bg_kasm.png /usr/share/backgrounds/bg_default.png
-RUN apt-get remove -y xfce4-panel
 
 ######### End Customizations ###########
 
