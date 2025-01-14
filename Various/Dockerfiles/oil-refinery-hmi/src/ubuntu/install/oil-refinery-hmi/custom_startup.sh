@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -ex
-START_COMMAND="/home/kasm-default-profile/venv/bin/python /home/kasm-default-profile/virtuaplant/plants/oil-refinery/oil_hmi.py"
+source /home/kasm-default-profile/venv/bin/activate
+cd /home/kasm-default-profile/virtuaplant/plants/oil-refinery
+START_COMMAND="python oil_hmi.py"
 PGREP="oil_hmi"
 export MAXIMIZE="true"
 export MAXIMIZE_NAME="Bottle Filling - HMI"
