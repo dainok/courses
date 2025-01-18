@@ -14,19 +14,32 @@ if __name__ == "__main__":
     started_at = datetime.now()
     started_timestamp = started_at.timestamp()
     error = False
-    
+
     parser = argparse.ArgumentParser(
-		prog="modbus_monitor.py",
-		description="Monitor Modbus registries over time",
-		epilog="Don't use it on production PLC. Use at your own risk."
-	)
+        prog="modbus_monitor.py",
+        description="Monitor Modbus registries over time",
+        epilog="Don't use it on production PLC. Use at your own risk.",
+    )
     parser.add_argument("-i", "--ip", type=str, required=True, help="PLC IP address")
     parser.add_argument("-p", "--port", type=int, default=502, help="PLC TCP port")
-    parser.add_argument("-t", "--type", type=str, required=True, choices=REGISTER_TYPES, help="Register type")
-    parser.add_argument("-s", "--start", type=int, default=0, help="The starting address")
-    parser.add_argument("-c", "--count", type=int, default=16, help="The number of registers")
+    parser.add_argument(
+        "-t",
+        "--type",
+        type=str,
+        required=True,
+        choices=REGISTER_TYPES,
+        help="Register type",
+    )
+    parser.add_argument(
+        "-s", "--start", type=int, default=0, help="The starting address"
+    )
+    parser.add_argument(
+        "-c", "--count", type=int, default=16, help="The number of registers"
+    )
     parser.add_argument("-u", "--unit", type=int, default=1, help="The slave unit")
-    parser.add_argument("-w", "--wait", type=int, default=1, help="Seconds between requests")
+    parser.add_argument(
+        "-w", "--wait", type=int, default=1, help="Seconds between requests"
+    )
     parser.add_argument("-k", "--kill", type=int, help="Seconds to wait before stop")
     args = parser.parse_args()
 
@@ -49,16 +62,24 @@ if __name__ == "__main__":
             # Get registries
             try:
                 if args.type == "discrete":
-                    req = client.read_discrete_inputs(args.start, args.count)
+                    req = client.read_discrete_inputs(
+                        args.start, count=args.count, unit=args.unit
+                    )
                     reg = req.bits
                 if args.type == "coil":
-                    req = client.read_coils(args.start, args.count)
+                    req = client.read_coils(
+                        args.start, count=args.count, unit=args.unit
+                    )
                     reg = req.bits
                 if args.type == "input":
-                    req = client.read_input_registers(args.start, args.count)
+                    req = client.read_input_registers(
+                        args.start, count=args.count, unit=args.unit
+                    )
                     reg = req.registers
                 if args.type == "holding":
-                    req = client.read_holding_registers(args.start, args.count)
+                    req = client.read_holding_registers(
+                        args.start, count=args.count, unit=args.unit
+                    )
                     reg = req.registers
             except ConnectionException:
                 error = True
@@ -94,15 +115,14 @@ if __name__ == "__main__":
         data.append(min)
         data.append(max)
 
-    # Check if registers change
+    # TODO: Check if registers change
     # if args.type in ["discrete", "coil"]:
     #     change = ["Change?"] + list([False] * (args.count))
     #     for line in data:
     #         for i in range(1, args.count + 1):
 
-
     # Display output
-    print("\n") # Clear the line
+    print("\n")  # Clear the line
     print(tabulate(data, headers=header))
 
     if error:
