@@ -56,11 +56,7 @@ if __name__ == "__main__":
 
     try:
         while True:
-            counter = counter + 1
             now_timestamp = datetime.now().timestamp()
-            if args.kill is not None and started_timestamp + args.kill < now_timestamp:
-                # Stop after k seconds
-                break
 
             # Write registries
             try:
@@ -71,6 +67,17 @@ if __name__ == "__main__":
                         client.write_register(item[1], item[2])
             except ConnectionException:
                 error = True
+                break
+
+            counter = counter + 1
+            if args.kill == 0:
+                # Stop after 1 write
+                break
+            if args.kill is None:
+                # Run forever
+                continue
+            if started_timestamp + args.kill < now_timestamp:
+                # Stop after k seconds
                 break
 
     except KeyboardInterrupt:
