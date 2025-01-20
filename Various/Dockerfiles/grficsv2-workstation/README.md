@@ -12,6 +12,12 @@ docker run --name workstation --rm -d -p 443:6901 --shm-size=512m -e VNC_PW=pass
 
 Login with `kasm_user` and the password above.
 
+Eventually map a local volume:
+
+```
+docker run --name workstation --rm -d -p 443:6901 --shm-size=512m -v /tmp:/home/kasm-user/Downloads -e VNC_PW=password dainok/grficsv2-workstation:latest
+```
+
 Publish with:
 
 ```
