@@ -2,7 +2,7 @@ FROM ubuntu:22.04
 
 # Install dependencies
 RUN apt-get update
-RUN apt-get -y install sudo dos2unix build-essential pkg-config bison flex autoconf automake libtool make nodejs git
+RUN apt-get -y install sudo dos2unix build-essential pkg-config bison flex autoconf automake libtool make nodejs git net-tools
 
 # Install OpenPLC
 RUN git clone https://github.com/thiagoralves/OpenPLC_v3 /usr/local/src/OpenPLC
