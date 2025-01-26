@@ -180,3 +180,6 @@ iourc
 
 # Secret files
 secrets.yml
+
+# Forced
+!/Various/Dockerfiles/grficsv2-simulation/web_visualization/Build
