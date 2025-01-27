@@ -2,6 +2,7 @@
 
 import argparse
 import time
+import math
 from datetime import datetime
 from tabulate import tabulate
 from pymodbus.client.sync import ModbusTcpClient as ModbusClient
@@ -42,12 +43,13 @@ if __name__ == "__main__":
     )
     parser.add_argument("-k", "--kill", type=int, help="Seconds to wait before stop")
     args = parser.parse_args()
+    round_count = math.ceil(args.count / 8) * 8
 
     # Connect to the PLC
     client = ModbusClient(args.ip, args.port)
 
     # Prepare the header
-    header = ["Time"] + list(range(args.start, args.start + args.count))
+    header = ["Time"] + list(range(args.start, args.start + round_count))
     data = []
     print(header)
 
@@ -63,22 +65,22 @@ if __name__ == "__main__":
             try:
                 if args.type == "discrete":
                     req = client.read_discrete_inputs(
-                        args.start, count=args.count, unit=args.unit
+                        args.start, count=round_count, unit=args.unit
                     )
                     reg = req.bits
                 if args.type == "coil":
                     req = client.read_coils(
-                        args.start, count=args.count, unit=args.unit
+                        args.start, count=round_count, unit=args.unit
                     )
                     reg = req.bits
                 if args.type == "input":
                     req = client.read_input_registers(
-                        args.start, count=args.count, unit=args.unit
+                        args.start, count=round_count, unit=args.unit
                     )
                     reg = req.registers
                 if args.type == "holding":
                     req = client.read_holding_registers(
-                        args.start, count=args.count, unit=args.unit
+                        args.start, count=round_count, unit=args.unit
                     )
                     reg = req.registers
             except ConnectionException:
@@ -100,10 +102,10 @@ if __name__ == "__main__":
 
     # Calculate min and max
     if args.type in ["input", "holding"]:
-        min = ["Min"] + list([None] * (args.count))
-        max = ["Max"] + list([None] * (args.count))
+        min = ["Min"] + list([None] * (round_count))
+        max = ["Max"] + list([None] * (round_count))
         for line in data:
-            for i in range(1, args.count + 1):
+            for i in range(1, round_count + 1):
                 if min[i] is None:
                     min[i] = line[i]
                 if max[i] is None:
@@ -117,9 +119,9 @@ if __name__ == "__main__":
 
     # TODO: Check if registers change
     # if args.type in ["discrete", "coil"]:
-    #     change = ["Change?"] + list([False] * (args.count))
+    #     change = ["Change?"] + list([False] * (round_count))
     #     for line in data:
-    #         for i in range(1, args.count + 1):
+    #         for i in range(1, round_count + 1):
 
     # Display output
     print("\n")  # Clear the line
