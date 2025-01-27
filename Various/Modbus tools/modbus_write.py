@@ -62,7 +62,7 @@ if __name__ == "__main__":
             try:
                 for item in modbus_sets:
                     if item[0] in ["c", "coil"]:
-                        client.write_coil(item[1], item[2])
+                        client.write_coil(item[1], bool(item[2]))
                     if item[0] in ["h", "holding"]:
                         client.write_register(item[1], item[2])
             except ConnectionException:
