@@ -49,7 +49,7 @@ if __name__ == "__main__":
     client = ModbusClient(args.ip, args.port)
 
     # Prepare the header
-    header = ["Time"] + list(range(args.start, args.start + args.count))
+    header = ["Time"] + list(range(args.start, args.start + round_count))
     data = []
     print(header)
 
@@ -102,10 +102,10 @@ if __name__ == "__main__":
 
     # Calculate min and max
     if args.type in ["input", "holding"]:
-        min = ["Min"] + list([None] * (args.count))
-        max = ["Max"] + list([None] * (args.count))
+        min = ["Min"] + list([None] * (round_count))
+        max = ["Max"] + list([None] * (round_count))
         for line in data:
-            for i in range(1, args.count + 1):
+            for i in range(1, round_count + 1):
                 if min[i] is None:
                     min[i] = line[i]
                 if max[i] is None:
@@ -119,9 +119,9 @@ if __name__ == "__main__":
 
     # TODO: Check if registers change
     # if args.type in ["discrete", "coil"]:
-    #     change = ["Change?"] + list([False] * (args.count))
+    #     change = ["Change?"] + list([False] * (round_count))
     #     for line in data:
-    #         for i in range(1, args.count + 1):
+    #         for i in range(1, round_count + 1):
 
     # Display output
     print("\n")  # Clear the line
