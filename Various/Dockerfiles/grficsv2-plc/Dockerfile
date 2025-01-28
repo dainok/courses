@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM i386/ubuntu:16.04
 
 # Install dependencies
 RUN apt-get update
