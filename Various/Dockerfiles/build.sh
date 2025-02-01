@@ -20,7 +20,12 @@ for IMAGE in ${IMAGES}; do
 	# Build and tag image
 	cd ${IMAGE}
 	echo ${IMAGE}
-	docker build -t dainok/ews:${NEXT_VERSION} -t dainok/ews:latest .
+	docker build -t dainok/${IMAGE}:${NEXT_VERSION} -t dainok/${IMAGE}:latest .
 	cd ..
 done
 
+# Push do Docker Hub
+for IMAGE in ${IMAGES}; do
+	docker push dainok/${IMAGE}:${NEXT_VERSION}
+	docker push dainok/${IMAGE}:latest
+done
