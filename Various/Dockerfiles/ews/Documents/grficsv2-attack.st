@@ -384,23 +384,23 @@ PROGRAM main
     scale_to_signed0 : scale_to_signed;
   END_VAR
   VAR
-    f1_valve_pos AT %IW0 : UINT;
-    f1_flow AT %IW1 : UINT;
-    f2_valve_pos AT %IW2 : UINT;
-    f2_flow AT %IW3 : UINT;
-    purge_valve_pos AT %IW4 : UINT;
-    purge_flow AT %IW5 : UINT;
-    product_valve_pos AT %IW6 : UINT;
-    product_flow AT %IW7 : UINT;
-    pressure AT %IW8 : UINT;
-    level AT %IW9 : UINT;
-    a_in_purge AT %IW10 : UINT;
-    b_in_purge AT %IW11 : UINT;
-    c_in_purge AT %IW12 : UINT;
-    f1_valve_sp AT %QW0 : UINT;
-    f2_valve_sp AT %QW1 : UINT;
-    purge_valve_sp AT %QW2 : UINT;
-    product_valve_sp AT %QW3 : UINT;
+    f1_valve_pos AT %IW100 : UINT;
+    f1_flow AT %IW101 : UINT;
+    f2_valve_pos AT %IW102 : UINT;
+    f2_flow AT %IW103 : UINT;
+    purge_valve_pos AT %IW104 : UINT;
+    purge_flow AT %IW105 : UINT;
+    product_valve_pos AT %IW106 : UINT;
+    product_flow AT %IW107 : UINT;
+    pressure AT %IW108 : UINT;
+    level AT %IW109 : UINT;
+    a_in_purge AT %IW110 : UINT;
+    b_in_purge AT %IW111 : UINT;
+    c_in_purge AT %IW112 : UINT;
+    f1_valve_sp AT %QW100 : UINT;
+    f2_valve_sp AT %QW101 : UINT;
+    purge_valve_sp AT %QW102 : UINT;
+    product_valve_sp AT %QW103 : UINT;
   END_VAR
   VAR
     product_valve_safe : UINT := 0;
@@ -987,17 +987,17 @@ END_CONFIGURATION
 (*DBG:        return 0;*)
 (*DBG:    }*)
 (*DBG:    switch (debug_vars[idx].type) {*)
+(*DBG:    case UINT_ENUM:*)
+(*DBG:        return sizeof(UINT);*)
+(*DBG:    case TIME_ENUM:*)
+(*DBG:        return sizeof(TIME);*)
+(*DBG:    case BOOL_ENUM:*)
+(*DBG:    case BOOL_P_ENUM:*)
+(*DBG:        return sizeof(BOOL);*)
 (*DBG:    case REAL_ENUM:*)
 (*DBG:        return sizeof(REAL);*)
 (*DBG:    case INT_ENUM:*)
 (*DBG:        return sizeof(INT);*)
-(*DBG:    case BOOL_ENUM:*)
-(*DBG:    case BOOL_P_ENUM:*)
-(*DBG:        return sizeof(BOOL);*)
-(*DBG:    case TIME_ENUM:*)
-(*DBG:        return sizeof(TIME);*)
-(*DBG:    case UINT_ENUM:*)
-(*DBG:        return sizeof(UINT);*)
 (*DBG:    default:*)
 (*DBG:        return 0;*)
 (*DBG:    }*)
@@ -1008,20 +1008,20 @@ END_CONFIGURATION
 (*DBG:    void *ptr = debug_vars[idx].ptr;*)
 (*DBG:*)
 (*DBG:    switch (debug_vars[idx].type) {*)
-(*DBG:    case REAL_ENUM:*)
-(*DBG:        return (void *)&((__IEC_REAL_t *) ptr)->value;*)
-(*DBG:    case INT_ENUM:*)
-(*DBG:        return (void *)&((__IEC_INT_t *) ptr)->value;*)
+(*DBG:    case UINT_ENUM:*)
+(*DBG:        return (void *)&((__IEC_UINT_t *) ptr)->value;*)
+(*DBG:    case TIME_ENUM:*)
+(*DBG:        return (void *)&((__IEC_TIME_t *) ptr)->value;*)
 (*DBG:    case BOOL_ENUM:*)
 (*DBG:        return (void *)&((__IEC_BOOL_t *) ptr)->value;*)
 (*DBG:    case BOOL_P_ENUM:*)
 (*DBG:        return (void *)((((__IEC_BOOL_p *) ptr)->flags & __IEC_FORCE_FLAG) *)
 (*DBG:                        ? &(((__IEC_BOOL_p *) ptr)->fvalue) *)
 (*DBG:                        : ((__IEC_BOOL_p *) ptr)->value);*)
-(*DBG:    case TIME_ENUM:*)
-(*DBG:        return (void *)&((__IEC_TIME_t *) ptr)->value;*)
-(*DBG:    case UINT_ENUM:*)
-(*DBG:        return (void *)&((__IEC_UINT_t *) ptr)->value;*)
+(*DBG:    case REAL_ENUM:*)
+(*DBG:        return (void *)&((__IEC_REAL_t *) ptr)->value;*)
+(*DBG:    case INT_ENUM:*)
+(*DBG:        return (void *)&((__IEC_INT_t *) ptr)->value;*)
 (*DBG:    default:*)
 (*DBG:        return 0;*)
 (*DBG:    }*)
@@ -1034,16 +1034,16 @@ END_CONFIGURATION
 (*DBG:    if (forced) {*)
 (*DBG:        size_t var_size = get_var_size(idx);*)
 (*DBG:        switch (debug_vars[idx].type) {*)
-(*DBG:        case REAL_ENUM: {*)
-(*DBG:            memcpy(&((__IEC_REAL_t *) ptr)->value, val, var_size);*)
-(*DBG:            //((__IEC_REAL_t *) ptr)->value = *((REAL *) val);*)
-(*DBG:            ((__IEC_REAL_t *) ptr)->flags |= __IEC_FORCE_FLAG;*)
+(*DBG:        case UINT_ENUM: {*)
+(*DBG:            memcpy(&((__IEC_UINT_t *) ptr)->value, val, var_size);*)
+(*DBG:            //((__IEC_UINT_t *) ptr)->value = *((UINT *) val);*)
+(*DBG:            ((__IEC_UINT_t *) ptr)->flags |= __IEC_FORCE_FLAG;*)
 (*DBG:            break;*)
 (*DBG:        }*)
-(*DBG:        case INT_ENUM: {*)
-(*DBG:            memcpy(&((__IEC_INT_t *) ptr)->value, val, var_size);*)
-(*DBG:            //((__IEC_INT_t *) ptr)->value = *((INT *) val);*)
-(*DBG:            ((__IEC_INT_t *) ptr)->flags |= __IEC_FORCE_FLAG;*)
+(*DBG:        case TIME_ENUM: {*)
+(*DBG:            memcpy(&((__IEC_TIME_t *) ptr)->value, val, var_size);*)
+(*DBG:            //((__IEC_TIME_t *) ptr)->value = *((TIME *) val);*)
+(*DBG:            ((__IEC_TIME_t *) ptr)->flags |= __IEC_FORCE_FLAG;*)
 (*DBG:            break;*)
 (*DBG:        }*)
 (*DBG:        case BOOL_ENUM: {*)
@@ -1058,16 +1058,16 @@ END_CONFIGURATION
 (*DBG:            ((__IEC_BOOL_p *) ptr)->flags |= __IEC_FORCE_FLAG;*)
 (*DBG:            break;*)
 (*DBG:        }*)
-(*DBG:        case TIME_ENUM: {*)
-(*DBG:            memcpy(&((__IEC_TIME_t *) ptr)->value, val, var_size);*)
-(*DBG:            //((__IEC_TIME_t *) ptr)->value = *((TIME *) val);*)
-(*DBG:            ((__IEC_TIME_t *) ptr)->flags |= __IEC_FORCE_FLAG;*)
+(*DBG:        case REAL_ENUM: {*)
+(*DBG:            memcpy(&((__IEC_REAL_t *) ptr)->value, val, var_size);*)
+(*DBG:            //((__IEC_REAL_t *) ptr)->value = *((REAL *) val);*)
+(*DBG:            ((__IEC_REAL_t *) ptr)->flags |= __IEC_FORCE_FLAG;*)
 (*DBG:            break;*)
 (*DBG:        }*)
-(*DBG:        case UINT_ENUM: {*)
-(*DBG:            memcpy(&((__IEC_UINT_t *) ptr)->value, val, var_size);*)
-(*DBG:            //((__IEC_UINT_t *) ptr)->value = *((UINT *) val);*)
-(*DBG:            ((__IEC_UINT_t *) ptr)->flags |= __IEC_FORCE_FLAG;*)
+(*DBG:        case INT_ENUM: {*)
+(*DBG:            memcpy(&((__IEC_INT_t *) ptr)->value, val, var_size);*)
+(*DBG:            //((__IEC_INT_t *) ptr)->value = *((INT *) val);*)
+(*DBG:            ((__IEC_INT_t *) ptr)->flags |= __IEC_FORCE_FLAG;*)
 (*DBG:            break;*)
 (*DBG:        }*)
 (*DBG:        default:*)
@@ -1075,11 +1075,11 @@ END_CONFIGURATION
 (*DBG:        }*)
 (*DBG:    } else {*)
 (*DBG:        switch (debug_vars[idx].type) {*)
-(*DBG:        case REAL_ENUM:*)
-(*DBG:            ((__IEC_REAL_t *) ptr)->flags &= ~__IEC_FORCE_FLAG;*)
+(*DBG:        case UINT_ENUM:*)
+(*DBG:            ((__IEC_UINT_t *) ptr)->flags &= ~__IEC_FORCE_FLAG;*)
 (*DBG:            break;*)
-(*DBG:        case INT_ENUM:*)
-(*DBG:            ((__IEC_INT_t *) ptr)->flags &= ~__IEC_FORCE_FLAG;*)
+(*DBG:        case TIME_ENUM:*)
+(*DBG:            ((__IEC_TIME_t *) ptr)->flags &= ~__IEC_FORCE_FLAG;*)
 (*DBG:            break;*)
 (*DBG:        case BOOL_ENUM:*)
 (*DBG:            ((__IEC_BOOL_t *) ptr)->flags &= ~__IEC_FORCE_FLAG;*)
@@ -1087,11 +1087,11 @@ END_CONFIGURATION
 (*DBG:        case BOOL_P_ENUM:*)
 (*DBG:            ((__IEC_BOOL_p *) ptr)->flags &= ~__IEC_FORCE_FLAG;*)
 (*DBG:            break;*)
-(*DBG:        case TIME_ENUM:*)
-(*DBG:            ((__IEC_TIME_t *) ptr)->flags &= ~__IEC_FORCE_FLAG;*)
+(*DBG:        case REAL_ENUM:*)
+(*DBG:            ((__IEC_REAL_t *) ptr)->flags &= ~__IEC_FORCE_FLAG;*)
 (*DBG:            break;*)
-(*DBG:        case UINT_ENUM:*)
-(*DBG:            ((__IEC_UINT_t *) ptr)->flags &= ~__IEC_FORCE_FLAG;*)
+(*DBG:        case INT_ENUM:*)
+(*DBG:            ((__IEC_INT_t *) ptr)->flags &= ~__IEC_FORCE_FLAG;*)
 (*DBG:            break;*)
 (*DBG:        default:*)
 (*DBG:            break;*)
