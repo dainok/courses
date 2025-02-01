@@ -1,5 +1,6 @@
+ARG VERSION=20
 ARG BASE_TAG="develop"
-ARG BASE_IMAGE="core-ubuntu-focal"
+ARG BASE_IMAGE="1.16.0"
 FROM kasmweb/$BASE_IMAGE:$BASE_TAG
 USER root
 

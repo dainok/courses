@@ -1,3 +1,4 @@
+ARG VERSION=42
 FROM ubuntu:22.04
 
 # Install dependencies

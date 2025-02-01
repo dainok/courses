@@ -1,3 +1,4 @@
+ARG VERSION=13
 FROM ubuntu:xenial
 
 # Update repos and install packages
