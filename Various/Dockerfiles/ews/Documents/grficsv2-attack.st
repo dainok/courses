@@ -384,23 +384,23 @@ PROGRAM main
     scale_to_signed0 : scale_to_signed;
   END_VAR
   VAR
-    f1_valve_pos AT %IW0 : UINT;
-    f1_flow AT %IW1 : UINT;
-    f2_valve_pos AT %IW2 : UINT;
-    f2_flow AT %IW3 : UINT;
-    purge_valve_pos AT %IW4 : UINT;
-    purge_flow AT %IW5 : UINT;
-    product_valve_pos AT %IW6 : UINT;
-    product_flow AT %IW7 : UINT;
-    pressure AT %IW8 : UINT;
-    level AT %IW9 : UINT;
-    a_in_purge AT %IW10 : UINT;
-    b_in_purge AT %IW11 : UINT;
-    c_in_purge AT %IW12 : UINT;
-    f1_valve_sp AT %QW0 : UINT;
-    f2_valve_sp AT %QW1 : UINT;
-    purge_valve_sp AT %QW2 : UINT;
-    product_valve_sp AT %QW3 : UINT;
+    f1_valve_pos AT %IW100 : UINT;
+    f1_flow AT %IW101 : UINT;
+    f2_valve_pos AT %IW102 : UINT;
+    f2_flow AT %IW103 : UINT;
+    purge_valve_pos AT %IW104 : UINT;
+    purge_flow AT %IW105 : UINT;
+    product_valve_pos AT %IW106 : UINT;
+    product_flow AT %IW107 : UINT;
+    pressure AT %IW108 : UINT;
+    level AT %IW109 : UINT;
+    a_in_purge AT %IW110 : UINT;
+    b_in_purge AT %IW111 : UINT;
+    c_in_purge AT %IW112 : UINT;
+    f1_valve_sp AT %QW100 : UINT;
+    f2_valve_sp AT %QW101 : UINT;
+    purge_valve_sp AT %QW102 : UINT;
+    product_valve_sp AT %QW103 : UINT;
   END_VAR
   VAR
     product_valve_safe : UINT := 0;
