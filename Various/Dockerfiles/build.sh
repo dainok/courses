@@ -20,7 +20,7 @@ for IMAGE in ${IMAGES}; do
 	# Build and tag image
 	cd ${IMAGE}
 	echo ${IMAGE}
-	docker build -t dainok/${IMAGE}:${NEXT_VERSION} -t dainok/${IMAGE}:latest .
+	docker build --no-cache -t dainok/${IMAGE}:${NEXT_VERSION} -t dainok/${IMAGE}:latest .
 	cd ..
 done
 
