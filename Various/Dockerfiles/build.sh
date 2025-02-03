@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -e
 
 if [ "$1" == "" ]; then
 	# Compile all images

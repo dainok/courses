@@ -1,4 +1,4 @@
-ARG VERSION=45
+ARG VERSION=56
 FROM ubuntu:22.04
 
 # Install dependencies
@@ -10,12 +10,19 @@ RUN git clone https://github.com/thiagoralves/OpenPLC_v2.git /usr/local/src/Open
 WORKDIR /usr/local/src/OpenPLC
 RUN git checkout f1a26459ce1fa470b8f3760163f178b5c4ad2826
 COPY --chmod=0755 build.sh /usr/local/src/OpenPLC
-RUN ./build.sh linux
+RUN /usr/local/src/OpenPLC/build.sh
 COPY --chmod=0755 set_sim_address.sh /sbin
 
-# Copy PLC programs
+# Copy PLC program
 COPY mbconfig.cfg /usr/local/src/OpenPLC/core/mbconfig.cfg
-COPY chemical_program.st /usr/local/src/OpenPLC/st_files/chemical_program.st
+COPY chemical.st /usr/local/src/OpenPLC/st_files/chemical.st
+
+# Compile PLC program
+WORKDIR /usr/local/src/OpenPLC/matiec_src
+RUN /usr/local/src/OpenPLC/iec2c -f -l -p -r -R -a /usr/local/src/OpenPLC/st_files/chemical.st
+RUN mv -f POUS.c POUS.h LOCATED_VARIABLES.h VARIABLES.csv Config0.c Config0.h Res0.c /usr/local/src/OpenPLC/core
+RUN /usr/local/src/OpenPLC/build_core.sh
+WORKDIR /usr/local/src/OpenPLC
 
 # Cleanup
 RUN apt-get autoclean
