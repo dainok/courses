@@ -1,4 +1,4 @@
-ARG VERSION=28
+ARG VERSION=31
 ARG BASE_TAG="1.16.0"
 ARG BASE_IMAGE="core-ubuntu-jammy"
 FROM kasmweb/$BASE_IMAGE:$BASE_TAG
@@ -12,8 +12,8 @@ WORKDIR $HOME
 ######### Customize Container Here ###########
 
 RUN usermod -aG sudo kasm-user
-COPY ./src/ubuntu/install/openplc-editor $INST_SCRIPTS/openplc-editor/
-RUN bash $INST_SCRIPTS/openplc-editor/install_openplc-editor.sh  && rm -rf $INST_SCRIPTS/openplc-editor/
+COPY --chmod=0755 ./src/ubuntu/install/openplc-editor $INST_SCRIPTS/openplc-editor/
+RUN $INST_SCRIPTS/openplc-editor/install_openplc-editor.sh
 
 # Include projects
 COPY Documents /home/kasm-user/Documents

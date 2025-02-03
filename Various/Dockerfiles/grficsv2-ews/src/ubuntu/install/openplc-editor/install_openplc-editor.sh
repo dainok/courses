@@ -5,6 +5,7 @@ set -ex
 git clone https://github.com/thiagoralves/OpenPLC_Editor $HOME/OpenPLC_Editor
 git -C $HOME/OpenPLC_Editor checkout old-python2
 rm -rf $HOME/OpenPLC_Editor/.git
+cd $HOME/OpenPLC_Editor
 $HOME/OpenPLC_Editor/install.sh
 
 # Cleanup for app layer
