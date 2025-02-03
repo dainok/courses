@@ -1,4 +1,4 @@
-ARG VERSION=56
+ARG VERSION=61
 FROM ubuntu:22.04
 
 # Install dependencies
@@ -8,13 +8,16 @@ RUN apt-get -y install sudo dos2unix build-essential pkg-config bison flex autoc
 # Install OpenPLC
 RUN git clone https://github.com/thiagoralves/OpenPLC_v2.git /usr/local/src/OpenPLC
 WORKDIR /usr/local/src/OpenPLC
-RUN git checkout f1a26459ce1fa470b8f3760163f178b5c4ad2826
+RUN git checkout b7baafe0f83233ee8f0a668a3b3281761692a2ce
+RUN rm -rf /usr/local/src/OpenPLC/.git
+# Python2 version
+#RUN git checkout f1a26459ce1fa470b8f3760163f178b5c4ad2826
 COPY --chmod=0755 build.sh /usr/local/src/OpenPLC
 RUN /usr/local/src/OpenPLC/build.sh
 COPY --chmod=0755 set_sim_address.sh /sbin
 
 # Copy PLC program
-COPY mbconfig.cfg /usr/local/src/OpenPLC/core/mbconfig.cfg
+COPY mbconfig.cfg /usr/local/src/OpenPLC/mbconfig.cfg
 COPY chemical.st /usr/local/src/OpenPLC/st_files/chemical.st
 
 # Compile PLC program

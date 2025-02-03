@@ -28,7 +28,7 @@ cp ./glue_generator_src/glue_generator ./core/glue_generator
 
 echo OpenPLC can talk Modbus/TCP and DNP3 SCADA protocols. Modbus/TCP is already
 echo added to the system. Do you want to add support for DNP3 as well \(Y/N\)?
-DNP3_SUPPORT=N
+DNP3_SUPPORT="N"
 if [ "$DNP3_SUPPORT" = "Y" -o "$DNP3_SUPPORT" = "y" -o "$DNP3_SUPPORT" = "yes" ]; then
 	echo Installing DNP3 on the system...
 
@@ -41,7 +41,7 @@ if [ "$DNP3_SUPPORT" = "Y" -o "$DNP3_SUPPORT" = "y" -o "$DNP3_SUPPORT" = "yes" ]
 	sudo apt-get install cmake
 
 	#download opendnp3
-	git clone --recursive https://github.com/automatak/dnp3.git
+	#git clone --recursive https://github.com/automatak/dnp3.git
 	cd dnp3
 
 	#create swapfile to prevent out of memory errors
@@ -71,6 +71,7 @@ rm -f ./hardware_layer.cpp
 rm -f ../build_core.sh
 echo The OpenPLC needs a driver to be able to control physical or virtual hardware.
 echo Please select the driver you would like to use:
+OPTIONS="Blank Modbus Fischertechnik RaspberryPi UniPi PiXtend PiXtend_2S Arduino ESP8266 Arduino+RaspberryPi Simulink "
 cp ./hardware_layers/modbus_master.cpp ./hardware_layer.cpp
 cp ./core_builders/build_modbus.sh ../build_core.sh
 echo [LIBMODBUS]

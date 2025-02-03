@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CFG=/usr/local/src/OpenPLC/core/mbconfig.cfg
+CFG=/usr/local/src/OpenPLC/mbconfig.cfg
 
 sed -i "s/device0.address.*/device0.address = \"${SIM}\"/" ${CFG}
 sed -i "s/device1.address.*/device1.address = \"${SIM}\"/" ${CFG}
