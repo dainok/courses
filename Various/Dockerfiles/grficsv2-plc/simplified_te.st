@@ -29,15 +29,15 @@ FUNCTION_BLOCK scale_to_uint
     uint_out : UINT;
   END_VAR
   VAR
-    DIV1_OUT : REAL;
-    MUL4_OUT : REAL;
-    REAL_TO_UINT6_OUT : UINT;
+    _TMP_DIV1_OUT : REAL;
+    _TMP_MUL4_OUT : REAL;
+    _TMP_REAL_TO_UINT6_OUT : UINT;
   END_VAR
 
-  DIV1_OUT := DIV(real_in, 100.0);
-  MUL4_OUT := MUL(DIV1_OUT, 65535.0);
-  REAL_TO_UINT6_OUT := REAL_TO_UINT(MUL4_OUT);
-  uint_out := REAL_TO_UINT6_OUT;
+  _TMP_DIV1_OUT := DIV(real_in, 100.0);
+  _TMP_MUL4_OUT := MUL(_TMP_DIV1_OUT, 65535.0);
+  _TMP_REAL_TO_UINT6_OUT := REAL_TO_UINT(_TMP_MUL4_OUT);
+  uint_out := _TMP_REAL_TO_UINT6_OUT;
 END_FUNCTION_BLOCK
 
 FUNCTION_BLOCK composition_control
@@ -74,60 +74,25 @@ FUNCTION_BLOCK composition_control
     pos_max : REAL := 100.0;
     pos_min : REAL := 0.0;
     scale_to_real0 : scale_to_real;
-    SUB45_OUT : REAL;
-    MUL46_OUT : REAL;
-    ADD42_OUT : REAL;
-    LIMIT44_OUT : REAL;
+    _TMP_SUB45_OUT : REAL;
+    _TMP_MUL46_OUT : REAL;
+    _TMP_ADD42_OUT : REAL;
+    _TMP_LIMIT44_OUT : REAL;
   END_VAR
 
   scale_to_real3(raw_input_value := a_in_purge, real_max := comp_max, real_min := comp_min);
   a_in_purge_real := scale_to_real3.scaled_real;
   scale_to_real2(raw_input_value := a_setpoint, real_max := comp_max, real_min := comp_min);
   a_setpoint_real := scale_to_real2.scaled_real;
-  SUB45_OUT := SUB(a_setpoint_real, a_in_purge_real);
-  MUL46_OUT := MUL(SUB45_OUT, composition_k);
-  pos_update_real := MUL46_OUT;
+  _TMP_SUB45_OUT := SUB(a_setpoint_real, a_in_purge_real);
+  _TMP_MUL46_OUT := MUL(_TMP_SUB45_OUT, composition_k);
+  pos_update_real := _TMP_MUL46_OUT;
   scale_to_real0(raw_input_value := curr_pos, real_max := pos_max, real_min := pos_min);
   valve_pos_real := scale_to_real0.scaled_real;
-  ADD42_OUT := ADD(valve_pos_real, pos_update_real);
-  LIMIT44_OUT := LIMIT(pos_min, ADD42_OUT, pos_max);
-  scale_to_uint0(real_in := LIMIT44_OUT);
+  _TMP_ADD42_OUT := ADD(valve_pos_real, pos_update_real);
+  _TMP_LIMIT44_OUT := LIMIT(pos_min, _TMP_ADD42_OUT, pos_max);
+  scale_to_uint0(real_in := _TMP_LIMIT44_OUT);
   new_pos := scale_to_uint0.uint_out;
-END_FUNCTION_BLOCK
-
-FUNCTION_BLOCK initialize_sp
-  VAR CONSTANT
-    flow_sp_c : UINT := 13107;
-    a_sp_c : UINT := 30801;
-    press_sp_c : UINT := 55295;
-    over_sp_c : UINT := 31675;
-    level_sp_c : UINT := 28835;
-  END_VAR
-  VAR_OUTPUT
-    flow_sp : UINT;
-    a_sp : UINT;
-    press_sp : UINT;
-    over_sp : UINT;
-    level_sp : UINT;
-  END_VAR
-  VAR
-    MOVE3_OUT : UINT;
-    MOVE7_OUT : UINT;
-    MOVE11_OUT : UINT;
-    MOVE15_OUT : UINT;
-    MOVE19_OUT : UINT;
-  END_VAR
-
-  MOVE3_OUT := MOVE(a_sp_c);
-  a_sp := MOVE3_OUT;
-  MOVE7_OUT := MOVE(flow_sp_c);
-  flow_sp := MOVE7_OUT;
-  MOVE11_OUT := MOVE(over_sp_c);
-  over_sp := MOVE11_OUT;
-  MOVE15_OUT := MOVE(level_sp_c);
-  level_sp := MOVE15_OUT;
-  MOVE19_OUT := MOVE(press_sp_c);
-  press_sp := MOVE19_OUT;
 END_FUNCTION_BLOCK
 
 FUNCTION_BLOCK pressure_control
@@ -164,24 +129,24 @@ FUNCTION_BLOCK pressure_control
     pos_min : REAL := 0.0;
     pos_max : REAL := 100.0;
     scale_to_real0 : scale_to_real;
-    SUB57_OUT : REAL;
-    MUL60_OUT : REAL;
-    SUB53_OUT : REAL;
-    LIMIT55_OUT : REAL;
+    _TMP_SUB57_OUT : REAL;
+    _TMP_MUL60_OUT : REAL;
+    _TMP_SUB53_OUT : REAL;
+    _TMP_LIMIT55_OUT : REAL;
   END_VAR
 
   scale_to_real5(raw_input_value := pressure, real_max := pressure_max, real_min := pressure_min);
   pressure_real := scale_to_real5.scaled_real;
   scale_to_real4(raw_input_value := pressure_sp, real_max := pressure_max, real_min := pressure_min);
   pressure_sp_real := scale_to_real4.scaled_real;
-  SUB57_OUT := SUB(pressure_sp_real, pressure_real);
-  MUL60_OUT := MUL(SUB57_OUT, pressure_k);
-  pos_update_real := MUL60_OUT;
+  _TMP_SUB57_OUT := SUB(pressure_sp_real, pressure_real);
+  _TMP_MUL60_OUT := MUL(_TMP_SUB57_OUT, pressure_k);
+  pos_update_real := _TMP_MUL60_OUT;
   scale_to_real0(raw_input_value := curr_pos, real_max := pos_max, real_min := pos_min);
   valve_pos_real := scale_to_real0.scaled_real;
-  SUB53_OUT := SUB(valve_pos_real, pos_update_real);
-  LIMIT55_OUT := LIMIT(pos_min, SUB53_OUT, pos_max);
-  scale_to_uint0(real_in := LIMIT55_OUT);
+  _TMP_SUB53_OUT := SUB(valve_pos_real, pos_update_real);
+  _TMP_LIMIT55_OUT := LIMIT(pos_min, _TMP_SUB53_OUT, pos_max);
+  scale_to_uint0(real_in := _TMP_LIMIT55_OUT);
   valve_pos := scale_to_uint0.uint_out;
 END_FUNCTION_BLOCK
 
@@ -221,24 +186,24 @@ FUNCTION_BLOCK flow_control
     pos_max : REAL := 100.0;
     scale_to_real2 : scale_to_real;
     scale_to_uint0 : scale_to_uint;
-    SUB59_OUT : REAL;
-    MUL60_OUT : REAL;
-    ADD58_OUT : REAL;
-    LIMIT40_OUT : REAL;
+    _TMP_SUB59_OUT : REAL;
+    _TMP_MUL60_OUT : REAL;
+    _TMP_ADD58_OUT : REAL;
+    _TMP_LIMIT40_OUT : REAL;
   END_VAR
 
   scale_to_real0(raw_input_value := product_flow, real_max := flow_max, real_min := flow_min);
   product_flow_real := scale_to_real0.scaled_real;
   scale_to_real1(raw_input_value := flow_set_in, real_max := flow_max, real_min := flow_min);
   flow_set_real := scale_to_real1.scaled_real;
-  SUB59_OUT := SUB(flow_set_real, product_flow_real);
-  MUL60_OUT := MUL(SUB59_OUT, flow_k);
-  pos_update_real := MUL60_OUT;
+  _TMP_SUB59_OUT := SUB(flow_set_real, product_flow_real);
+  _TMP_MUL60_OUT := MUL(_TMP_SUB59_OUT, flow_k);
+  pos_update_real := _TMP_MUL60_OUT;
   scale_to_real2(raw_input_value := curr_pos, real_max := pos_max, real_min := pos_min);
   curr_pos_real := scale_to_real2.scaled_real;
-  ADD58_OUT := ADD(curr_pos_real, pos_update_real);
-  LIMIT40_OUT := LIMIT(pos_min, ADD58_OUT, pos_max);
-  scale_to_uint0(real_in := LIMIT40_OUT);
+  _TMP_ADD58_OUT := ADD(curr_pos_real, pos_update_real);
+  _TMP_LIMIT40_OUT := LIMIT(pos_min, _TMP_ADD58_OUT, pos_max);
+  scale_to_uint0(real_in := _TMP_LIMIT40_OUT);
   new_pos := scale_to_uint0.uint_out;
 END_FUNCTION_BLOCK
 
@@ -267,10 +232,10 @@ FUNCTION_BLOCK level_control
     scale_to_real1 : scale_to_real;
     scale_to_real2 : scale_to_real;
     scale_to_uint0 : scale_to_uint;
-    SUB32_OUT : REAL;
-    MUL33_OUT : REAL;
-    SUB30_OUT : REAL;
-    LIMIT25_OUT : REAL;
+    _TMP_SUB32_OUT : REAL;
+    _TMP_MUL33_OUT : REAL;
+    _TMP_SUB30_OUT : REAL;
+    _TMP_LIMIT25_OUT : REAL;
   END_VAR
 
   scale_to_real0(raw_input_value := liquid_level, real_max := level_max, real_min := level_min);
@@ -279,13 +244,32 @@ FUNCTION_BLOCK level_control
   pos_real := scale_to_real1.scaled_real;
   scale_to_real2(raw_input_value := level_sp, real_max := level_max, real_min := level_min);
   sp_real := scale_to_real2.scaled_real;
-  SUB32_OUT := SUB(sp_real, level_real);
-  MUL33_OUT := MUL(SUB32_OUT, level_k);
-  pos_update_real := MUL33_OUT;
-  SUB30_OUT := SUB(pos_real, pos_update_real);
-  LIMIT25_OUT := LIMIT(pos_min, SUB30_OUT, pos_max);
-  scale_to_uint0(real_in := LIMIT25_OUT);
+  _TMP_SUB32_OUT := SUB(sp_real, level_real);
+  _TMP_MUL33_OUT := MUL(_TMP_SUB32_OUT, level_k);
+  pos_update_real := _TMP_MUL33_OUT;
+  _TMP_SUB30_OUT := SUB(pos_real, pos_update_real);
+  _TMP_LIMIT25_OUT := LIMIT(pos_min, _TMP_SUB30_OUT, pos_max);
+  scale_to_uint0(real_in := _TMP_LIMIT25_OUT);
   new_pos := scale_to_uint0.uint_out;
+END_FUNCTION_BLOCK
+
+FUNCTION_BLOCK scale_to_signed
+  VAR_INPUT
+    input_uint : UINT;
+  END_VAR
+  VAR_OUTPUT
+    output_int : INT;
+  END_VAR
+  VAR
+    _TMP_DIV3_OUT : UINT;
+    _TMP_ABS8_OUT : UINT;
+    _TMP_UINT_TO_INT9_OUT : INT;
+  END_VAR
+
+  _TMP_DIV3_OUT := DIV(input_uint, 2);
+  _TMP_ABS8_OUT := ABS(_TMP_DIV3_OUT);
+  _TMP_UINT_TO_INT9_OUT := UINT_TO_INT(_TMP_ABS8_OUT);
+  output_int := _TMP_UINT_TO_INT9_OUT;
 END_FUNCTION_BLOCK
 
 FUNCTION_BLOCK pressure_override
@@ -321,72 +305,72 @@ FUNCTION_BLOCK pressure_override
     flow_max : REAL := 500.0;
     flow_min : REAL := 0.0;
     scale_to_real0 : scale_to_real;
-    SUB86_OUT : REAL;
-    MUL87_OUT : REAL;
-    MAX84_OUT : REAL;
-    ADD85_OUT : REAL;
-    LIMIT67_OUT : REAL;
-    DIV73_OUT : REAL;
-    MUL75_OUT : REAL;
-    REAL_TO_UINT79_OUT : UINT;
+    _TMP_SUB86_OUT : REAL;
+    _TMP_MUL87_OUT : REAL;
+    _TMP_MAX84_OUT : REAL;
+    _TMP_ADD85_OUT : REAL;
+    _TMP_LIMIT67_OUT : REAL;
+    _TMP_DIV73_OUT : REAL;
+    _TMP_MUL75_OUT : REAL;
+    _TMP_REAL_TO_UINT79_OUT : UINT;
   END_VAR
 
   scale_to_real7(raw_input_value := pressure, real_max := pressure_max, real_min := pressure_min);
   pressure_real := scale_to_real7.scaled_real;
-  SUB86_OUT := SUB(override_sp_real, pressure_real);
-  MUL87_OUT := MUL(SUB86_OUT, override_k);
-  MAX84_OUT := MAX(MUL87_OUT, 0.0);
-  sp_update := MAX84_OUT;
+  _TMP_SUB86_OUT := SUB(override_sp_real, pressure_real);
+  _TMP_MUL87_OUT := MUL(_TMP_SUB86_OUT, override_k);
+  _TMP_MAX84_OUT := MAX(_TMP_MUL87_OUT, 0.0);
+  sp_update := _TMP_MAX84_OUT;
   scale_to_real0(raw_input_value := curr_sp, real_max := flow_max, real_min := flow_min);
   curr_sp_real := scale_to_real0.scaled_real;
-  ADD85_OUT := ADD(curr_sp_real, sp_update);
-  LIMIT67_OUT := LIMIT(50.0, ADD85_OUT, 150.0);
-  product_sp_real := LIMIT67_OUT;
-  DIV73_OUT := DIV(product_sp_real, 500.0);
-  MUL75_OUT := MUL(DIV73_OUT, 65535.0);
-  REAL_TO_UINT79_OUT := REAL_TO_UINT(MUL75_OUT);
-  product_sp := REAL_TO_UINT79_OUT;
+  _TMP_ADD85_OUT := ADD(curr_sp_real, sp_update);
+  _TMP_LIMIT67_OUT := LIMIT(50.0, _TMP_ADD85_OUT, 150.0);
+  product_sp_real := _TMP_LIMIT67_OUT;
+  _TMP_DIV73_OUT := DIV(product_sp_real, 500.0);
+  _TMP_MUL75_OUT := MUL(_TMP_DIV73_OUT, 65535.0);
+  _TMP_REAL_TO_UINT79_OUT := REAL_TO_UINT(_TMP_MUL75_OUT);
+  product_sp := _TMP_REAL_TO_UINT79_OUT;
 END_FUNCTION_BLOCK
 
 PROGRAM main
   VAR
     flow_control0 : flow_control;
-    first_run : BOOL := True;
   END_VAR
   VAR
-    flow_set AT %MW0 : UINT;
-    a_setpoint AT %MW1 : UINT;
-    pressure_sp AT %MW2 : UINT;
-    override_sp AT %MW3 : UINT;
-    level_sp AT %MW4 : UINT;
+    flow_set AT %MW0 : UINT := 13107;
+    a_setpoint AT %MW1 : UINT := 30801;
+    pressure_sp AT %MW2 : UINT := 55295;
+    override_sp AT %MW3 : UINT := 31675;
+    level_sp AT %MW4 : UINT := 28835;
   END_VAR
   VAR
     composition_control0 : composition_control;
+    scale_to_signed0 : scale_to_signed;
   END_VAR
   VAR
-    f1_valve_pos AT %IW0 : UINT;
-    f1_flow AT %IW1 : UINT;
-    f2_valve_pos AT %IW2 : UINT;
-    f2_flow AT %IW3 : UINT;
-    purge_valve_pos AT %IW4 : UINT;
-    purge_flow AT %IW5 : UINT;
-    product_valve_pos AT %IW6 : UINT;
-    product_flow AT %IW7 : UINT;
-    pressure AT %IW8 : UINT;
-    level AT %IW9 : UINT;
-    a_in_purge AT %IW10 : UINT;
-    b_in_purge AT %IW11 : UINT;
-    c_in_purge AT %IW12 : UINT;
-    f1_valve_sp AT %QW0 : UINT;
-    f2_valve_sp AT %QW1 : UINT;
-    purge_valve_sp AT %QW2 : UINT;
-    product_valve_sp AT %QW3 : UINT;
+    f1_valve_pos AT %IW0 : UINT := 30000;
+    f1_flow AT %IW1 : UINT := 30000;
+    f2_valve_pos AT %IW2 : UINT := 30000;
+    f2_flow AT %IW3 : UINT := 30000;
+    purge_valve_pos AT %IW4 : UINT := 30000;
+    purge_flow AT %IW5 : UINT := 30000;
+    product_valve_pos AT %IW6 : UINT := 30000;
+    product_flow AT %IW7 : UINT := 10000;
+    pressure AT %IW8 : UINT := 60000;
+    level AT %IW9 : UINT := 30000;
+    a_in_purge AT %IW10 : UINT := 30000;
+    b_in_purge AT %IW11 : UINT := 10000;
+    c_in_purge AT %IW12 : UINT := 10000;
+    f1_valve_sp AT %QW0 : UINT := 30000;
+    f2_valve_sp AT %QW1 : UINT := 30000;
+    purge_valve_sp AT %QW2 : UINT := 30000;
+    product_valve_sp AT %QW3 : UINT := 30000;
   END_VAR
   VAR
     product_valve_safe : UINT := 0;
     purge_valve_safe : UINT := 65535;
-    f1_valve_safe : UINT;
-    f2_valve_safe : UINT;
+    f1_valve_safe : UINT := 0;
+    f2_valve_safe : UINT := 0;
     pressure_control0 : pressure_control;
   END_VAR
   VAR
@@ -400,37 +384,31 @@ PROGRAM main
     hmi_purge_flow AT %MW27 : INT;
     hmi_product_valve_pos AT %MW28 : INT;
     hmi_product_flow AT %MW29 : INT;
-    scan_count AT %MW30 : UINT;
+    scan_count AT %MW30 : UINT := 0;
   END_VAR
   VAR
+    scale_to_signed1 : scale_to_signed;
+    scale_to_signed2 : scale_to_signed;
+    scale_to_signed3 : scale_to_signed;
+    scale_to_signed4 : scale_to_signed;
+    scale_to_signed5 : scale_to_signed;
+    scale_to_signed6 : scale_to_signed;
+    scale_to_signed7 : scale_to_signed;
+    scale_to_signed8 : scale_to_signed;
+    scale_to_signed9 : scale_to_signed;
     pressure_override0 : pressure_override;
     level_control0 : level_control;
   END_VAR
-  VAR
-    run_bit AT %QX5.0 : BOOL;
+  VAR_EXTERNAL
+    run_bit : BOOL;
   END_VAR
   VAR
-    run_bit0 : BOOL := True;
-    initialize_sp0 : initialize_sp;
-    MOVE99_ENO : BOOL;
-    MOVE99_OUT : UINT;
-    MOVE4_ENO : BOOL;
-    MOVE4_OUT : UINT;
-    MOVE5_ENO : BOOL;
-    MOVE5_OUT : UINT;
-    MOVE7_ENO : BOOL;
-    MOVE7_OUT : UINT;
+    _TMP_ADD87_OUT : UINT;
+    _TMP_GE91_OUT : BOOL;
+    _TMP_MOVE92_ENO : BOOL;
+    _TMP_MOVE92_OUT : UINT;
   END_VAR
 
-  initialize_sp0(EN := first_run);
-  IF initialize_sp0.ENO THEN
-    first_run := FALSE; (*reset*)
-      flow_set := initialize_sp0.flow_sp;
-      a_setpoint := initialize_sp0.a_sp;
-      pressure_sp := initialize_sp0.press_sp;
-      override_sp := initialize_sp0.over_sp;
-      level_sp := initialize_sp0.level_sp;
-  END_IF;
   flow_control0(product_flow := product_flow, curr_pos := f1_valve_pos, flow_set_in := flow_set);
   f1_valve_sp := flow_control0.new_pos;
   pressure_control0(pressure := pressure, pressure_sp := pressure_sp, curr_pos := purge_valve_pos);
@@ -441,22 +419,32 @@ PROGRAM main
   flow_set := pressure_override0.product_sp;
   level_control0(liquid_level := level, level_sp := level_sp, curr_pos := product_valve_pos);
   product_valve_sp := level_control0.new_pos;
-  run_bit0 := NOT(run_bit);
-  MOVE99_OUT := MOVE(EN := NOT(run_bit0), IN := 0, ENO => MOVE99_ENO);
-  MOVE4_OUT := MOVE(EN := MOVE99_ENO, IN := 0, ENO => MOVE4_ENO);
-  MOVE5_OUT := MOVE(EN := MOVE4_ENO, IN := 65535, ENO => MOVE5_ENO);
-  MOVE7_OUT := MOVE(EN := MOVE5_ENO, IN := 65535, ENO => MOVE7_ENO);
-  IF MOVE7_ENO THEN
-      product_valve_sp := MOVE7_OUT;
-  END_IF;
-  IF MOVE99_ENO THEN
-      f1_valve_sp := MOVE99_OUT;
-  END_IF;
-  IF MOVE4_ENO THEN
-      f2_valve_sp := MOVE4_OUT;
-  END_IF;
-  IF MOVE5_ENO THEN
-      purge_valve_sp := MOVE5_OUT;
+  scale_to_signed0(input_uint := pressure);
+  hmi_pressure := scale_to_signed0.output_int;
+  scale_to_signed1(input_uint := level);
+  hmi_level := scale_to_signed1.output_int;
+  scale_to_signed2(input_uint := f1_valve_pos);
+  hmi_f1_valve_pos := scale_to_signed2.output_int;
+  scale_to_signed3(input_uint := f2_valve_pos);
+  hmi_f2_valve_pos := scale_to_signed3.output_int;
+  scale_to_signed4(input_uint := purge_valve_pos);
+  hmi_purge_valve_pos := scale_to_signed4.output_int;
+  scale_to_signed5(input_uint := product_valve_pos);
+  hmi_product_valve_pos := scale_to_signed5.output_int;
+  scale_to_signed6(input_uint := f1_flow);
+  hmi_f1_flow := scale_to_signed6.output_int;
+  scale_to_signed7(input_uint := f2_flow);
+  hmi_f2_flow := scale_to_signed7.output_int;
+  scale_to_signed8(input_uint := purge_flow);
+  hmi_purge_flow := scale_to_signed8.output_int;
+  scale_to_signed9(input_uint := product_flow);
+  hmi_product_flow := scale_to_signed9.output_int;
+  _TMP_ADD87_OUT := ADD(scan_count, 1);
+  scan_count := _TMP_ADD87_OUT;
+  _TMP_GE91_OUT := GE(scan_count, 32000);
+  _TMP_MOVE92_OUT := MOVE(EN := _TMP_GE91_OUT, IN := 0, ENO => _TMP_MOVE92_ENO);
+  IF _TMP_MOVE92_ENO THEN
+      scan_count := _TMP_MOVE92_OUT;
   END_IF;
 END_PROGRAM
 
@@ -464,6 +452,9 @@ END_PROGRAM
 CONFIGURATION Config0
 
   RESOURCE Res0 ON PLC
+    VAR_GLOBAL
+      run_bit AT %QX0.0 : BOOL := 1;
+    END_VAR
     TASK MainTask(INTERVAL := T#50ms,PRIORITY := 0);
     PROGRAM instance0 WITH MainTask : main;
   END_RESOURCE
