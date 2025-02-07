@@ -1,0 +1,15 @@
+#!/usr/bin/env ansible-playbook
+- name: Check mode tests
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Check mode only
+      cisco.ios.ios_command:
+        commands:
+          - "show version"
+      when: ansible_check_mode
+    - name: Not in check mode
+      cisco.ios.ios_command:
+        commands:
+          - "show version"
+      when: not ansible_check_mode

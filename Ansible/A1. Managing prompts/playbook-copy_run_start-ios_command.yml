@@ -1,0 +1,11 @@
+#!/usr/bin/env ansible-playbook
+- name: SAVE CONFIGURATION
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: SAVING CONFIGURATION WITH ios_command
+      cisco.ios.ios_command:
+        commands:
+          - command: copy running-config startup-config
+            prompt: Destination filename
+            answer: startup-config

@@ -1,0 +1,27 @@
+! Initial IOS XR configuration downloaded by ztp.sh
+! SN: {{ serial }}
+! PN: {{ model }}
+username {{ username }}
+ group root-lr
+ password 0 {{ password }}
+!
+hostname {{ hostname }}
+!
+domain name {{ domain }}
+!
+vrf {{ oob_vrf }} address-family ipv4 unicast
+!
+router static vrf {{ oob_vrf }} address-family ipv4 unicast
+    0.0.0.0/0 {{ oob_gateway }}
+!
+interface {{ oob_interface }}
+ vrf {{ oob_vrf }}
+ no ipv4 address dhcp
+ ipv4 address {{ oob_address }} {{ oob_mask }}
+ no shutdown
+!
+ssh server v2
+ssh server vrf {{ oob_vrf }}
+!
+line default
+ transport input ssh

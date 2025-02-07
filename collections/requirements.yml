@@ -1,0 +1,10 @@
+collections:
+  - name: cisco.ios
+    version: 8.0.0
+    source: https://galaxy.ansible.com
+  - name: paloaltonetworks.panos
+    version: 2.20.0
+    source: https://galaxy.ansible.com
+  - name: networktocode.nautobot
+    version: 5.2.1
+    source: https://galaxy.ansible.com

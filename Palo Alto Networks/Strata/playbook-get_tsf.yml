@@ -1,0 +1,26 @@
+#!/usr/bin/env ansible-playbook
+- name: UPDATE ANTIVIRUS/CONTENT/WILDFIRE
+  hosts: all
+  gather_facts: false
+  connection: local
+  pre_tasks:
+    - name: SETTING PROVIDER
+      ansible.builtin.set_fact:
+        provider:
+          ip_address: "{{ ansible_host }}"
+          password: "{{ ansible_ssh_pass }}"
+          port: "{{ ansible_port }}"
+          username: "{{ ansible_user }}"
+    - name: RETRIEVE API KEY
+      paloaltonetworks.panos.panos_api_key:
+        provider: "{{ provider }}"
+      register: auth
+    - name: UPDATING PROVIDER
+      ansible.builtin.set_fact:
+        provider:
+          ip_address: "{{ ansible_host }}"
+          api_key: "{{ auth.api_key }}"
+          port: "{{ ansible_port }}"
+  tasks:
+    - name: GETTING TECH SUPPORT FILES
+      ansible.builtin.include_tasks: tsf_get.yml

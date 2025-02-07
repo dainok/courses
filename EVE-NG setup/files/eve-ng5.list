@@ -1,0 +1,2 @@
+deb [arch=amd64] http://www.eve-ng.net/focal focal main
+# deb-src [arch=amd64] http://www.eve-ng.net/focal focal main

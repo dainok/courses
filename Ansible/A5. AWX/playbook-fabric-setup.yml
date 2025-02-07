@@ -1,0 +1,39 @@
+#!/usr/bin/env ansible-playbook
+- name: CONFIGURE FABRIC
+  hosts: core,access
+  gather_facts: false
+  roles:
+    - role: cisco_ios_system
+      tags: dns,hostname
+    - role: cisco_ios_ntp
+      tags: ntp
+    - role: cisco_ios_snmpv2
+      tags: snmp
+    - role: cisco_ios_vlan
+      tags: vlan
+    - role: cisco_ios_interface_profile
+      tags: interface
+  pre_tasks:
+    - name: CHECKING BASTION HOST
+      when: ansible_ssh_common_args is defined
+      run_once: true
+      block:
+        - name: BASTION HOST CONFIGURATION
+          ansible.builtin.debug:
+            msg: "ansible_ssh_common_args: {{ ansible_ssh_common_args }}"
+        - name: CHECKING PERMISSIONS
+          delegate_to: localhost
+          ansible.builtin.command:
+            cmd: find /opt -type f -name ssh-privatekey -exec ls -l {} \;
+          register: ssh_key_permissions
+        - name: LISTING SSH KEY PERMISSIONS
+          ansible.builtin.debug:
+            msg: "{{ ssh_key_permissions.stdout_lines }}"
+        - name: TESTING SSH KEY
+          ansible.builtin.command:
+            cmd: cat /opt/bastionhost_id_rsa/ssh-privatekey
+  post_tasks:
+    - name: SAVING CONFIG
+      tags: always
+      cisco.ios.ios_config:
+        save_when: modified

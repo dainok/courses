@@ -1,0 +1,12 @@
+#!/usr/bin/env ansible-playbook
+- name: NTP PEERS
+  hosts: all
+  gather_facts: false
+  roles:
+    - role: cisco_ios_ntp_raw
+      ntp_server_1: 194.239.208.213  # noqa: var-naming[no-role-prefix]
+      ntp_server_2: 130.60.204.10  # noqa: var-naming[no-role-prefix]
+  post_tasks:
+    - name: SAVING CONFIG
+      cisco.ios.ios_config:
+        save_when: modified

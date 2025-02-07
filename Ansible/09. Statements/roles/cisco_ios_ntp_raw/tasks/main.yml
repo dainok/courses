@@ -1,0 +1,22 @@
+- name: CONFIGURE NTP PEERS
+  cisco.ios.ios_config:
+    lines:
+      - "ntp peer {{ ntp_server_1 }}"
+      - "ntp peer {{ ntp_server_2 }}"
+- name: GETTING NTP CONFIGURATION
+  cisco.ios.ios_command:
+    commands:
+      - "show running-config | include ntp peer"
+  register: show_run_ntp_peer
+- name: GETTING NTP PEERS
+  ansible.builtin.set_fact:
+    current_ntp_peers: "{{ show_run_ntp_peer['stdout'][0] | regex_findall('^ntp peer .*$', multiline=True) | regex_replace('ntp peer ', '') }}"
+    expected_ntp_peers:
+      - "{{ ntp_server_1 }}"
+      - "{{ ntp_server_2 }}"
+- name: REMOVING NTP PEERS
+  cisco.ios.ios_config:
+    lines:
+      - "no ntp peer {{ item }}"
+  with_items: "{{ current_ntp_peers }}"
+  when: item not in expected_ntp_peers

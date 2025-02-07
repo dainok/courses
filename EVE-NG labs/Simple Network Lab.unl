@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<lab name="Simple Network Lab" id="22d249dc-2611-4993-af32-135811e7d624" version="1" scripttimeout="300" countdown="0" lock="0" author="Andrea Dainese" sat="-1">
+  <description>A simple network lab to test EVE-NG configuration.</description>
+  <body>Gain access to R1 via SSH.
+Ping an Internet address from R1.</body>
+  <topology>
+    <nodes>
+      <node id="1" name="R1" type="iol" template="iol" image="i86bi_LinuxL3-AdvEnterpriseK9-M2_157_3_May_2018.bin" ethernet="1" nvram="1024" ram="1024" serial="0" delay="0" sat="-1" icon="Router.png" config="1" left="174" top="57">
+        <interface id="0" name="e0/0" type="ethernet" network_id="1" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
+      </node>
+    </nodes>
+    <networks>
+      <network id="1" smart="-1" vlan8021ad="-1" type="pnet9" name="Internet" left="69" top="58" style="Solid" linkstyle="Straight" color="" label="" visibility="1" icon="cloud.png"/>
+    </networks>
+  </topology>
+  <objects>
+    <configs>
+      <config id="1">CiEKaG9zdG5hbWUgUjEKIQp1c2VybmFtZSBhZG1pbiBwcml2aWxlZ2UgMTUgcGFzc3dvcmQgMCBjaXNjbwohCmlwIGRvbWFpbi1uYW1lIGV4YW1wbGUuY29tCiEKY3J5cHRvIGtleSBnZW5lcmF0ZSByc2EgbW9kdWx1cyAyMDQ4CiEKaW50ZXJmYWNlIEV0aGVybmV0MC8wCiBubyBzaHV0ZG93bgogaXAgYWRkcmVzcyBkaGNwCiEKaXAgc3NoIHZlcnNpb24gMgpsaW5lIHZ0eSAwIDQKIGxvZ2luIGxvY2FsCiB0cmFuc3BvcnQgaW5wdXQgc3NoCiEKZW5kCg==</config>
+    </configs>
+  </objects>
+</lab>

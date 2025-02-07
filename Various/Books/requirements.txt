@@ -1,0 +1,9 @@
+cssselect==1.2.0
+lxml==5.2.2
+Markdown==3.6
+markdown-captions==2.1.2
+pillow==10.3.0
+pydyf==0.9.0
+Pygments==2.17.2
+pyyaml==6.0.1
+weasyprint==61.2

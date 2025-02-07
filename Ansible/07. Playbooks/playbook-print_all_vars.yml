@@ -1,0 +1,25 @@
+#!/usr/bin/env ansible-playbook
+- name: PRINT DEBUG VARIABLES
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: PRINT MODULE VARIABLES (vars)
+      tags: modules
+      ansible.builtin.debug:
+        msg: "{{ vars }}"
+    - name: PRINT ENVIRONMENT VARIABLES (environment)
+      tags: environment
+      ansible.builtin.debug:
+        msg: "{{ environment }}"
+    - name: PRINT GROUP NAMES VARIABLES (group_names)
+      tags: group_names
+      ansible.builtin.debug:
+        msg: "{{ group_names }}"
+    - name: PRINT GROUPS VARIABLES (groups)
+      tags: groups
+      ansible.builtin.debug:
+        msg: "{{ groups }}"
+    - name: PRINT HOST VARIABLES (hostvars)
+      tags: hosts
+      ansible.builtin.debug:
+        msg: "{{ hostvars }}"

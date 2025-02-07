@@ -1,0 +1,8 @@
+#!/usr/bin/env ansible-playbook
+- name: CHECK IF FABRIC IS ONLINE
+  hosts: core,access
+  gather_facts: false
+  tasks:
+    - name: CHECK IF ONLINE
+      cisco.ios.ios_command:
+        commands: show version

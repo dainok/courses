@@ -1,0 +1,9 @@
+#!/usr/bin/env ansible-playbook
+- name: TEST OUTPUT
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: READING OUTPUT
+      cisco.ios.ios_command:
+        commands: show ip interface brief
+      register: output

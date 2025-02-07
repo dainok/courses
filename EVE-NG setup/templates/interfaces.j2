@@ -1,0 +1,24 @@
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# EVE-NG management network
+auto pnet0
+iface pnet0 inet static
+    pre-up ip link set dev eth0 up
+    address {{ ansible_host }}
+    netmask {{ netmask }}
+    gateway {{ gateway }}
+    bridge_ports eth0
+    bridge_stp off
+
+# Cloud devices
+auto pnet9
+iface pnet9 inet static
+    address 169.254.1.1
+    netmask 255.255.255.0
+    bridge_ports none
+    bridge_stp off

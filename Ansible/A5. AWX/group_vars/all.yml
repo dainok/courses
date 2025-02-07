@@ -1,0 +1,24 @@
+dns_domain: example.com
+dns_lookup: false
+dns_servers:
+  - 8.8.4.4
+  - 8.8.8.8
+ntp_servers:
+  - 195.201.19.162
+  - 141.98.136.83
+snmp_community: 494174af4b08f87467a138584f4edb33
+vlans:
+  - id: 50
+    name: SERVER
+  - id: 51
+    name: DMZ
+  - id: 52
+    name: MGMT
+  - id: 53
+    name: OFFICE
+  - id: 54
+    name: VOIP
+  - id: 55
+    name: INTERNET
+  - id: 999
+    name: NATIVE

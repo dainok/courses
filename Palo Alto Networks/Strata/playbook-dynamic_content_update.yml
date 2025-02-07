@@ -1,0 +1,25 @@
+#!/usr/bin/env ansible-playbook
+- name: UPDATE ANTIVIRUS/CONTENT/WILDFIRE
+  hosts: all
+  gather_facts: false
+  connection: local
+  vars:
+    contents:
+      - anti-virus
+      - content
+      - wildfire
+    grace_period: 4  # Hours
+  pre_tasks:
+    - name: SETTING PROVIDER
+      ansible.builtin.set_fact:
+        provider:
+          ip_address: "{{ ansible_host }}"
+          password: "{{ ansible_ssh_pass }}"
+          port: "{{ ansible_port }}"
+          username: "{{ ansible_user }}"
+  tasks:
+    - name: UPDATING CONTENTS
+      ansible.builtin.include_tasks: content_update.yml
+      with_items: "{{ contents }}"
+      loop_control:
+        loop_var: content

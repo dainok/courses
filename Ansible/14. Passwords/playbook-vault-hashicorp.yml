@@ -1,0 +1,15 @@
+#!/usr/bin/env ansible-playbook
+- name: HASHICORP VAULT
+  hosts: all
+  gather_facts: false
+  vars:
+    ansible_user: "{{ lookup('hashi_vault', 'secret=kv/ansible:username validate_certs=no') }}"
+    ansible_ssh_pass: "{{ lookup('hashi_vault', 'secret=kv/ansible:password validate_certs=no') }}"
+  tasks:
+    - name: READING OUTPUT
+      cisco.ios.ios_command:
+        commands: show ip interface brief
+      register: output
+    - name: PRINTING OUTPUT
+      ansible.builtin.debug:
+        msg: "{{ output.stdout[0] }}"

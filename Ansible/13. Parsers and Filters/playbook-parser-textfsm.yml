@@ -1,0 +1,19 @@
+#!/usr/bin/env ansible-playbook
+- name: TEXTFSM PARSERS
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: READING OUTPUT
+      cisco.ios.ios_command:
+        commands: show ip interface brief
+      register: output
+    - name: PARSING
+      ansible.utils.cli_parse:
+        text: "{{ output['stdout'][0] }}"
+        parser:
+          name: ansible.utils.textfsm
+          template_path: templates/cisco_ios_show_ip_interface_brief.textfsm
+        set_fact: output_parsed
+    - name: PRINTING PARSED OUTPUT
+      ansible.builtin.debug:
+        msg: "{{ output_parsed }}"

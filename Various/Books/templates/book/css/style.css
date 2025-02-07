@@ -1,0 +1,203 @@
+html {
+    color: #1a1a1a;
+    font-family: 'Ubuntu Regular', Arial, Helvetica, sans-serif;
+    /* font-family: 'Times New Roman', Times, serif; */
+    font-size: 0.95em;
+    line-height: 1.12;
+}
+
+hr {
+    background-color: #1a1a1a;
+    border: none;
+    height: 1px;
+    margin-top: 1.0cm;
+    margin-bottom: 1.0cm;
+    width: 75%;
+}
+
+/**************************************************************************
+ * Images
+ **************************************************************************/
+
+figure {
+    padding: 15px;
+}
+
+figcaption {
+    color: #7d7d7d;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+img {
+    max-width: 100%;
+}
+
+/**************************************************************************
+ * Tables
+ **************************************************************************/
+
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+table {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 5px;
+}
+
+/**************************************************************************
+ * Headers
+ **************************************************************************/
+
+section h1 {
+    margin: 2em 0 0 0;
+    font-size: 2em;
+    break-before: right;
+    line-height: 150%;
+    counter-increment: h1;
+}
+
+h2 {
+    margin: 1.5em 0 0 0;
+    font-size: 1.2em;
+    line-height: 135%;
+    counter-increment: h2;
+}
+
+h3 {
+    margin: 1.3em 0 0 0;
+    font-size: 1.3em;
+}
+
+h4 {
+    margin: 1.2em 0 0 0;
+    font-size: 1.2em;
+}
+
+h5 {
+    margin: 1.1em 0 0 0;
+    font-size: 1.1em;
+}
+
+h6 {
+    font-size: 1em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #1a1a1a;
+    text-indent: 0;
+    text-align: left;
+    font-weight: bold;
+}
+
+h2, h3, h4, h5, h6 {
+    break-after: avoid;
+    break-inside: avoid;
+}
+
+/**************************************************************************
+ * Text
+ **************************************************************************/
+
+a, a:visited {
+    color: #1a1a1a;
+}
+
+blockquote {
+    margin: 1em 0.25em 1em 0.25em;
+}
+
+p {
+    text-align: justify;
+    text-indent: 0;
+    margin: 1em 0;
+    widows: 2;
+    orphans: 2;
+}
+
+sub {
+    vertical-align: sub;
+    font-size: smaller;
+}
+
+sup {
+    vertical-align: super;
+    font-size: smaller;
+}
+
+/**************************************************************************
+ * Lists
+ **************************************************************************/
+
+ol, ul {
+    margin: 1em 0.25em 1em 0.25em;
+    padding: 0 1.30em 0 1.30em;
+    text-align: justify;
+}
+
+ul {
+    list-style-type: square;
+}
+
+li > ol, li > ul {
+    margin-top: 0;
+}
+
+/**************************************************************************
+ * Code
+ **************************************************************************/
+
+code, pre, pre * {
+    font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace;
+    font-size: 95%;
+    hyphens: none;
+    /* margin: 1em 0.25em 1em 0.25em; */
+    margin: 1em 0.15 1em 0.15;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    word-wrap : break-word;
+}
+
+.sourceCode {
+    background-color: transparent;
+    overflow: visible;
+}
+
+/**************************************************************************
+ * Tables
+ **************************************************************************/
+
+table {
+    margin: 1em 0;
+    border-collapse: collapse;
+    width: 100%;
+    overflow-x: auto;
+    /* display: block; */
+}
+
+table caption {
+    margin-bottom: 0.75em;
+}
+
+tbody {
+    margin-top: 0.5em;
+    border-top: 1px solid #1a1a1a;
+    border-bottom: 1px solid #1a1a1a;
+}
+
+th, td {
+    padding: 0.25em 0.5em 0.25em 0.5em;
+}
+
+th {
+    border-top: 1px solid #1a1a1a;
+}

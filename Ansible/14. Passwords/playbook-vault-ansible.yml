@@ -1,0 +1,14 @@
+#!/usr/bin/env ansible-playbook
+- name: ANSIBLE VAULT
+  hosts: all
+  gather_facts: false
+  vars_files:
+    - secrets.vault
+  tasks:
+    - name: READING OUTPUT
+      cisco.ios.ios_command:
+        commands: show ip interface brief
+      register: output
+    - name: PRINTING OUTPUT
+      ansible.builtin.debug:
+        msg: "{{ output.stdout[0] }}"

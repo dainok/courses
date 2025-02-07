@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<lab name="Cisco Legacy Core-Access topology" id="19683a80-d3b9-4319-bcb0-1bc5f3b7ab1e" version="1" scripttimeout="300" countdown="0" lock="0" author="Andrea Dainese" sat="-1">
+  <description>Collapsed Core-Access topology.</description>
+  <body>Practice with network and automation fundamentals.</body>
+  <topology>
+    <nodes>
+      <node id="1" name="SW1" type="iol" template="iol" image="i86bi_linux_l2-adventerprisek9-ms.SSA.high_iron_20190423.bin" ethernet="2" nvram="1024" ram="1024" serial="0" delay="0" sat="-1" icon="Switch L3.png" config="1" left="270" top="42">
+        <interface id="0" name="e0/0" type="ethernet" network_id="1" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
+        <interface id="16" name="e0/1" type="ethernet" network_id="2" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
+        <interface id="32" name="e0/2" type="ethernet" network_id="3" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
+        <interface id="1" name="e1/0" type="ethernet" network_id="4" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
+        <interface id="17" name="e1/1" type="ethernet" network_id="5" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
+        <interface id="33" name="e1/2" type="ethernet" network_id="6" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
+        <interface id="49" name="e1/3" type="ethernet" network_id="7" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
+      </node>
+      <node id="2" name="SW2" type="iol" template="iol" image="i86bi_linux_l2-adventerprisek9-ms.SSA.high_iron_20190423.bin" ethernet="2" nvram="1024" ram="1024" serial="0" delay="0" sat="-1" icon="Switch L3.png" config="1" left="414" top="42">
+        <interface id="0" name="e0/0" type="ethernet" network_id="1" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
+        <interface id="16" name="e0/1" type="ethernet" network_id="2" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
+        <interface id="32" name="e0/2" type="ethernet" network_id="3" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
+        <interface id="1" name="e1/0" type="ethernet" network_id="8" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
+        <interface id="17" name="e1/1" type="ethernet" network_id="9" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
+        <interface id="33" name="e1/2" type="ethernet" network_id="10" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
+        <interface id="49" name="e1/3" type="ethernet" network_id="11" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
+      </node>
+      <node id="3" name="SW3" type="iol" template="iol" image="i86bi_linux_l2-adventerprisek9-ms.SSA.high_iron_20190423.bin" ethernet="1" nvram="1024" ram="1024" serial="0" delay="0" sat="-1" icon="Switch.png" config="1" left="129" top="286">
+        <interface id="0" name="e0/0" type="ethernet" network_id="1" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
+        <interface id="16" name="e0/1" type="ethernet" network_id="4" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
+        <interface id="32" name="e0/2" type="ethernet" network_id="8" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
+      </node>
+      <node id="4" name="SW4" type="iol" template="iol" image="i86bi_linux_l2-adventerprisek9-ms.SSA.high_iron_20190423.bin" ethernet="1" nvram="1024" ram="1024" serial="0" delay="0" sat="-1" icon="Switch.png" config="1" left="270" top="286">
+        <interface id="0" name="e0/0" type="ethernet" network_id="1" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
+        <interface id="16" name="e0/1" type="ethernet" network_id="5" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
+        <interface id="32" name="e0/2" type="ethernet" network_id="9" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
+      </node>
+      <node id="5" name="SW5" type="iol" template="iol" image="i86bi_linux_l2-adventerprisek9-ms.SSA.high_iron_20190423.bin" ethernet="1" nvram="1024" ram="1024" serial="0" delay="0" sat="-1" icon="Switch.png" config="1" left="414" top="286">
+        <interface id="0" name="e0/0" type="ethernet" network_id="1" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
+        <interface id="16" name="e0/1" type="ethernet" network_id="6" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
+        <interface id="32" name="e0/2" type="ethernet" network_id="10" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
+      </node>
+      <node id="6" name="SW6" type="iol" template="iol" image="i86bi_linux_l2-adventerprisek9-ms.SSA.high_iron_20190423.bin" ethernet="1" nvram="1024" ram="1024" serial="0" delay="0" sat="-1" icon="Switch.png" config="1" left="555" top="286">
+        <interface id="0" name="e0/0" type="ethernet" network_id="1" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
+        <interface id="16" name="e0/1" type="ethernet" network_id="7" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
+        <interface id="32" name="e0/2" type="ethernet" network_id="11" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
+      </node>
+    </nodes>
+    <networks>
+      <network id="1" smart="-1" vlan8021ad="-1" type="pnet9" name="Internet" left="72" top="43" style="Solid" linkstyle="Straight" color="" label="" visibility="1" icon="cloud.png"/>
+      <network id="2" smart="0" vlan8021ad="0" type="bridge" name="Net-R1iface_16" left="330" top="82" style="Solid" linkstyle="Straight" color="" label="" visibility="0" icon="lan.png"/>
+      <network id="3" smart="0" vlan8021ad="0" type="bridge" name="Net-R1iface_32" left="330" top="82" style="Solid" linkstyle="Straight" color="" label="" visibility="0" icon="lan.png"/>
+      <network id="4" smart="0" vlan8021ad="0" type="bridge" name="Net-R3iface_16" left="189" top="226" style="Solid" linkstyle="Straight" color="" label="" visibility="0" icon="lan.png"/>
+      <network id="5" smart="0" vlan8021ad="0" type="bridge" name="Net-R4iface_16" left="330" top="226" style="Solid" linkstyle="Straight" color="" label="" visibility="0" icon="lan.png"/>
+      <network id="6" smart="0" vlan8021ad="0" type="bridge" name="Net-R5iface_16" left="474" top="226" style="Solid" linkstyle="Straight" color="" label="" visibility="0" icon="lan.png"/>
+      <network id="7" smart="0" vlan8021ad="0" type="bridge" name="Net-R6iface_16" left="615" top="226" style="Solid" linkstyle="Straight" color="" label="" visibility="0" icon="lan.png"/>
+      <network id="8" smart="0" vlan8021ad="0" type="bridge" name="Net-R3iface_32" left="189" top="226" style="Solid" linkstyle="Straight" color="" label="" visibility="0" icon="lan.png"/>
+      <network id="9" smart="0" vlan8021ad="0" type="bridge" name="Net-R4iface_32" left="330" top="226" style="Solid" linkstyle="Straight" color="" label="" visibility="0" icon="lan.png"/>
+      <network id="10" smart="0" vlan8021ad="0" type="bridge" name="Net-R5iface_32" left="474" top="226" style="Solid" linkstyle="Straight" color="" label="" visibility="0" icon="lan.png"/>
+      <network id="11" smart="0" vlan8021ad="0" type="bridge" name="Net-R6iface_32" left="615" top="226" style="Solid" linkstyle="Straight" color="" label="" visibility="0" icon="lan.png"/>
+    </networks>
+  </topology>
+  <objects>
+    <configs>
+      <config id="1">CiEKaG9zdG5hbWUgU1cxCiEKdXNlcm5hbWUgYWRtaW4gcHJpdmlsZWdlIDE1IHBhc3N3b3JkIDAgY2lzY28KIQppcCBkb21haW4tbmFtZSBleGFtcGxlLmNvbQohCmNyeXB0byBrZXkgZ2VuZXJhdGUgcnNhIG1vZHVsdXMgMjA0OAohCmludGVyZmFjZSBFdGhlcm5ldDAvMAogbm8gc2h1dGRvd24KIG5vIHN3aXRjaHBvcnQKIGlwIGFkZHJlc3MgZGhjcAohCmlwIHNzaCB2ZXJzaW9uIDIKbGluZSB2dHkgMCA0CiBsb2dpbiBsb2NhbAogdHJhbnNwb3J0IGlucHV0IHNzaAohCmVuZAo=</config>
+      <config id="2">CiEKaG9zdG5hbWUgU1cyCiEKdXNlcm5hbWUgYWRtaW4gcHJpdmlsZWdlIDE1IHBhc3N3b3JkIDAgY2lzY28KIQppcCBkb21haW4tbmFtZSBleGFtcGxlLmNvbQohCmNyeXB0byBrZXkgZ2VuZXJhdGUgcnNhIG1vZHVsdXMgMjA0OAohCmludGVyZmFjZSBFdGhlcm5ldDAvMAogbm8gc2h1dGRvd24KIG5vIHN3aXRjaHBvcnQKIGlwIGFkZHJlc3MgZGhjcAohCmlwIHNzaCB2ZXJzaW9uIDIKbGluZSB2dHkgMCA0CiBsb2dpbiBsb2NhbAogdHJhbnNwb3J0IGlucHV0IHNzaAohCmVuZAo=</config>
+      <config id="3">CiEKaG9zdG5hbWUgU1czCiEKdXNlcm5hbWUgYWRtaW4gcHJpdmlsZWdlIDE1IHBhc3N3b3JkIDAgY2lzY28KIQppcCBkb21haW4tbmFtZSBleGFtcGxlLmNvbQohCmNyeXB0byBrZXkgZ2VuZXJhdGUgcnNhIG1vZHVsdXMgMjA0OAohCmludGVyZmFjZSBFdGhlcm5ldDAvMAogbm8gc2h1dGRvd24KIG5vIHN3aXRjaHBvcnQKIGlwIGFkZHJlc3MgZGhjcAohCmlwIHNzaCB2ZXJzaW9uIDIKbGluZSB2dHkgMCA0CiBsb2dpbiBsb2NhbAogdHJhbnNwb3J0IGlucHV0IHNzaAohCmVuZAo=</config>
+      <config id="4">CiEKaG9zdG5hbWUgU1c0CiEKdXNlcm5hbWUgYWRtaW4gcHJpdmlsZWdlIDE1IHBhc3N3b3JkIDAgY2lzY28KIQppcCBkb21haW4tbmFtZSBleGFtcGxlLmNvbQohCmNyeXB0byBrZXkgZ2VuZXJhdGUgcnNhIG1vZHVsdXMgMjA0OAohCmludGVyZmFjZSBFdGhlcm5ldDAvMAogbm8gc2h1dGRvd24KIG5vIHN3aXRjaHBvcnQKIGlwIGFkZHJlc3MgZGhjcAohCmlwIHNzaCB2ZXJzaW9uIDIKbGluZSB2dHkgMCA0CiBsb2dpbiBsb2NhbAogdHJhbnNwb3J0IGlucHV0IHNzaAohCmVuZAo=</config>
+      <config id="5">CiEKaG9zdG5hbWUgU1c1CiEKdXNlcm5hbWUgYWRtaW4gcHJpdmlsZWdlIDE1IHBhc3N3b3JkIDAgY2lzY28KIQppcCBkb21haW4tbmFtZSBleGFtcGxlLmNvbQohCmNyeXB0byBrZXkgZ2VuZXJhdGUgcnNhIG1vZHVsdXMgMjA0OAohCmludGVyZmFjZSBFdGhlcm5ldDAvMAogbm8gc2h1dGRvd24KIG5vIHN3aXRjaHBvcnQKIGlwIGFkZHJlc3MgZGhjcAohCmlwIHNzaCB2ZXJzaW9uIDIKbGluZSB2dHkgMCA0CiBsb2dpbiBsb2NhbAogdHJhbnNwb3J0IGlucHV0IHNzaAohCmVuZAo=</config>
+      <config id="6">CiEKaG9zdG5hbWUgU1c2CiEKdXNlcm5hbWUgYWRtaW4gcHJpdmlsZWdlIDE1IHBhc3N3b3JkIDAgY2lzY28KIQppcCBkb21haW4tbmFtZSBleGFtcGxlLmNvbQohCmNyeXB0byBrZXkgZ2VuZXJhdGUgcnNhIG1vZHVsdXMgMjA0OAohCmludGVyZmFjZSBFdGhlcm5ldDAvMAogbm8gc2h1dGRvd24KIG5vIHN3aXRjaHBvcnQKIGlwIGFkZHJlc3MgZGhjcAohCmlwIHNzaCB2ZXJzaW9uIDIKbGluZSB2dHkgMCA0CiBsb2dpbiBsb2NhbAogdHJhbnNwb3J0IGlucHV0IHNzaAohCmVuZAo=</config>
+    </configs>
+  </objects>
+</lab>

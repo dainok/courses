@@ -1,0 +1,18 @@
+#!/usr/bin/env ansible-playbook
+- name: BASTION HOST
+  hosts: all
+  gather_facts: false
+  vars:
+    ntp_server_1: 194.239.208.213
+    ntp_server_2: 130.60.204.10
+  roles:
+    - role: cisco_ios_ntp
+  pre_tasks:
+    - name: SETTING BASTION HOST
+      ansible.builtin.set_fact:
+        ansible_ssh_common_args: >-
+          -o ProxyCommand="ssh -o IdentityFile=~/.ssh/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -W %h:%p -q dev@172.25.82.110"
+  post_tasks:
+    - name: SAVING CONFIG
+      cisco.ios.ios_config:
+        save_when: modified

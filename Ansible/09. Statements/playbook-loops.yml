@@ -1,0 +1,65 @@
+#!/usr/bin/env ansible-playbook
+- name: LOOPS
+  hosts: all
+  gather_facts: false
+  connection: local
+  vars:
+    colors:
+      - red
+      - green
+      - blue
+      - [grey, white]
+    os:
+      - macos
+      - windows
+      - linux
+    os_to_vendors:
+      macos: apple
+      windows: microsoft
+      linux: opensource
+    devices:
+      - name: r1
+        interfaces:
+          - name: Ethernet0/0
+            type: Ethernet
+          - name: Loopback0
+            type: Loopback
+      - name: r2
+        interfaces:
+          - name: Ethernet1/0
+            type: Ethernet
+      - name: r3
+  tasks:
+    - name: LOOP with_items
+      ansible.builtin.debug:
+        msg: "{{ item }}"
+      with_items: "{{ colors }}"
+    - name: LOOP loop
+      ansible.builtin.debug:
+        msg: "{{ item }}"
+      loop: "{{ colors }}"
+    - name: LOOP loop (flatten)
+      ansible.builtin.debug:
+        msg: "{{ item }}"
+      loop: "{{ colors | flatten(levels=1) }}"
+    - name: LOOP with_dict
+      ansible.builtin.debug:
+        msg: "{{ item.key }} - {{ item.value }}"
+      with_dict: "{{ os_to_vendors }}"
+    - name: LOOP loop ON DICT
+      ansible.builtin.debug:
+        msg: "{{ item.key }} - {{ item.value }}"
+      loop: "{{ os_to_vendors | dict2items }}"
+    - name: LOOP loop ON DICT (sorted)
+      ansible.builtin.debug:
+        msg: "{{ item.0 }} - {{ item.1 }}"
+      loop: "{{ os_to_vendors | dictsort }}"
+    - name: LOOP ON NESTED
+      ansible.builtin.debug:
+        msg: "{{ item.0.name }}:{{ item.1.name }}"
+      loop: "{{ q('ansible.builtin.subelements', devices, 'interfaces', {'skip_missing': True}) }}"
+    - name: CALLING OUTER LOOP (main.yml)
+      ansible.builtin.include_tasks: sub_task1.yml
+      with_items: "{{ os }}"
+      loop_control:
+        loop_var: os_item

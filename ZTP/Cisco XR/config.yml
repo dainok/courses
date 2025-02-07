@@ -1,0 +1,6 @@
+oob_address: 169.254.1.11
+oob_mask: 255.255.255.0
+oob_gateway: 169.254.1.1
+oob_vrf: OOB
+oob_interface: MgmtEth0/RP0/CPU0/0
+domain: example.com

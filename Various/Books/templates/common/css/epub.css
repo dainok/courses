@@ -1,0 +1,11 @@
+/* This defines styles and classes used in ebooks */
+@page {
+  margin: 10px;
+}
+
+@media screen { /* Workaround for iBooks issue; see #6242 */
+  .sourceCode {
+    overflow: visible !important;
+    white-space: pre-wrap !important;
+  }
+}

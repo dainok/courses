@@ -1,0 +1,4 @@
+bind-utils
+git-core
+openssh-clients
+sshpass

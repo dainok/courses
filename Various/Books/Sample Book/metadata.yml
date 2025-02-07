@@ -1,0 +1,10 @@
+belongs-to-collection: Sample Books
+creator:
+  - role: author
+    text: Andrea Dainese
+description: null
+rights: © 2024 Andrea Dainese
+title:
+  - text: Sample Book
+    type: main
+toc-title: Table of contents

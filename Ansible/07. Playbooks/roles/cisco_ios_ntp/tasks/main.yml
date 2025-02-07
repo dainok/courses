@@ -1,0 +1,7 @@
+- name: CONFIGURE NTP PEERS
+  cisco.ios.ios_ntp_global:
+    config:
+      peers:
+        - peer: "{{ ntp_server_1 }}"
+        - peer: "{{ ntp_server_2 }}"
+    state: replaced

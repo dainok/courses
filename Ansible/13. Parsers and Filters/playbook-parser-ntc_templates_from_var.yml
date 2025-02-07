@@ -1,0 +1,21 @@
+#!/usr/bin/env ansible-playbook
+- name: NTC TEMPLATE PARSER
+  hosts: all
+  gather_facts: false
+  connection: local
+  tasks:
+    - name: READING OUTPUT
+      cisco.ios.ios_command:
+        commands: show ip interface brief
+      register: output
+    - name: PARSING
+      ansible.utils.cli_parse:
+        text: "{{ output['stdout'][0] }}"
+        parser:
+          name: ansible.netcommon.ntc_templates
+          os: "cisco_ios"
+          command: "show ip interface brief"
+        set_fact: output_parsed
+    - name: PRINTING PARSED OUTPUT
+      ansible.builtin.debug:
+        msg: "{{ output_parsed }}"

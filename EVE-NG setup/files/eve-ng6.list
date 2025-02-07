@@ -1,0 +1,2 @@
+deb [arch=amd64] http://www.eve-ng.net/jammy jammy main
+# deb-src [arch=amd64] http://www.eve-ng.net/jammy jammy main

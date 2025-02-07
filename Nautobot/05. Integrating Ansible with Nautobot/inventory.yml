@@ -1,0 +1,18 @@
+plugin: networktocode.nautobot.inventory
+api_endpoint: http://localhost:8000
+token: ced15098774a01a54fb7f4fcfadba56e9e68a8c0
+validate_certs: false
+config_context: false
+interfaces: true
+compose:
+  ansible_connection: custom_fields.connection
+  ansible_network_os: custom_fields.network_os
+keyed_groups:
+  - key: device_types
+    prefix: type
+  - key: manufacturers
+    prefix: manufacturers
+  - key: location
+    prefix: location
+  - key: device_roles
+    prefix: role

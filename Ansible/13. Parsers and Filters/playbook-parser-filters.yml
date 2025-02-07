@@ -1,0 +1,19 @@
+#!/usr/bin/env ansible-playbook
+- name: FILTERS
+  hosts: all
+  gather_facts: false
+  connection: local
+  tasks:
+    - name: PARSING
+      ansible.utils.cli_parse:
+        command: "show ip interface brief"
+        parser:
+          name: ansible.netcommon.ntc_templates
+          os: "cisco_ios"
+        set_fact: output_parsed
+    - name: PRINTING PARSED OUTPUT
+      ansible.builtin.debug:
+        msg: "{{ output_parsed | drop_down_interfaces }}"
+    - name: PRINTING to_dict OUTPUT
+      ansible.builtin.debug:
+        msg: "{{ output_parsed | to_dict(key='interface') }}"

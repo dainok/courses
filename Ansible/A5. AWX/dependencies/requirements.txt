@@ -1,0 +1,5 @@
+ansible-pylibssh==1.1.0
+genie==24.3
+ntc_templates==4.0.1
+pyats==24.3
+ttp-templates==0.3.6

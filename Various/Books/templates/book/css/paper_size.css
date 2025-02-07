@@ -1,0 +1,101 @@
+/**************************************************************************
+ * Cover
+ **************************************************************************/
+
+.front-cover {
+    display: none;
+}
+
+@page :first {
+    @top-center {
+        content: '';
+    }
+    @bottom-left-corner {
+        content: '';
+    }
+    @bottom-center {
+        content: '';
+    }
+    @bottom-right-corner {
+        content: '';
+    }
+}
+
+/**************************************************************************
+ * All pages
+ **************************************************************************/
+
+@page {
+    margin-top: 1.2cm;
+    margin-bottom: 1.5cm;
+    /* https://kdp.amazon.com/it_IT/help/topic/G201953020 */
+    /* https://kdp.amazon.com/en_US/cover-calculator */
+    /* https://kdp.amazon.com/en_US/help/topic/G7BBN68RYX5UMDZF */
+    size: 127mm 203mm;
+}
+
+/**************************************************************************
+ * Page counter
+ **************************************************************************/
+
+@page :left {
+    margin-left: 0.5cm;
+    margin-right: 0.8cm;
+    @bottom-center {
+        content: counter(page);
+        vertical-align: bottom;
+        text-align: center;
+    }
+}
+
+@page :right {
+    margin-left: 0.8cm;
+    margin-right: 0.5cm;
+    @bottom-center {
+        content: counter(page);
+        vertical-align: bottom;
+        text-align: center;
+    }
+}
+
+/**************************************************************************
+ * Title page
+ **************************************************************************/
+
+ .title-page .title {
+    color: black;
+    font-size: 2.68em;
+    font-weight: bold;
+    margin-top: 4cm;
+    text-align: center;
+}
+
+.title-page .subtitle {
+    color: black;
+    font-size: 1.6em;
+    font-weight: bold;
+    margin-top: 1cm;
+    text-align: center;
+ }
+
+.title-page .authors {
+    margin-top: 3cm;
+}
+
+.title-page .authors ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    color: black;
+    line-height: 180%;
+    font-size: 1.8em;
+    text-align: center;
+}
+
+/**************************************************************************
+ * Blank page
+ **************************************************************************/
+
+.blank {
+    break-before: always;
+}

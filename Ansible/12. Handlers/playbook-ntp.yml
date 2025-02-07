@@ -1,0 +1,9 @@
+#!/usr/bin/env ansible-playbook
+- name: NTP PEERS
+  hosts: all
+  gather_facts: false
+  vars:
+    ntp_server_1: 194.239.208.213
+    ntp_server_2: 130.60.204.10
+  roles:
+    - role: cisco_ios_ntp

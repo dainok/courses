@@ -1,0 +1,16 @@
+build-essential
+dnsmasq
+eve-ng
+iptables-persistent
+libbz2-dev
+libffi-dev
+libgdbm-dev
+libncurses5-dev
+libnss3-dev
+libreadline-dev
+libsqlite3-dev
+libssl-dev
+open-vm-tools
+python3-pip
+python3-venv
+zlib1g-dev

@@ -1,0 +1,12 @@
+# included tasks file for roles/cisco_ios_port_profile
+# Configure profile isl
+- name: "APPLYING PROFILE ISL TO INTERFACE {{ interface.key }}"
+  cisco.ios.ios_config:
+    config: "{{ show_running_config.stdout.0 }}"
+    lines:
+      - switchport trunk encapsulation dot1q
+      - switchport mode trunk
+      - switchport nonegotiate
+      - udld port aggressive
+    parents: "interface {{ interface.key }}"
+    before: "default interface {{ interface.key }}"

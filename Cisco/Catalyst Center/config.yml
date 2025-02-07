@@ -1,0 +1,20 @@
+dnac_url: https://sandboxdnac2.cisco.com
+dnac_username: devnetuser
+dnac_password: Cisco123!
+verify_cert: false
+ignore_value:
+  - interface
+  - description
+profiles:
+  - name: ProfileUplink
+    interface_regex: "SWITCH1.*:GigabitEthernet1/0/3|SWITCH2.*:GigabitEthernet1/0/[12]|SWITCH3.*:GigabitEthernet1/0/[12]"
+    interface_template: |
+      interface GigabitEthernet0/1
+       switchport trunk allowed vlan 101
+       switchport mode trunk
+  - name: ProfileAccess
+    interface_regex: .*:.*Ethernet.*
+    interface_template: |
+      interface GigabitEthernet0/1
+       description Access Interface
+       device-tracking attach-policy IPDT_POLICY

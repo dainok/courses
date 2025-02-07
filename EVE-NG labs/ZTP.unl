@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<lab name="ZTP" id="5db3c158-e8df-4fb4-8671-61340f5b89d2" version="1" scripttimeout="300" countdown="0" lock="0" author="Andrea Dainese" sat="-1">
+  <description>A simple network lab to test ZTP.</description>
+  <topology>
+    <nodes>
+      <node id="1" name="xrv" type="qemu" template="xrv9k" image="xrv9k-fullk9-7.3.1" console="telnet" cpu="4" cpulimit="0" ram="16384" ethernet="7" uuid="f99a03e6-4865-4324-a222-a9f768279c0e" firstmac="50:05:00:01:00:00" qemu_options="-enable-kvm -smbios type=1,manufacturer=&quot;cisco&quot;,product=&quot;Cisco IOS XRv 9000&quot; -machine type=pc,accel=kvm,usb=off -serial mon:stdio -nographic -no-user-config -nodefaults -rtc base=utc,driftfix=slew -global kvm-pit.lost_tick_policy=discard -no-hpet -realtime mlock=off -no-shutdown -boot order=c  -serial null  -serial null   -serial null -cpu host" qemu_version="2.12.0" qemu_arch="x86_64" qemu_nic="virtio-net-pci" delay="0" sat="0" icon="Router.png" config="0" left="231" top="57">
+        <interface id="0" name="Mgmt0/0/CPU0/0" type="ethernet" network_id="1" vid="1" labelpos="0.5" curviness="10" beziercurviness="150" midpoint="0.5" srcpos="0.15" dstpos="0.85"/>
+      </node>
+    </nodes>
+    <networks>
+      <network id="1" smart="-1" vlan8021ad="-1" type="pnet9" name="Internet" left="93" top="58" style="Solid" linkstyle="Straight" color="" label="" visibility="1" icon="cloud.png"/>
+    </networks>
+  </topology>
+</lab>

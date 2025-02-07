@@ -1,0 +1,5 @@
+- name: CALLING MIDDLE LOOP (sub_task1.yml)
+  ansible.builtin.include_tasks: sub_task2.yml
+  with_items: "{{ colors }}"
+  loop_control:
+    loop_var: color_item
