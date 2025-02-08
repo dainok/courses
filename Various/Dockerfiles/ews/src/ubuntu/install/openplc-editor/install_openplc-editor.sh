@@ -16,6 +16,8 @@ chown -R 1000:0 $HOME
 find /usr/share/ -name "icon-theme.cache" -exec rm -f {} \;
 if [ -z ${SKIP_CLEAN+x} ]; then
   rm -rf $HOME/OpenPLC_Editor/.git
+  rm -rf $HOME/OpenPLC_Editor/editor/.git
+  rm -rf $HOME/OpenPLC_Editor/matiec/.git
   apt-get autoclean
   rm -rf \
     /var/lib/apt/lists/* \
