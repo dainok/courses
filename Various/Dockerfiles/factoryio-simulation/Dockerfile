@@ -1,0 +1,4 @@
+ARG VERSION_AD=1
+ARG VERSION=7e
+FROM dockurr/windows
+
