@@ -8,13 +8,14 @@ rm -rf \
   /var/lib/apt/lists/* \
   /var/tmp/*
 git clone https://github.com/thiagoralves/OpenPLC_Editor $HOME/OpenPLC_Editor
-git -C $HOME/OpenPLC_Editor checkout a2602924daa26875236f265737f79dfcb099f934
+git -C $HOME/OpenPLC_Editor checkout dd2379ed36b530dde6f09902e84d11ef63e073d7
 $HOME/OpenPLC_Editor/install.sh
 
 # Cleanup for app layer
 chown -R 1000:0 $HOME
 find /usr/share/ -name "icon-theme.cache" -exec rm -f {} \;
 if [ -z ${SKIP_CLEAN+x} ]; then
+  rm -rf $HOME/OpenPLC_Editor/.git
   apt-get autoclean
   rm -rf \
     /var/lib/apt/lists/* \
