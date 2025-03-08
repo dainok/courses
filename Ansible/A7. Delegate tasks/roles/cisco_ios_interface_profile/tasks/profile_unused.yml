@@ -1,0 +1,9 @@
+# included tasks file for roles/cisco_ios_port_profile
+# Configure profile unused
+- name: "APPLYING PROFILE UNUSED TO INTERFACE {{ interface.key }}"
+  cisco.ios.ios_config:
+    config: "{{ show_running_config.stdout.0 }}"
+    lines:
+      - shutdown
+    parents: "interface {{ interface.key }}"
+    before: "default interface {{ interface.key }}"

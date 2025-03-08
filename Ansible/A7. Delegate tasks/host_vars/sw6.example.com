@@ -8,4 +8,4 @@ interfaces:
   Ethernet0/3:
     description: to clients
     profile: client
-upstream_port: Ethernet1/3
+upstream_interface: Ethernet1/3

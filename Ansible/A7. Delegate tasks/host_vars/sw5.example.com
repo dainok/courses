@@ -8,4 +8,4 @@ interfaces:
   Ethernet0/3:
     description: to alarm
     profile: management
-upstream_port: Ethernet1/2
+upstream_interface: Ethernet1/2

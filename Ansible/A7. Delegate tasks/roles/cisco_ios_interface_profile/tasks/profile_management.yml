@@ -1,0 +1,13 @@
+# included tasks file for roles/cisco_ios_port_profile
+# Configure profile client
+- name: "APPLYING PROFILE MANAGEMENT TO INTERFACE {{ interface.key }}"
+  cisco.ios.ios_config:
+    config: "{{ show_running_config.stdout.0 }}"
+    lines:
+      - switchport access vlan 52
+      - spanning-tree bpduguard enable
+      - spanning-tree portfast edge
+      - switchport mode access
+      - switchport nonegotiate
+    parents: "interface {{ interface.key }}"
+    before: "default interface {{ interface.key }}"

@@ -1,10 +1,12 @@
 #!/usr/bin/env ansible-playbook
-- name: CONFIGURE FABRIC
+- name: CONFIGURE ACCESS SWITCHES
   hosts: access
   gather_facts: false
   roles:
     - role: cisco_ios_interface_profile
       tags: interface
+    - role: cisco_ios_uplink_interface
+      tags: upstream
   post_tasks:
     - name: SAVING CONFIG
       tags: always

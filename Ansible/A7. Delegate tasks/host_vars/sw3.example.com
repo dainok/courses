@@ -8,4 +8,4 @@ interfaces:
   Ethernet0/3:
     description: to printer
     profile: office
-upstream_port: Ethernet1/0
+upstream_interface: Ethernet1/0
