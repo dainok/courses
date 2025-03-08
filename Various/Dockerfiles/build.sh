@@ -11,21 +11,21 @@ fi
 
 for IMAGE in ${IMAGES}; do
 	# Read current version
-	VERSION=$(cat ${IMAGE}/Dockerfile | grep VERSION | cut -d"=" -f2)
+	VERSION_AD=$(cat ${IMAGE}/Dockerfile | grep VERSION_AD | cut -d"=" -f2)
 
-	# Update VERSION on Dockerfile
-	NEXT_VERSION=$((${VERSION} + 1))
-	sed -i "s/ARG VERSION.*/ARG VERSION=${NEXT_VERSION}/g" ${IMAGE}/Dockerfile
+	# Update VERSION_AD on Dockerfile
+	NEXT_VERSION_AD=$((${VERSION_AD} + 1))
+	sed -i "s/ARG VERSION_AD.*/ARG VERSION_AD=${NEXT_VERSION_AD}/g" ${IMAGE}/Dockerfile
 
 	# Build and tag image
 	cd ${IMAGE}
 	echo ${IMAGE}
-	docker build --no-cache -t dainok/${IMAGE}:${NEXT_VERSION} -t dainok/${IMAGE}:latest .
+	docker build --no-cache -t dainok/${IMAGE}:${NEXT_VERSION_AD} -t dainok/${IMAGE}:latest .
 	cd ..
 done
 
 # Push do Docker Hub
 for IMAGE in ${IMAGES}; do
-	docker push dainok/${IMAGE}:${NEXT_VERSION}
+	docker push dainok/${IMAGE}:${NEXT_VERSION_AD}
 	docker push dainok/${IMAGE}:latest
 done

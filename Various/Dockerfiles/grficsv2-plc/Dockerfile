@@ -1,4 +1,4 @@
-ARG VERSION=66
+ARG VERSION_AD=66
 FROM ubuntu:22.04
 
 # Install dependencies

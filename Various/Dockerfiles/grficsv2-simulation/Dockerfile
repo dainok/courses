@@ -1,4 +1,4 @@
-ARG VERSION=13
+ARG VERSION_AD=13
 FROM ubuntu:xenial
 
 # Update repos and install packages

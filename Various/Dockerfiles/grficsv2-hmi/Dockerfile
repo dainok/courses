@@ -1,4 +1,4 @@
-ARG VERSION=15
+ARG VERSION_AD=15
 FROM tomcat:9.0.98-jdk11-temurin-jammy
 
 # Installing ScadaBR webapp
