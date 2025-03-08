@@ -11,7 +11,7 @@ Role requires collection `cisco.ios=>8.0.0`.
 Role Variables
 --------------
 
-Role takes three variables:
+Role takes the following variables:
 
 - `inventory_hostname_short`, to get the hostname;
 - `inventory_hostname`, used to extract domain name;

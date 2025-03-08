@@ -1,0 +1,12 @@
+#!/usr/bin/env ansible-playbook
+- name: CONFIGURE FABRIC
+  hosts: access
+  gather_facts: false
+  roles:
+    - role: cisco_ios_interface_profile
+      tags: interface
+  post_tasks:
+    - name: SAVING CONFIG
+      tags: always
+      cisco.ios.ios_config:
+        save_when: modified

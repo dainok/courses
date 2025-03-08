@@ -11,7 +11,7 @@ Role requires collection `cisco.ios=>8.0.0`.
 Role Variables
 --------------
 
-Role takes three variables:
+Role takes the following variables:
 
 - `ntp_servers` (list of IP addresses), used to configure NTP peers.
 
