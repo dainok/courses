@@ -1,7 +1,7 @@
 # tasks file for roles/cisco_ios_uplink_interface
 # Configure upstream interface
-- name: "CONFIGURING UPSTREAM {{ item }}"
-  delegate_to: "{{ item }}"
+- name: "CONFIGURING UPSTREAM SW1"
+  delegate_to: sw1.example.com
   cisco.ios.ios_config:
     lines:
       - "description to {{ ansible_host }}"
@@ -10,7 +10,15 @@
       - switchport nonegotiate
       - udld port aggressive
     parents: "interface {{ upstream_interface }}"
-    before: "default interface {{ upstream_interface }}"
-  with_items:
-    - sw1.example.com
-    - sw2.example.com
+    before: "default interface {{ inventory_hostname }}"
+- name: "CONFIGURING UPSTREAM SW2"
+  delegate_to: sw2.example.com
+  cisco.ios.ios_config:
+    lines:
+      - "description to {{ ansible_host }}"
+      - switchport trunk encapsulation dot1q
+      - switchport mode trunk
+      - switchport nonegotiate
+      - udld port aggressive
+    parents: "interface {{ upstream_interface }}"
+    before: "default interface {{ inventory_hostname }}"
