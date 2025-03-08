@@ -4,21 +4,33 @@
   delegate_to: sw1.example.com
   cisco.ios.ios_config:
     lines:
-      - "description to {{ inventory_hostname }}"
       - switchport trunk encapsulation dot1q
       - switchport mode trunk
       - switchport nonegotiate
       - udld port aggressive
     parents: "interface {{ upstream_interface }}"
     before: "default interface {{ upstream_interface }}"
+- name: "ENABLING UPSTREAM SW1 INTERFACE"
+  delegate_to: sw1.example.com
+  cisco.ios.ios_interfaces:
+    config:
+      - name: "{{ upstream_interface }}"
+        enabled: true
+        description: "to {{ inventory_hostname }}"
 - name: "CONFIGURING UPSTREAM SW2"
   delegate_to: sw2.example.com
   cisco.ios.ios_config:
     lines:
-      - "description to {{ inventory_hostname }}"
       - switchport trunk encapsulation dot1q
       - switchport mode trunk
       - switchport nonegotiate
       - udld port aggressive
     parents: "interface {{ upstream_interface }}"
     before: "default interface {{ upstream_interface }}"
+- name: "ENABLING UPSTREAM SW2 INTERFACE"
+  delegate_to: sw2.example.com
+  cisco.ios.ios_interfaces:
+    config:
+      - name: "{{ upstream_interface }}"
+        enabled: true
+        description: "to {{ inventory_hostname }}"
