@@ -4,6 +4,7 @@ ansible-navigator==3.4.2
 ansible-pylibssh==1.2.2
 ansible-rulebook==1.0.4
 ansible-runner==2.3.4
+ara[server]==1.7.2
 dateparser==1.2.0
 Flask==2.3.3
 genie==25.1

@@ -1,0 +1,46 @@
+# tasks file for roles/cisco_ios_port_profile
+# Get running-config
+- name: GETTING RUNNING CONFIGURATION
+  cisco.ios.ios_command:
+    commands:
+      - show running-config
+  register: show_running_config
+# Attach profile to interface
+- name: "ARA: INTERFACE PROFILE"
+  delegate_to: localhost
+  throttle: 1
+  ara_record:
+    key: interface_profile
+    value: "{{ interfaces }}"
+- name: ATTACHING PROFILE TO INTERFACE
+  ansible.builtin.include_tasks: "profile_{{ interface.value.profile }}.yml"
+  with_dict: "{{ interfaces }}"
+  loop_control:
+    loop_var: interface
+# Generate interface status/description data to ve used with ios_interface
+- name: SETTING INTERFACE LIST
+  ansible.builtin.set_fact:
+    interface_config_list: >-
+      [
+        {% for interface, interface_data in interfaces.items() %}
+          {
+            "name": "{{ interface }}",
+            {% if interface_data.profile == 'unused' %}
+              "enabled": false,
+            {% else %}
+              "description": "{{ interface_data.description }} ({{ interface_data.profile }})",
+              "enabled": true,
+            {% endif %}
+          },
+        {% endfor %}
+      ]
+# Set description and activate interface if used
+- name: "ARA: INTERFACE CONFIG"
+  delegate_to: localhost
+  throttle: 1
+  ara_record:
+    key: interface_config
+    value: "{{ interface_config_list }}"
+- name: "SETTING INTERFACE STATUS"
+  cisco.ios.ios_interfaces:
+    config: "{{ interface_config_list }}"
