@@ -6,5 +6,5 @@
       cisco.ios.ios_config:
         backup: true
         backup_options:
-          filename: "{{ ansible_host }}-backup.cfg"
+          filename: "/tmp/{{ ansible_host }}-backup.cfg"
           dir_path: backup

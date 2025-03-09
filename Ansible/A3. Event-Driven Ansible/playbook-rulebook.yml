@@ -7,8 +7,9 @@
   rules:
     - name: "RUN PLAYBOOK WHEN ROUTER IS CONFIGURED"
       condition: event.message is match("Configured from.*", ignorecase=true)
-      action:
-        run_playbook:
-          name: playbook-backup.yml
-            #debug:
-            #msg: "Received: {{ event }}"
+      actions:
+        - run_playbook:
+            name: playbook-backup.yml
+        - print_event:
+            pretty: true
+
