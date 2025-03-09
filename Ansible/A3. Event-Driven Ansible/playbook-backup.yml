@@ -1,0 +1,10 @@
+#!/usr/bin/env ansible-playbook
+- hosts: all
+  gather_facts: false
+  tasks:
+    - name: "BACKUP RUNNING CONFIG"
+      cisco.ios.ios_config:
+        backup: true
+        backup_options:
+          filename: "{{ ansible_host }}-backup.cfg"
+          dir_path: backup

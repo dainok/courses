@@ -1,0 +1,14 @@
+- name: "LISTEN FOR EVENTS VIA SYSLOG"
+  hosts: all
+  sources:
+    - dainok.common.syslog:
+        host: 0.0.0.0
+        port: 1514
+  rules:
+    - name: "RUN PLAYBOOK WHEN ROUTER IS CONFIGURED"
+      condition: event.message is match("Configured from.*", ignorecase=true)
+      action:
+        run_playbook:
+          name: playbook-backup.yml
+            #debug:
+            #msg: "Received: {{ event }}"
