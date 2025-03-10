@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://json.schemastore.org/yamllint.json
+networks:
+  WWW:
+    - 10.20.1.7/32
+  APP:
+    - 10.20.2.15/32
+  DB:
+    - 10.20.2.23/32

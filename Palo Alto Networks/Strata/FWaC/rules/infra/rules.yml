@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://json.schemastore.org/yamllint.json
+rules:
+  - source-address: OFFICE
+    destination-address: INTERNAL_DNS
+    service: DNS
+    description: |
+      Allow traffic to internal DNS.
+  - source-address: INTERNAL_DNS
+    destination-address: EXTERNAL_DNS
+    service: DNS
+    description: |
+      Allow traffic from internal DNS to external DNS.
+  - source-address: CORPORATE
+    service: NTP
+    description: |
+      Allow traffic to external NTP.

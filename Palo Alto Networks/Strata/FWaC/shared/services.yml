@@ -1,0 +1,23 @@
+# Services can be defined as following:
+# 1. pan-appplications as a list of comma-separated applications https://applipedia.paloaltonetworks.com
+# 2. protocol and port to be used if an application cannot be indentified
+# 3. all of the above if an applications is using a non standard port
+services:
+  DNS:
+    applications: dns
+  HTTP:
+    applications: web-browsing
+  HTTPS:
+    applications: ssl
+  HTTPS_8443:
+    protocol: tcp
+    port: 8443
+    applications: ssl
+  MYSQL:
+    applications: mysql
+  MYSQL_7777:
+    protocol: tcp
+    port: 7777
+    applications: mysql
+  NTP:
+    applications: ntp

@@ -1,0 +1,7 @@
+groups:
+  grp-sg-nts:
+    dn: cn=sg_privileged,ou=roles,dc=example,dc=local
+    src_zones:
+      - office
+      - vpn-users
+      - vpn-corporate

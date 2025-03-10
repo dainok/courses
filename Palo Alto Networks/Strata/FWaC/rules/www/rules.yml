@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://json.schemastore.org/yamllint.json
+rules:
+  - destination-address: WWW
+    service: HTTP
+    description: |
+      Allow HTTP external traffic to exposed web server.
+  - destination-address: WWW
+    service: HTTPS
+    description: |
+      Allow HTTPS external traffic to exposed web server.
+  - source-address: CORPORATE
+    destination-address: WWW
+    service: HTTP
+    description: |
+      Allow HTTP internal traffic to exposed web server.
+  - source-address: CORPORATE
+    destination-address: WWW
+    service: HTTPS
+    description: |
+      Allow HTTPS external traffic to exposed web server.
+  - source-address: WWW
+    destination-address: APP
+    service: HTTPS_8443
+    description: |
+      Allow traffic from exposed web server to application server.
+  - source-address: APP
+    destination-address: DB
+    service: MYSQL
+    description: |
+      Allow traffic from application server to database server.

@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://json.schemastore.org/yamllint.json
+# Profile settings is selected on a top to bottom basis. The last match is preferred. In other
+# words highest settings has a lower priority.
+profiles:
+  # Generic internal to Internet traffic (catch all)
+  - src_zone_type: internal
+    dst_zone_type: external
+    profile-settings: internal-to-external
+  # Generic Internet to internal traffic (catch all)
+  - src_zone_type: external
+    dst_zone_type: internal
+    profile-settings: external-to-internal
+  # Generic internal traffic (catch all)
+  - src_zone_type: internal
+    dst_zone_type: internal
+    profile-settings: internal-to-internal
+  # Override internal to Internet traffic for privileged users
+  - src_zone_type: internal
+    src_group: sg-corp-privilged
+    dst_zone_type: external
+    profile-settings: privileged-to-external
