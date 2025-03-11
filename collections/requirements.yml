@@ -8,6 +8,6 @@ collections:
   - name: networktocode.nautobot
     version: 5.2.1
     source: https://galaxy.ansible.com
-  - name: dainok.common
-    version: 0.0.13
+  - name: dainok.courses
+    version: 0.0.17
     source: https://galaxy.ansible.com

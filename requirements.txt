@@ -1,4 +1,5 @@
 ansible==8.1.0
+ansible-creator==25.3.0
 ansible-lint==24.2.2
 ansible-navigator==3.4.2
 ansible-pylibssh==1.2.2
