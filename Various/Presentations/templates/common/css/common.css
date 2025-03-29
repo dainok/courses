@@ -1,0 +1,43 @@
+/**************************************************************************
+ * Pages
+ **************************************************************************/
+@page {
+    margin: 0;
+    padding: 0;
+    size: 10in 5.625in;
+}
+
+section {
+    page-break-before: always;
+}
+
+figure {
+    display: flex;
+    justify-content: center;
+    object-fit: cover;
+    align-items: center;
+}
+
+figure.size-25 img {
+    width: 2.5in;
+}
+
+figure.size-50 {
+    width: 5in;
+}
+
+figure.size-75 {
+    width: 7.5in;
+}
+
+figure.size-100 {
+    width: 10in;
+}
+
+figcaption {
+    display: none;
+}
+
+section .columns ul, section .columns p {
+    margin-top: 0;
+}

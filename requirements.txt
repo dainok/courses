@@ -12,6 +12,7 @@ genie==25.1
 hvac==2.1.0
 jc==1.23.6
 ntc_templates==4.0.1
+openpyxl==3.1.5
 pan-os-python==1.12.1
 pan-python==0.17.0
 pyats==25.1

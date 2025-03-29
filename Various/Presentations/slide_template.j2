@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="{{ language }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="{% for author in authors %}{{ author }}{% if not loop.last %},{% endif %}{% endfor %}">
+    <title>{{ title }}</title>
+    <style>
+        @font-face {
+            font-family: 'Ubuntu Bold';
+            font-style: normal;
+            font-weight: normal;
+            src: url('../templates/common/fonts/ubuntu/Ubuntu-B.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Ubuntu Bold Italic';
+            font-style: normal;
+            font-weight: normal;
+            src: url('../templates/common/fonts/ubuntu/Ubuntu-BI.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Ubuntu Condensed';
+            font-style: normal;
+            font-weight: normal;
+            src: url('../templates/common/fonts/ubuntu/Ubuntu-C.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Ubuntu Light';
+            font-style: normal;
+            font-weight: normal;
+            src: url('../templates/common/fonts/ubuntu/Ubuntu-L.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Ubuntu Light Italic';
+            font-style: normal;
+            font-weight: normal;
+            src: url('../templates/common/fonts/ubuntu/Ubuntu-LI.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Ubuntu Medium';
+            font-style: normal;
+            font-weight: normal;
+            src: url('../templates/common/fonts/ubuntu/Ubuntu-M.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Ubuntu Medium Italic';
+            font-style: normal;
+            font-weight: normal;
+            src: url('../templates/common/fonts/ubuntu/Ubuntu-MI.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Ubuntu Regular';
+            font-style: normal;
+            font-weight: normal;
+            src: url('../templates/common/fonts/ubuntu/Ubuntu-R.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Ubuntu Regular Italic';
+            font-style: normal;
+            font-weight: normal;
+            src: url('../templates/common/fonts/ubuntu/Ubuntu-L.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Ubuntu Mono Bold';
+            font-style: normal;
+            font-weight: normal;
+            src: url('../templates/common/fonts/ubuntu/UbuntuMono-B.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Ubuntu Mono Bold Italic';
+            font-style: normal;
+            font-weight: normal;
+            src: url('../templates/common/fonts/ubuntu/UbuntuMono-BI.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Ubuntu Mono Regular';
+            font-style: normal;
+            font-weight: normal;
+            src: url('../templates/common/fonts/ubuntu/UbuntuMono-R.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Ubuntu Mono Regular Italic';
+            font-style: normal;
+            font-weight: normal;
+            src: url('../templates/common/fonts/ubuntu/UbuntuMono-RI.ttf') format('truetype');
+        }
+    </style>
+</head>
+<body>
+    {% for slide in slides %}
+    <section id="{{ slide.id }}" class="slide {{ slide.meta.layout }}-slide">
+        <div class="content">
+            {% if slide.logo %}<div class="logo"><img src="{{ slide.logo }}" /></div>{% endif %}
+            {{ slide.content | safe }}
+        </div>
+        {% if footer %}<div class="footer">{{ footer }}</div>{% endif %}
+        <div class="page_counter">{{ loop.index }} / {{ slides | length }}</div>
+    </section>
+    {% endfor %}
+</body>
+</html>

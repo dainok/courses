@@ -1,0 +1,57 @@
+html {
+    color: #595959;
+    font-family: 'Ubuntu', Arial, Helvetica, sans-serif;
+    font-size: 18pt;
+    line-height: 1.20;
+}
+
+a, a:visited {
+    color: #41a8b9;
+    text-decoration: none;
+}
+
+b, strong {
+    font-family: 'Ubuntu Bold';
+}
+
+code, pre {
+    font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace;
+    font-size: 95%;
+    hyphens: none;
+    padding: 0.25em;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    word-wrap : break-word;
+}
+
+.right {
+    text-align: right;
+}
+
+/**************************************************************************
+ * Lists
+ **************************************************************************/
+
+ol, ul {
+    margin: 1em 0.15em 1em 0.15em;
+    padding: 0;
+}
+
+ul {
+    list-style-type: square;
+}
+
+ol > li, ul > li {
+    margin: 0.15em 1em 0.15em 1em;
+}
+
+/* ul > li::marker {
+    color: #41a8b9;
+    content: '>';
+    font-family: 'Ubuntu Bold';
+    margin-right: 2em;
+} */
+
+li > ol, li > ul {
+    margin-top: 0;
+}

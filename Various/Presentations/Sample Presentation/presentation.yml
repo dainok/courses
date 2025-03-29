@@ -1,0 +1,9 @@
+title: Sample Presentation
+subtitile: Recipes and real world examples by the creator of UNetLab
+version: 1
+language: en
+logo: main
+logos:
+  main: ../templates/slides/images/logo-ad.png
+  small: ../templates/slides/images/logo-ad-small.png
+footer: © Andrea Dainese - No AI were harmed during the making of these slides.
