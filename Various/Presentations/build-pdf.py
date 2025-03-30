@@ -111,7 +111,7 @@ font_config = weasyprint.text.fonts.FontConfiguration()
 # Render PDF
 print(" - Rendering PDF")
 weasyprint.HTML("presentation.html").write_pdf(
-    "Sample Presentation.pdf",
+    "../Sample Presentation.pdf",
     stylesheets=stylesheets,
     font_config=font_config,
     presentational_hints=True,
