@@ -1,0 +1,14 @@
+Value VLAN (\S+)
+Value List INTERFACES ([^,]+)
+
+Start
+  ^vlan.* -> Continue.Record
+  ^vlan ${VLAN} -> Continue
+  ^vlan \S+ ${INTERFACES} -> Continue
+  ^vlan \S+ (?:[^,]+,){1} ${INTERFACES} -> Continue
+  ^vlan \S+ (?:[^,]+,){2} ${INTERFACES} -> Continue
+  ^vlan \S+ (?:[^,]+,){3} ${INTERFACES} -> Continue
+  ^vlan \S+ (?:[^,]+,){4} ${INTERFACES} -> Continue
+  ^vlan.*
+  ^\s*$$
+  ^. -> Error

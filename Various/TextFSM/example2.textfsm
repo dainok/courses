@@ -1,0 +1,12 @@
+Value DESTINATION (\S+)
+Value SIZE (\S+)
+Value SEQ (\S+)
+Value TTL (\S+)
+Value RTT (\S+)
+
+Start
+  ^PING.*$$ -> Continue.Record
+  ^PING ${DESTINATION}:\s*$$
+  ^\s*size=${SIZE} icmp_seq=${SEQ} ttl=${TTL} time=${RTT} ms\s*$$
+  ^\s*$$
+  ^. -> Error

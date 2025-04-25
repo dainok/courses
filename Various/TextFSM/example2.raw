@@ -1,0 +1,5 @@
+PING 10.0.0.1:
+  size=64 icmp_seq=0 ttl=64 time=0.211 ms
+
+PING 10.0.0.2:
+  size=64 icmp_seq=0 ttl=64 time=2.011 ms

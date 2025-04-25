@@ -1,0 +1,4 @@
+vlan 1 Gi1/0/1
+vlan 2
+vlan 3 Gi1/0/2, Gi1/0/3, Gi1/0/4, Gi1/0/5
+vlan 4 Gi1/0/6, Gi1/0/7
