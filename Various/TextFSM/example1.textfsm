@@ -1,0 +1,8 @@
+Value SLOT (\S+)
+Value MODULE (\S+)
+Value PORT (\S+)
+
+Start
+  ^\s*Gi${SLOT}/${MODULE}/${PORT}\s*$$ -> Record
+  ^\s*$$
+  ^. -> Error "unexpected line"
