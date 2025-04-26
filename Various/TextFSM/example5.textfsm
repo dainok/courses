@@ -33,4 +33,5 @@ Start
   ^\s+\d+ unknown
   ^\s+\d+ babbles
   ^\s+\d+ lost
+  ^\s*$$
   ^. -> Error
