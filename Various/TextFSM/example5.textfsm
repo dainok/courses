@@ -1,0 +1,36 @@
+Value Key,Required INTERFACE (\w+/\d+/\d+)
+Value BANDWIDTH ([^,]+)
+Value DESCRIPTION (.+)
+Value LINE_STATUS (up|down|administratively down)
+Value MAC (([0-9a-f.]{4}\.){2}[0-9a-f]{4})
+Value MTU (\d+)
+Value PROTOCOL_STATUS (up|down)
+Value TYPE ([^,]+)
+
+Start
+  ^\w+/\d+/\d+ is -> Continue.Record
+  ^${INTERFACE} is ${LINE_STATUS}, line protocol is ${PROTOCOL_STATUS} .*$$
+  ^\s+Hardware is ${TYPE}, address is ${MAC} .*$$
+  ^\s+Description: ${DESCRIPTION}$$
+  ^\s+MTU ${MTU} bytes, BW ${BANDWIDTH}, .*$$
+  ^\s+reliability
+  ^\s+Encapsulation
+  ^\s+Keepalive
+  ^\s+\w+-duplex
+  ^\s+input
+  ^\s+ARP
+  ^\s+Last
+  ^\s+Input
+  ^\s+Queueing
+  ^\s+Output
+  ^\s+\d+ \w+ input
+  ^\s+\d+ \w+ output
+  ^\s+Received
+  ^\s+\d+ runts
+  ^\s+\d+ input
+  ^\s+\d+ watchdog
+  ^\s+\d+ output
+  ^\s+\d+ unknown
+  ^\s+\d+ babbles
+  ^\s+\d+ lost
+  ^. -> Error
