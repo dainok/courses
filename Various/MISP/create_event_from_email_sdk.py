@@ -4,33 +4,15 @@
 import sys
 import logging
 import urllib3
-import requests
+from pymisp import MISPEvent, MISPAttribute, PyMISP, MISPAttribute
 import yaml
 import email
 from functions import parse_eml
 
-logging.basicConfig(level=logging.INFO)
+logging.getLogger("pymisp").setLevel(logging.WARNING)
 
 with open("config.yml", "r") as fh:
     config = yaml.safe_load(fh)
-
-params = {
-    "headers": {
-        "Authorization": config["misp"]["key"],
-        "Accept": "application/json",
-    },
-    "verify": config["misp"]["verify_cert"],
-    "timeout": config["misp"]["timeout"],
-}
-params_post = {
-    "headers": {
-        "Authorization": config["misp"]["key"],
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-    },
-    "verify": config["misp"]["verify_cert"],
-    "timeout": config["misp"]["timeout"],
-}
 
 
 # Parsing email
@@ -42,36 +24,30 @@ email_data = parse_eml(eml)
 
 # Disable SSL warning if cert validation is disabled
 if not config["misp"]["verify_cert"]:
-    logging.warning("Disabling certificate check")
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+misp = PyMISP(config["misp"]["url"], config["misp"]["key"], config["misp"]["verify_cert"], "json")
 
 
 # Finding organization
-org_id = None
-url = f"{config['misp']['url']}/organisations"
-req = requests.post(url, **params)
-req.raise_for_status()
-for org in req.json():
-    if org["Organisation"]["name"] == config['event']["org"]:
-        org_id = org["Organisation"]["id"]
+org = None
+for item in misp.organisations(pythonify=True):
+    if item.name == config['event']["org"]:
+        org = item
         break
-if not org_id:
+if not org:
     raise(ValueError(f"Organization {config['event']['org']} not found"))
 
 
 # Creating event
-data = {
-    "org_id": org_id,
-    "distribution": int(config["event"]["distribution"]),
-    "info": f"{config['event']['title']} from {email_data['src-email']}",
-    "published": False,
-    "analysis": 0,
-    "threat_level_id": int(config["event"]["threat_level"]),
-}
-url = f"{config['misp']['url']}/events/add"
-req = requests.post(url, json=data, **params_post)
-req.raise_for_status()
-event_id = req.json()["Event"]["id"]
+event = MISPEvent()
+event.orgc = org
+event.distribution = int(config["event"]["distribution"])
+event.info = f"{config['event']['title']} from {email_data['src-email']}"
+event.published = False
+event.analysis = 0
+event.threat_level_id = int(config["event"]["threat_level"])
+event = misp.add_event(event, pythonify=True)
 
 
 # Creating attributes
@@ -109,6 +85,10 @@ for link in email_data.get("links"):
         "to_ids": True,
     })
 for misp_attribute in misp_attributes:
-    url = f"{config['misp']['url']}/attributes/add/{event_id}"
-    req = requests.post(url, json=misp_attribute, **params_post)
-    req.raise_for_status()
+    attribute = MISPAttribute()
+    attribute.category = misp_attribute["category"]
+    attribute.type = misp_attribute["type"]
+    attribute.distribution = misp_attribute["distribution"]
+    attribute.value = misp_attribute["value"]
+    attribute.to_ids = misp_attribute["to_ids"]
+    misp.add_attribute(event=event, attribute=attribute, pythonify=True)
