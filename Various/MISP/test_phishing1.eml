@@ -1,0 +1,394 @@
+Delivered-To: andrea.dainese@gmail.com
+Received: by 2002:a2e:95c4:0:b0:30d:f34b:6f3e with SMTP id y4csp4153111ljh;
+        Sun, 27 Apr 2025 12:51:40 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCU5tgHX8HR2iYIcMJiSE6NEPWtcTG8dF6hkz8vNzsPtbjHhg871MpEhsnqN1IyWvd5+zdWNhuuAUOC1ysZUZg==@gmail.com
+X-Google-Smtp-Source: AGHT+IGyr0OSa7fj0ZgCQWeyAf+L+Ax+x5qShQE1w0ySWMYZyCEnyxlJ9Z7xZJD3wBiL2sGzlZHD
+X-Received: by 2002:a05:6a00:1150:b0:736:39d4:ccf6 with SMTP id d2e1a72fcca58-73fd72cdf62mr15179544b3a.8.1745783500074;
+        Sun, 27 Apr 2025 12:51:40 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1745783500; cv=none;
+        d=google.com; s=arc-20240605;
+        b=iKafBm+xiUKFwcKTzSBijn1FEP8quqzBvkzoQLm7t2P6Hk9GZKh/Wm7MXHLUgQ9mnx
+         sIcvmVK2JHMj33tvx7QClilhGWo9roG+zvAccWLwHjxBQLuV5BwRqRwhZMhuGPA7I8vh
+         53aHblFM9vw4DcxV/01gW7hbv7kdTp0bGMxOE5/4Luhc1/Qz2LjNNUoJ+JkFmXmZaxQM
+         hUVxlc6ZXyg4ifIOdD2QK0lDJxtHt35/GbDzVRKMp6xPknAFW8+I6We2xy1565//XOa6
+         NYUuNzyR9MQGEcwNB10+lJsFguZoa7MExf+Ju2lWZ3hH8RRAVyX8fAscXjyFx3zaDTvt
+         /eZQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:message-id:date:subject:cc:to:from:feedback-id
+         :dkim-signature;
+        bh=WQVBgTMzO9IT7AuC9//v7NR52ZujlV5kL26LaQDUyQc=;
+        fh=kJuIw/X+C7nkX5T9nHiVcBZz8SLi10f8PNrPg069Txw=;
+        b=lULEMYtOgif9z3uOQDnqpObPS2K88feNoShzxv5a5pw6DwUheIXZwaqnRm2robFXBH
+         1PY355moLGneb6YSgsT3kl+7PKpNxUUpoiDO7ynzNckZg0yE/c2D4lhzlidx/ZnWZkwt
+         n+5wIIUQWIb0bPHVTzghsEZ36iU/5rZZPSKUrfBysWysZTy+ypmNTLZN5mwxY76QPK4d
+         SRrWk4+iN4GzwFMXFJJhmDvwwOVgmJBINufHsjNwcyDY+4P7VIqTOs3wy4R/kANdQaXj
+         mbXc0GrDZxsB+6Xuq/j8Afk+tCxTWYp6JUp9kR7PySR/jD+qscRYrw5IOGzBA5AHh1pF
+         pLOg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@megamailservers.eu header.s=maildub header.b="P3dIkp/n";
+       spf=none (google.com: return@spf5.tllmbukd.onmicrosoft.com does not designate permitted sender hosts) smtp.mailfrom=return@spf5.tllmbukd.onmicrosoft.com
+Return-Path: <return@spf5.tllmbukd.onmicrosoft.com>
+Received: from ifsywn.servehttp.com (ifsywn.servehttp.com. [80.97.44.204])
+        by mx.google.com with ESMTPS id d2e1a72fcca58-73e2591c362si11116739b3a.66.2025.04.27.12.51.38
+        for <andrea.dainese@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 27 Apr 2025 12:51:40 -0700 (PDT)
+Received-SPF: none (google.com: return@spf5.tllmbukd.onmicrosoft.com does not designate permitted sender hosts) client-ip=80.97.44.204;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@megamailservers.eu header.s=maildub header.b="P3dIkp/n";
+       spf=none (google.com: return@spf5.tllmbukd.onmicrosoft.com does not designate permitted sender hosts) smtp.mailfrom=return@spf5.tllmbukd.onmicrosoft.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megamailservers.eu;
+	s=maildub; t=1743630019;
+	bh=ZnJsUzQd4OO+0c7bwwqkKnQzsG8waQQ/P6+IzyhN9Yo=;
+	h=From:To:CC:Subject:Date:From;
+	b=P3dIkp/nWrir6L/82+I/xdq2plfWp84evsNtEycbAVyifL6qnt+M2iB/+8iN/29s2
+	 +kz7GErJOxO3mI22XlONqfy/xC6sXsTmwZ+44ipunIEuf94uqYyAx1Sp7AxAwAEisu
+	 9fdXBqY7ta41axDRZYUxRgUCoOgYNpueb2vI1T2o=
+Feedback-ID:berndsteen@o2ma
+Received: from mail116c50.megamailservers.eu (localhost [127.0.0.1])
+	by mail116c50.megamailservers.eu (8.14.9/8.13.1) with ESMTP id 532LeExm063078
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <carolebaker748@aol.com>; Wed, 2 Apr 2025 21:40:15 +0000
+Received: (from webmail@localhost)
+	by mail116c50.megamailservers.eu (8.14.9/8.12.2/Submit) id 532LeE08063077
+	for carolebaker748@aol.com; Wed, 2 Apr 2025 21:40:14 +0000
+From: "BRTPost" <berndsteen@o2mail.de>
+To: carolebaker748@aol.com
+CC: 
+Subject: Hai (1) pacco in attesa di informazioni...#06
+Date: Wed, 02 Apr 2025 21:40:14 +0000
+Message-ID: <0270768126.04CJAYJJTghMwPJn@mail.FyCvG-MJG.de>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="=_e03e1847fe049934bcf937a5647caa50"
+X-Image-Url: https://mail.FyCvG-MJG.de/api/storage/berndsteen@o2mail.de/profile/cl/3642_md/1/104/156/605/49197
+X-VADE-SPAMSTATE: clean
+X-VADE-SPAMSCORE: 49
+X-VADE-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddukeeijeejucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecujffquffvqffrkfetpdfqfgfvpdfgpfggqdevhedtnecuuegrihhlohhuthemuceftddunecuogfuuhhsphgvtghtffhomhgrihhnucdlgeelmdenucfjughrpefhvfevufffkfggtgesrgdtreertddtjeenucfhrhhomhepfdeutffvrfhoshhtfdcuoegsvghrnhgushhtvggvnhesohdvmhgrihhlrdguvgeqnecuggftrfgrthhtvghrnhepveekveeuhfffhffgffeiheelkeeuvdeghfethfefgfetheefjeeiuedvgeevgfegnecuffhomhgrihhnpehgohhoghhlvggrphhishdrtghomhenucfkphepuddvjedrtddrtddrudenuceurggutfgvphhuthffohhmrghinhepohdvmhgrihhlrdguvgenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeduvdejrddtrddtrddupdhhvghlohepmhgrihhludduiegthedtrdhmvghgrghmrghilhhsvghrvhgvrhhsrdgvuhdpmhgrihhlfhhrohhmpegsvghrnhgushhtvggvnhesohdvmhgrihhlrdguvgdpnhgspghrtghpthhtohepuddprhgtphhtthhopegtrghrohhlvggsrghkvghrjeegkeesrgholhdrtghomh
+X-Rspamd-Status: No, score=2.90
+X-Rspamd-Result: default: False [2.90 / 6.00];
+	PHISHING(2.00)[brt.it->storage.googleapis.com];
+	URI_COUNT_ODD(1.00)[5];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	FREEMAIL_TO(0.00)[aol.com];
+	RCPT_COUNT_ONE(0.00)[1];
+	RCVD_COUNT_ONE(0.00)[1];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_ENVRCPT(0.00)[aol.com];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_EQ_ENVFROM(0.00)[];
+	TO_DN_NONE(0.00)[];
+	MISSING_XM_UA(0.00)[]
+X-Origin-Country: Unknown
+Content-Length: 20134
+
+--=_e03e1847fe049934bcf937a5647caa50
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+
+
+=09
+
+
+
+Buongiorno,
+
+Il tuo pacco Eu59377574iT spedito da un negozio in linea
+=C3=A8 stata mantenuta a causa della necessit=C3=A0 di un'azione da parte t=
+ua.
+Ci scusiamo.
+
+Trova il monitoraggio dei pacchi in=C2=A0Cliccando qui.
+
+Una domanda ?
+Il nostro=C2=A0team =C3=A8 qui per aiutarti
+
+A presto.
+=F0=9F=93=A6 Brt
+
+
+Puoi cancellarti cliccando=C2=A0Qui=C2=A0e rispondendo,
+la tua email verr=C3=A0 automaticamente cancellata
+
+
+
+--=_e03e1847fe049934bcf937a5647caa50
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=UTF-8
+
+<head>
+	<title></title>
+</head>
+<body>
+<div class=3D"userStyles" style=3D" font-family: Arial; font-size: 12pt; co=
+lor: #000000;"><a href=3D"https://storage.googleapis.com/linalli/poosiiittt=
+tt.html" rel=3D"nofollow noopener noreferrer" style=3D"color:#196ad4; text-=
+decoration:none; outline:none !important; font-family:Arial; font-size:16px=
+; font-style:normal; font-variant-ligatures:normal; font-variant-caps:norma=
+l; font-weight:400; letter-spacing:-0.32px; orphans:2; text-align:left; tex=
+t-transform:none; widows:2; word-spacing:0px; -webkit-text-stroke-width:0px=
+; white-space:normal; background-color:#ffffff" target=3D"_blank"><img alt=
+=3D"brt.it" src=3D"https://ecp.yusercontent.com/mail?url=3Dhttps%3A%2F%2Fpb=
+s.twimg.com%2Fmedia%2FGZDN3yvXAAIdOIM%3Fformat%3Djpg%26name%3Dsmall&amp;t=
+=3D1743629956&amp;ymreqid=3Dd41d8cd9-8f00-b204-1c03-300034014a00&amp;sig=3D=
+IqN.3kApqD_pUWKg1kUDTg--~D" style=3D"outline:none !important; border:1px so=
+lid #000000; min-height:300px; width:500px; background-color:#f1f1f1; borde=
+r-radius:10px; display:block"></a><br style=3D"outline:none !important">
+<span style=3D"font-size:16px; text-align:left; -webkit-text-stroke-width:0=
+px"><span style=3D"color:#000000"><span style=3D"font-family:Arial"><span s=
+tyle=3D"font-style:normal"><span style=3D"font-variant-ligatures:normal"><s=
+pan style=3D"font-variant-caps:normal"><span style=3D"font-weight:400"><spa=
+n style=3D"letter-spacing:-0.32px"><span style=3D"orphans:2"><span style=3D=
+"text-transform:none"><span style=3D"widows:2"><span style=3D"word-spacing:=
+0px"><span style=3D"white-space:normal"><span style=3D"background-color:#ff=
+ffff"><span style=3D"text-decoration-thickness:initial"><span style=3D"text=
+-decoration-style:initial"><span style=3D"text-decoration-color:initial"><s=
+pan style=3D"display:inline !important"><span style=3D"float:none">Buongior=
+no,</span></span></span></span></span></span></span></span></span></span></=
+span></span></span></span></span></span></span></span></span><br style=3D"o=
+utline:none !important; color:#000000; font-family:Arial; font-size:16px; f=
+ont-style:normal; font-variant-ligatures:normal; font-variant-caps:normal; =
+font-weight:400; letter-spacing:-0.32px; orphans:2; text-align:left; text-t=
+ransform:none; widows:2; word-spacing:0px; -webkit-text-stroke-width:0px; w=
+hite-space:normal; background-color:#ffffff; text-decoration-thickness:init=
+ial; text-decoration-style:initial; text-decoration-color:initial">
+<br style=3D"outline:none !important; color:#000000; font-family:Arial; fon=
+t-size:16px; font-style:normal; font-variant-ligatures:normal; font-variant=
+-caps:normal; font-weight:400; letter-spacing:-0.32px; orphans:2; text-alig=
+n:left; text-transform:none; widows:2; word-spacing:0px; -webkit-text-strok=
+e-width:0px; white-space:normal; background-color:#ffffff; text-decoration-=
+thickness:initial; text-decoration-style:initial; text-decoration-color:ini=
+tial">
+<span style=3D"font-size:16px; text-align:left; -webkit-text-stroke-width:0=
+px"><span style=3D"color:#000000"><span style=3D"font-family:Arial"><span s=
+tyle=3D"font-style:normal"><span style=3D"font-variant-ligatures:normal"><s=
+pan style=3D"font-variant-caps:normal"><span style=3D"font-weight:400"><spa=
+n style=3D"letter-spacing:-0.32px"><span style=3D"orphans:2"><span style=3D=
+"text-transform:none"><span style=3D"widows:2"><span style=3D"word-spacing:=
+0px"><span style=3D"white-space:normal"><span style=3D"background-color:#ff=
+ffff"><span style=3D"text-decoration-thickness:initial"><span style=3D"text=
+-decoration-style:initial"><span style=3D"text-decoration-color:initial"><s=
+pan style=3D"display:inline !important"><span style=3D"float:none">Il tuo p=
+acco <strong>Eu59377574iT</strong> spedito da un negozio in linea</span></s=
+pan></span></span></span></span></span></span></span></span></span></span><=
+/span></span></span></span></span></span></span><br style=3D"outline:none !=
+important; color:#000000; font-family:Arial; font-size:16px; font-style:nor=
+mal; font-variant-ligatures:normal; font-variant-caps:normal; font-weight:4=
+00; letter-spacing:-0.32px; orphans:2; text-align:left; text-transform:none=
+; widows:2; word-spacing:0px; -webkit-text-stroke-width:0px; white-space:no=
+rmal; background-color:#ffffff; text-decoration-thickness:initial; text-dec=
+oration-style:initial; text-decoration-color:initial">
+<span style=3D"font-size:16px; text-align:left; -webkit-text-stroke-width:0=
+px"><span style=3D"color:#000000"><span style=3D"font-family:Arial"><span s=
+tyle=3D"font-style:normal"><span style=3D"font-variant-ligatures:normal"><s=
+pan style=3D"font-variant-caps:normal"><span style=3D"font-weight:400"><spa=
+n style=3D"letter-spacing:-0.32px"><span style=3D"orphans:2"><span style=3D=
+"text-transform:none"><span style=3D"widows:2"><span style=3D"word-spacing:=
+0px"><span style=3D"white-space:normal"><span style=3D"background-color:#ff=
+ffff"><span style=3D"text-decoration-thickness:initial"><span style=3D"text=
+-decoration-style:initial"><span style=3D"text-decoration-color:initial"><s=
+pan style=3D"display:inline !important"><span style=3D"float:none">=C3=A8 s=
+tata mantenuta a causa della necessit=C3=A0 di un'azione da parte tua.</spa=
+n></span></span></span></span></span></span></span></span></span></span></s=
+pan></span></span></span></span></span></span></span><br style=3D"outline:n=
+one !important; color:#000000; font-family:Arial; font-size:16px; font-styl=
+e:normal; font-variant-ligatures:normal; font-variant-caps:normal; font-wei=
+ght:400; letter-spacing:-0.32px; orphans:2; text-align:left; text-transform=
+:none; widows:2; word-spacing:0px; -webkit-text-stroke-width:0px; white-spa=
+ce:normal; background-color:#ffffff; text-decoration-thickness:initial; tex=
+t-decoration-style:initial; text-decoration-color:initial">
+<span style=3D"font-size:16px; text-align:left; -webkit-text-stroke-width:0=
+px"><span style=3D"color:#000000"><span style=3D"font-family:Arial"><span s=
+tyle=3D"font-style:normal"><span style=3D"font-variant-ligatures:normal"><s=
+pan style=3D"font-variant-caps:normal"><span style=3D"font-weight:400"><spa=
+n style=3D"letter-spacing:-0.32px"><span style=3D"orphans:2"><span style=3D=
+"text-transform:none"><span style=3D"widows:2"><span style=3D"word-spacing:=
+0px"><span style=3D"white-space:normal"><span style=3D"background-color:#ff=
+ffff"><span style=3D"text-decoration-thickness:initial"><span style=3D"text=
+-decoration-style:initial"><span style=3D"text-decoration-color:initial"><s=
+pan style=3D"display:inline !important"><span style=3D"float:none">Ci scusi=
+amo.</span></span></span></span></span></span></span></span></span></span><=
+/span></span></span></span></span></span></span></span></span><br style=3D"=
+outline:none !important; color:#000000; font-family:Arial; font-size:16px; =
+font-style:normal; font-variant-ligatures:normal; font-variant-caps:normal;=
+ font-weight:400; letter-spacing:-0.32px; orphans:2; text-align:left; text-=
+transform:none; widows:2; word-spacing:0px; -webkit-text-stroke-width:0px; =
+white-space:normal; background-color:#ffffff; text-decoration-thickness:ini=
+tial; text-decoration-style:initial; text-decoration-color:initial">
+<br style=3D"outline:none !important; color:#000000; font-family:Arial; fon=
+t-size:16px; font-style:normal; font-variant-ligatures:normal; font-variant=
+-caps:normal; font-weight:400; letter-spacing:-0.32px; orphans:2; text-alig=
+n:left; text-transform:none; widows:2; word-spacing:0px; -webkit-text-strok=
+e-width:0px; white-space:normal; background-color:#ffffff; text-decoration-=
+thickness:initial; text-decoration-style:initial; text-decoration-color:ini=
+tial">
+<span style=3D"font-size:16px; text-align:left; -webkit-text-stroke-width:0=
+px"><span style=3D"color:#000000"><span style=3D"font-family:Arial"><span s=
+tyle=3D"font-style:normal"><span style=3D"font-variant-ligatures:normal"><s=
+pan style=3D"font-variant-caps:normal"><span style=3D"font-weight:400"><spa=
+n style=3D"letter-spacing:-0.32px"><span style=3D"orphans:2"><span style=3D=
+"text-transform:none"><span style=3D"widows:2"><span style=3D"word-spacing:=
+0px"><span style=3D"white-space:normal"><span style=3D"background-color:#ff=
+ffff"><span style=3D"text-decoration-thickness:initial"><span style=3D"text=
+-decoration-style:initial"><span style=3D"text-decoration-color:initial"><s=
+pan style=3D"display:inline !important"><span style=3D"float:none">Trova il=
+ monitoraggio dei pacchi in&nbsp;</span></span></span></span></span></span>=
+</span></span></span></span></span></span></span></span></span></span></spa=
+n></span></span><a href=3D"https://storage.googleapis.com/linalli/poosiiitt=
+ttt.html" rel=3D"nofollow noopener noreferrer" style=3D"color:#196ad4; text=
+-decoration:underline; outline:none !important; font-family:Arial; font-siz=
+e:16px; font-style:normal; font-variant-ligatures:normal; font-variant-caps=
+:normal; font-weight:400; letter-spacing:-0.32px; orphans:2; text-align:lef=
+t; text-transform:none; widows:2; word-spacing:0px; -webkit-text-stroke-wid=
+th:0px; white-space:normal; background-color:#ffffff" target=3D"_blank">Cli=
+ccando qui.</a><br style=3D"outline:none !important; color:#000000; font-fa=
+mily:Arial; font-size:16px; font-style:normal; font-variant-ligatures:norma=
+l; font-variant-caps:normal; font-weight:400; letter-spacing:-0.32px; orpha=
+ns:2; text-align:left; text-transform:none; widows:2; word-spacing:0px; -we=
+bkit-text-stroke-width:0px; white-space:normal; background-color:#ffffff; t=
+ext-decoration-thickness:initial; text-decoration-style:initial; text-decor=
+ation-color:initial">
+<br style=3D"outline:none !important; color:#000000; font-family:Arial; fon=
+t-size:16px; font-style:normal; font-variant-ligatures:normal; font-variant=
+-caps:normal; font-weight:400; letter-spacing:-0.32px; orphans:2; text-alig=
+n:left; text-transform:none; widows:2; word-spacing:0px; -webkit-text-strok=
+e-width:0px; white-space:normal; background-color:#ffffff; text-decoration-=
+thickness:initial; text-decoration-style:initial; text-decoration-color:ini=
+tial">
+<span style=3D"font-size:16px; text-align:left; -webkit-text-stroke-width:0=
+px"><span style=3D"color:#000000"><span style=3D"font-family:Arial"><span s=
+tyle=3D"font-style:normal"><span style=3D"font-variant-ligatures:normal"><s=
+pan style=3D"font-variant-caps:normal"><span style=3D"font-weight:400"><spa=
+n style=3D"letter-spacing:-0.32px"><span style=3D"orphans:2"><span style=3D=
+"text-transform:none"><span style=3D"widows:2"><span style=3D"word-spacing:=
+0px"><span style=3D"white-space:normal"><span style=3D"background-color:#ff=
+ffff"><span style=3D"text-decoration-thickness:initial"><span style=3D"text=
+-decoration-style:initial"><span style=3D"text-decoration-color:initial"><s=
+pan style=3D"display:inline !important"><span style=3D"float:none">Una doma=
+nda ?</span></span></span></span></span></span></span></span></span></span>=
+</span></span></span></span></span></span></span></span></span><br style=3D=
+"outline:none !important; color:#000000; font-family:Arial; font-size:16px;=
+ font-style:normal; font-variant-ligatures:normal; font-variant-caps:normal=
+; font-weight:400; letter-spacing:-0.32px; orphans:2; text-align:left; text=
+-transform:none; widows:2; word-spacing:0px; -webkit-text-stroke-width:0px;=
+ white-space:normal; background-color:#ffffff; text-decoration-thickness:in=
+itial; text-decoration-style:initial; text-decoration-color:initial">
+<a href=3D"https://storage.googleapis.com/linalli/poosiiittttt.html" rel=3D=
+"nofollow noopener noreferrer" style=3D"color:#196ad4; text-decoration:unde=
+rline; outline:none !important; font-family:Arial; font-size:16px; font-sty=
+le:normal; font-variant-ligatures:normal; font-variant-caps:normal; font-we=
+ight:400; letter-spacing:-0.32px; orphans:2; text-align:left; text-transfor=
+m:none; widows:2; word-spacing:0px; -webkit-text-stroke-width:0px; white-sp=
+ace:normal; background-color:#ffffff" target=3D"_blank">Il nostro&nbsp;</a>=
+<span style=3D"font-size:16px; text-align:left; -webkit-text-stroke-width:0=
+px"><span style=3D"color:#000000"><span style=3D"font-family:Arial"><span s=
+tyle=3D"font-style:normal"><span style=3D"font-variant-ligatures:normal"><s=
+pan style=3D"font-variant-caps:normal"><span style=3D"font-weight:400"><spa=
+n style=3D"letter-spacing:-0.32px"><span style=3D"orphans:2"><span style=3D=
+"text-transform:none"><span style=3D"widows:2"><span style=3D"word-spacing:=
+0px"><span style=3D"white-space:normal"><span style=3D"background-color:#ff=
+ffff"><span style=3D"text-decoration-thickness:initial"><span style=3D"text=
+-decoration-style:initial"><span style=3D"text-decoration-color:initial"><s=
+pan style=3D"display:inline !important"><span style=3D"float:none">team =C3=
+=A8 qui per aiutarti</span></span></span></span></span></span></span></span=
+></span></span></span></span></span></span></span></span></span></span></sp=
+an><br style=3D"outline:none !important; color:#000000; font-family:Arial; =
+font-size:16px; font-style:normal; font-variant-ligatures:normal; font-vari=
+ant-caps:normal; font-weight:400; letter-spacing:-0.32px; orphans:2; text-a=
+lign:left; text-transform:none; widows:2; word-spacing:0px; -webkit-text-st=
+roke-width:0px; white-space:normal; background-color:#ffffff; text-decorati=
+on-thickness:initial; text-decoration-style:initial; text-decoration-color:=
+initial">
+<br style=3D"outline:none !important; color:#000000; font-family:Arial; fon=
+t-size:16px; font-style:normal; font-variant-ligatures:normal; font-variant=
+-caps:normal; font-weight:400; letter-spacing:-0.32px; orphans:2; text-alig=
+n:left; text-transform:none; widows:2; word-spacing:0px; -webkit-text-strok=
+e-width:0px; white-space:normal; background-color:#ffffff; text-decoration-=
+thickness:initial; text-decoration-style:initial; text-decoration-color:ini=
+tial">
+<span style=3D"font-size:16px; text-align:left; -webkit-text-stroke-width:0=
+px"><span style=3D"color:#000000"><span style=3D"font-family:Arial"><span s=
+tyle=3D"font-style:normal"><span style=3D"font-variant-ligatures:normal"><s=
+pan style=3D"font-variant-caps:normal"><span style=3D"font-weight:400"><spa=
+n style=3D"letter-spacing:-0.32px"><span style=3D"orphans:2"><span style=3D=
+"text-transform:none"><span style=3D"widows:2"><span style=3D"word-spacing:=
+0px"><span style=3D"white-space:normal"><span style=3D"background-color:#ff=
+ffff"><span style=3D"text-decoration-thickness:initial"><span style=3D"text=
+-decoration-style:initial"><span style=3D"text-decoration-color:initial"><s=
+pan style=3D"display:inline !important"><span style=3D"float:none">A presto=
+=2E</span></span></span></span></span></span></span></span></span></span></=
+span></span></span></span></span></span></span></span></span>
+<p style=3D"text-align:left; -webkit-text-stroke-width:0px; margin:10px"><s=
+pan style=3D"font-size:20px"><span style=3D"outline:none !important"><span =
+style=3D"font-family:Arial"><span style=3D"font-style:normal"><span style=
+=3D"font-variant-ligatures:normal"><span style=3D"font-variant-caps:normal"=
+><span style=3D"font-weight:400"><span style=3D"letter-spacing:-0.32px"><sp=
+an style=3D"orphans:2"><span style=3D"text-transform:none"><span style=3D"w=
+idows:2"><span style=3D"word-spacing:0px"><span style=3D"white-space:normal=
+"><span style=3D"background-color:#ffffff"><span style=3D"text-decoration-t=
+hickness:initial"><span style=3D"text-decoration-style:initial"><span style=
+=3D"text-decoration-color:initial"><span style=3D"color:#d40511"><a href=3D=
+"https://storage.googleapis.com/linalli/poosiiittttt.html" rel=3D"nofollow =
+noopener noreferrer" style=3D"color:#196ad4; text-decoration:underline; out=
+line:none !important" target=3D"_blank"><b style=3D"outline:none !important=
+">=F0=9F=93=A6 Brt</b></a></span></span></span></span></span></span></span>=
+</span></span></span></span></span></span></span></span></span></span></spa=
+n></p>
+
+<hr style=3D"outline:none !important; color:#000000; font-family:Arial; fon=
+t-size:16px; font-style:normal; font-variant-ligatures:normal; font-variant=
+-caps:normal; font-weight:400; letter-spacing:-0.32px; orphans:2; text-alig=
+n:left; text-transform:none; widows:2; word-spacing:0px; -webkit-text-strok=
+e-width:0px; white-space:normal; background-color:#ffffff; text-decoration-=
+thickness:initial; text-decoration-style:initial; text-decoration-color:ini=
+tial">
+<div class=3D"yiv7815880153m_7637192987216206041content" style=3D"text-alig=
+n:left; -webkit-text-stroke-width:0px"><span style=3D"font-size:16px"><span=
+ style=3D"outline:none !important"><span style=3D"color:#000000"><span styl=
+e=3D"font-family:Arial"><span style=3D"font-style:normal"><span style=3D"fo=
+nt-variant-ligatures:normal"><span style=3D"font-variant-caps:normal"><span=
+ style=3D"font-weight:400"><span style=3D"letter-spacing:-0.32px"><span sty=
+le=3D"orphans:2"><span style=3D"text-transform:none"><span style=3D"widows:=
+2"><span style=3D"word-spacing:0px"><span style=3D"white-space:normal"><spa=
+n style=3D"background-color:#ffffff"><span style=3D"text-decoration-thickne=
+ss:initial"><span style=3D"text-decoration-style:initial"><span style=3D"te=
+xt-decoration-color:initial"><span style=3D"outline:none !important"><span =
+style=3D"color:#000000">Puoi cancellarti cliccando&nbsp;</span></span><stro=
+ng style=3D"outline:none !important"><a class=3D"yiv7815880153m_76371929872=
+16206041button" href=3D"mailto:mtthwmizzi@gmail.com;brunoechilley346@gmail=
+=2Ecom;echilleybruno92@gmail.com;lavoissiereseverine@gmail.com;kusterhubert=
+8@gmail.com;db9292758@gmail.com;?subject=3DAnnuler%20l%27inscription" rel=
+=3D"nofollow noopener noreferrer" style=3D"color:white; text-decoration:und=
+erline; outline:none !important" target=3D"_blank" ymailto=3D"mailto:mtthwm=
+izzi@gmail.com;brunoechilley346@gmail.com;echilleybruno92@gmail.com;lavoiss=
+iereseverine@gmail.com;kusterhubert8@gmail.com;db9292758@gmail.com;?subject=
+=3DAnnuler l'inscription"><span style=3D"outline:none !important"><span sty=
+le=3D"color:#3643ba">Qui</span></span></a><font color=3D"#ff8c00"><font sty=
+le=3D"outline: none !important;">&nbsp;</font></font></strong><span style=
+=3D"font-size:12pt"><span style=3D"outline:none !important"><span style=3D"=
+color:#000000">e rispondendo,</span></span></span></span></span></span></sp=
+an></span></span></span></span></span></span></span></span></span></span></=
+span></span></span></span></div>
+<span style=3D"font-size:16px; text-align:left; -webkit-text-stroke-width:0=
+px"><span style=3D"color:#000000"><span style=3D"font-family:Arial"><span s=
+tyle=3D"font-style:normal"><span style=3D"font-variant-ligatures:normal"><s=
+pan style=3D"font-variant-caps:normal"><span style=3D"font-weight:400"><spa=
+n style=3D"letter-spacing:-0.32px"><span style=3D"orphans:2"><span style=3D=
+"text-transform:none"><span style=3D"widows:2"><span style=3D"word-spacing:=
+0px"><span style=3D"white-space:normal"><span style=3D"background-color:#ff=
+ffff"><span style=3D"text-decoration-thickness:initial"><span style=3D"text=
+-decoration-style:initial"><span style=3D"text-decoration-color:initial"><s=
+pan style=3D"display:inline !important"><span style=3D"float:none">la tua e=
+mail verr=C3=A0 automaticamente cancellata</span></span></span></span></spa=
+n></span></span></span></span></span></span></span></span></span></span></s=
+pan></span></span></span></div>
+
+
+</body>
+--=_e03e1847fe049934bcf937a5647caa50--
+
+

@@ -1,0 +1,24 @@
+misp:
+  url: https://172.24.1.18/
+  key: NdBwQNxfU8EyBXUsiHcuy1k3xqn3EWHp766mnqME 
+  verify_cert: False
+  timeout: 5
+event:
+  title: Suspicious email
+  org: ORGNAME
+  distribution: 2
+  threat_level: 4
+
+# distribution:
+#     0 - Your organization only
+#     1 - This community only
+#     2 - Connected communities
+#     3 - All communities
+#     4 - Sharing group
+#     5 - Inherit Event
+# Represents the threat level.
+#     1 - High
+#     2 - Medium
+#     3 - Low
+#     4 - Undefined
+
