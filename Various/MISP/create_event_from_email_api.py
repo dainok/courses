@@ -7,8 +7,7 @@ import urllib3
 import requests
 import yaml
 import email
-import quopri
-from functions import extract_clientip, extract_email, extract_fromip, extract_links
+from functions import extract_clientip, extract_email, extract_fromip, extract_links, parse_eml
 
 with open("config.yml", "r") as fh:
     config = yaml.safe_load(fh)
@@ -35,28 +34,8 @@ params_post = {
 with open(sys.argv[1]) as fh:
     eml = email.message_from_file(fh)
 
-email_data = {}
-for header, value in eml.items():
-    if header == "Delivered-To" and extract_email(value):
-        email_data["dst-email"] = extract_email(value)
-    if header == "To" and extract_email(value):
-        email_data["to-email"] = extract_email(value)
-    if header == "From" and extract_email(value):
-        email_data["src-email"] = extract_email(value)
-    if header == "Subject":
-        email_data["subject"] = value
-    if header == "Received-SPF" and not "src-ip" in email_data and extract_clientip(value):
-        email_data["src-ip"] = extract_clientip(value)
-    if header == "Received" and not "src-ip" in email_data and extract_fromip(value):
-        email_data["src-ip"] = extract_fromip(value)
+email_data = parse_eml(eml)
 
-for eml_body in eml.get_payload():
-    body = quopri.decodestring(str(eml_body)).decode("utf-8")
-    for link in extract_links(body):
-        if "links" not in email_data:
-            email_data["links"] = []
-        if link not in email_data["links"]:
-            email_data["links"].append(link)
 
 # Disable SSL warning if cert validation is disabled
 if not config["misp"]["verify_cert"]:
