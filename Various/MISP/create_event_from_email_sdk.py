@@ -50,6 +50,10 @@ event.threat_level_id = int(config["event"]["threat_level"])
 event = misp.add_event(event, pythonify=True)
 
 
+# Tag event
+misp.tag(event, "tlp:green") 
+
+
 # Creating attributes
 misp_attributes = []
 if "src-email" in email_data:
@@ -92,3 +96,8 @@ for misp_attribute in misp_attributes:
     attribute.value = misp_attribute["value"]
     attribute.to_ids = misp_attribute["to_ids"]
     misp.add_attribute(event=event, attribute=attribute, pythonify=True)
+
+
+    # Tag attribute
+    if misp_attribute["type"] in ["email-dst"]:
+        misp.tag(attribute, "tlp:amber") 

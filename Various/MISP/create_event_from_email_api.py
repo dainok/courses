@@ -74,6 +74,16 @@ req.raise_for_status()
 event_id = req.json()["Event"]["id"]
 
 
+# Tag event
+data = {
+    "event": event_id,
+    "tag":"tlp:green",
+}
+url = f"{config['misp']['url']}/events/AddTag"
+req = requests.post(url, json=data, **params_post)
+req.raise_for_status()
+
+
 # Creating attributes
 misp_attributes = []
 if "src-email" in email_data:
@@ -112,3 +122,15 @@ for misp_attribute in misp_attributes:
     url = f"{config['misp']['url']}/attributes/add/{event_id}"
     req = requests.post(url, json=misp_attribute, **params_post)
     req.raise_for_status()
+    attribute_id = req.json()["Attribute"]["id"]
+
+
+    # Tag attribute
+    if misp_attribute["type"] in ["email-dst"]:
+        data = {
+            "attribute": attribute_id,
+            "tag":"tlp:amber",
+        }
+        url = f"{config['misp']['url']}/attributes/AddTag"
+        req = requests.post(url, json=data, **params_post)
+        req.raise_for_status()
