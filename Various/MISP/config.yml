@@ -10,4 +10,5 @@ event:
   threat_level: 4 # Undefined
 export:
   last_days: 180
-  last_ioc: 1000
+  last_ioc: 5000
+  port: 8080

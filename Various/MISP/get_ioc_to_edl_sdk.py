@@ -28,17 +28,25 @@ ip_list = []
 res = misp.search(
     controller="attributes",
     type_attribute=["ip-src", "ip-dst"],
+    # to_ids=False, # Filter not working
+    deleted=False,
     timestamp=last_days_unix,
-    order="timestamp:desc",
+    order="timestamp:desc", # Filter not working asc/desc
     limit=config["export"]["last_ioc"],
     pythonify=False,
 )
+print(res["Attribute"][0])
+print(res["Attribute"][-1])
+
+import sys
+sys.exit()
 
 # Parse the result
 for item in res["Attribute"]:
     if item["value"] not in ip_list:
         ip_list.append(item["value"])
 ioc_page = "\n".join(ip_list).encode("utf-8")
+print(f"Exporting {len(ip_list)} IP addresses")
 
 class pageHandler(BaseHTTPRequestHandler):
     """Handle webserver requests."""
@@ -52,8 +60,8 @@ class pageHandler(BaseHTTPRequestHandler):
 
 try:
     # Start the webserver
-    server = HTTPServer(("0.0.0.0", 8080), pageHandler)
-    print("Webserver started")
+    server = HTTPServer(("0.0.0.0", config["export"]["port"]), pageHandler)
+    print(f"Webserver started on port {config['export']['port']}")
     server.serve_forever()
 except KeyboardInterrupt:
     # Stop the webserver
