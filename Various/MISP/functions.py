@@ -1,5 +1,4 @@
 import re
-import quopri
 
 def extract_email(text):
     pattern = r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
@@ -50,7 +49,10 @@ def parse_eml(eml):
             email_data["src-ip"] = extract_fromip(value)
 
     for eml_body in eml.get_payload():
-        body = quopri.decodestring(str(eml_body)).decode("utf-8")
+        # Remove emoji from body
+        body = str(eml_body).encode("utf-8", "ignore").decode("utf-8")
+
+        # Analyze body
         for link in extract_links(body):
             if "links" not in email_data:
                 email_data["links"] = []
