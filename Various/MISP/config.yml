@@ -1,6 +1,5 @@
 misp:
   url: https://172.24.1.18/
-  key: NdBwQNxfU8EyBXUsiHcuy1k3xqn3EWHp766mnqME 
   verify_cert: False
   timeout: 5
 event:
@@ -12,3 +11,5 @@ export:
   last_days: 180
   last_ioc: 5000
   port: 8080
+imap:
+  url: imap.gmail.com

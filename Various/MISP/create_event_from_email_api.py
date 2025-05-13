@@ -13,10 +13,12 @@ logging.basicConfig(level=logging.INFO)
 
 with open("config.yml", "r") as fh:
     config = yaml.safe_load(fh)
+with open("secrets.yml", "r") as fh:
+    secrets = yaml.safe_load(fh)
 
 params = {
     "headers": {
-        "Authorization": config["misp"]["key"],
+        "Authorization": secrets["misp"]["key"],
         "Accept": "application/json",
     },
     "verify": config["misp"]["verify_cert"],
@@ -24,7 +26,7 @@ params = {
 }
 params_post = {
     "headers": {
-        "Authorization": config["misp"]["key"],
+        "Authorization": secrets["misp"]["key"],
         "Accept": "application/json",
         "Content-Type": "application/json",
     },
@@ -110,14 +112,15 @@ if "src-ip" in email_data:
         "value": email_data["src-ip"],
         "to_ids": True,
     })
-for link in email_data.get("links"):
-    misp_attributes.append({
-        "category": "Payload delivery",
-        "type": "link",
-        "distribution": 5,
-        "value": link,
-        "to_ids": True,
-    })
+if email_data.get("links"):
+    for link in email_data.get("links"):
+        misp_attributes.append({
+            "category": "Payload delivery",
+            "type": "link",
+            "distribution": 5,
+            "value": link,
+            "to_ids": True,
+        })
 for misp_attribute in misp_attributes:
     url = f"{config['misp']['url']}/attributes/add/{event_id}"
     req = requests.post(url, json=misp_attribute, **params_post)

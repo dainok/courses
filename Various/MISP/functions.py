@@ -1,5 +1,5 @@
 import re
-import email
+from email.message import Message
 
 def extract_email(text):
     pattern = r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
@@ -26,7 +26,7 @@ def extract_fromip(text):
 
 
 def extract_links(text):
-    pattern = r'href="(https?://[^\s]+)"'
+    pattern = r'https?://[^\s"]+'
     links = re.findall(pattern, text)
     if links:
         return links
@@ -62,7 +62,7 @@ def parse_eml(eml):
                 email_data["links"].append(link)
     return email_data
 
-def email_unpack(eml:email.message.Message, emails:list=None):
+def email_unpack(eml:Message, emails:list=None):
     """Unpack nested emails.
      
     Return a list of emails in terms of headers, content-type and attachments (payloads).
