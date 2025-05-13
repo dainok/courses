@@ -40,6 +40,7 @@ def ignore_dirty_chars(text):
 def parse_ioc_from_eml_headers(headers):
     parsed_data = {}
     for header, value in headers:
+        value = str(value)
         if header == "Delivered-To" and extract_email(value):
             parsed_data["dst-email"] = extract_email(value)
         if header == "To" and extract_email(value):
