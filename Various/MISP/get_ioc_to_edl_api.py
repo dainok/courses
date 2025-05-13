@@ -13,10 +13,12 @@ logging.getLogger("pymisp").setLevel(logging.WARNING)
 
 with open("config.yml", "r") as fh:
     config = yaml.safe_load(fh)
+with open("secrets.yml", "r") as fh:
+    secrets = yaml.safe_load(fh)
 
 params_post = {
     "headers": {
-        "Authorization": config["misp"]["key"],
+        "Authorization": secrets["misp"]["key"],
         "Accept": "application/json",
         "Content-Type": "application/json",
     },

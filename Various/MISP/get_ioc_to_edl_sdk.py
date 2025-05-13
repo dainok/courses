@@ -13,6 +13,8 @@ logging.getLogger("pymisp").setLevel(logging.WARNING)
 
 with open("config.yml", "r") as fh:
     config = yaml.safe_load(fh)
+with open("secrets.yml", "r") as fh:
+    secrets = yaml.safe_load(fh)
 
 last_days = datetime.now() - timedelta(days=config["export"]["last_days"])
 last_days_unix = int(time.mktime(last_days.timetuple()))
@@ -21,7 +23,7 @@ last_days_unix = int(time.mktime(last_days.timetuple()))
 if not config["misp"]["verify_cert"]:
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-misp = PyMISP(config["misp"]["url"], config["misp"]["key"], config["misp"]["verify_cert"], "json")
+misp = PyMISP(config["misp"]["url"], secrets["misp"]["key"], config["misp"]["verify_cert"], "json")
 
 
 # Search for IP addresses

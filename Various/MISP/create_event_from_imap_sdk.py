@@ -41,7 +41,6 @@ if not org:
 try:
     box = imaplib.IMAP4_SSL(imap_url)
     box.login(username, password)
-    box.select('inbox')  # Connect to the inbox.
 except Exception as e:
     logging.error("Connection failed: {}".format(e))
     raise
