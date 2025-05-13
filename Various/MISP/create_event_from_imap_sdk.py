@@ -123,42 +123,12 @@ for mailbox in ["INBOX", "[Gmail]/Spam"]:
                 if misp_attribute["type"] in ["email-dst"]:
                     misp.tag(attribute, "tlp:amber") 
 
+        # Delete email
+        box.store(num, "+FLAGS", "\\Deleted")
 
-        # print(email_data)
-        # box.store(num, '+FLAGS', '\\Deleted')
-
-box.expunge()
-box.close()
+    # Clear mailbox before moving to the next one
+    box.expunge()
+    box.close()
 box.logout()
 
-
-# eml = email.message_from_file(open('test_ioc_forward1.eml'))
-
-# if eml.is_multipart():
-#     for part in eml.walk():
-#         if part.get_content_type() == "message/rfc822":
-#             forwarded_eml = part.get_payload()[0]
-#             email_data = parse_eml(forwarded_eml)
-#             print(email_data)
-
-
-# #         # if part.get_content_type() == "message/rfc822":
-# #         print(part.get_content_type())
-# #         print(type(part.get_payload(decode=True)))
-#         # print(ctype)
-# # print(eml.is_multipart())
-# # if len(eml.get_payload()) > 1:
-# #     # Attachments found
-# #     for attachment in eml.get_payload()[1:]:
-# #         # For each attachment
-# #         if attachment.get_content_type() == "message/rfc822":
-# #             # Attachment is an email
-# #             # print(attachment)
-# #             # print(attachment.items())
-# #             for a, b in attachment.items():
-# #                 print(a)
-# #             # print(attachment.get_payload(decode=True))
-
-
-
-# # https://github.com/MISP/mail_to_misp/blob/main/mail2misp/mail2misp.py
+# https://github.com/MISP/mail_to_misp/blob/main/mail2misp/mail2misp.py

@@ -40,7 +40,6 @@ with open(sys.argv[1]) as fh:
     eml = email.message_from_file(fh)
 
 ioc_from_headers = parse_ioc_from_eml_headers(eml.items())
-ioc_from_body = parse_ioc_from_eml_body(eml.get_payload())
 
 
 # Disable SSL warning if cert validation is disabled
@@ -113,15 +112,17 @@ if "src-ip" in ioc_from_headers:
         "value": ioc_from_headers["src-ip"],
         "to_ids": True,
     })
-if ioc_from_body.get("links"):
-    for link in ioc_from_body.get("links"):
-        misp_attributes.append({
-            "category": "Payload delivery",
-            "type": "link",
-            "distribution": 5,
-            "value": link,
-            "to_ids": True,
-        })
+for eml_body in eml.get_payload():
+    ioc_from_body = parse_ioc_from_eml_body(eml_body)
+    if ioc_from_body.get("links"):
+        for link in ioc_from_body.get("links"):
+            misp_attributes.append({
+                "category": "Payload delivery",
+                "type": "link",
+                "distribution": 5,
+                "value": link,
+                "to_ids": True,
+            })
 for misp_attribute in misp_attributes:
     url = f"{config['misp']['url']}/attributes/add/{event_id}"
     req = requests.post(url, json=misp_attribute, **params_post)

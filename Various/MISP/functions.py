@@ -58,13 +58,11 @@ def parse_ioc_from_eml_headers(headers):
 
 def parse_ioc_from_eml_body(body):
     parsed_data = {}
-    for eml_body in body:
-        # Analyze body
-        for link in extract_links(ignore_dirty_chars(eml_body)):
-            if "links" not in parsed_data:
-                parsed_data["links"] = []
-            if link not in parsed_data["links"]:
-                parsed_data["links"].append(link)
+    for link in extract_links(ignore_dirty_chars(body)):
+        if "links" not in parsed_data:
+            parsed_data["links"] = []
+        if link not in parsed_data["links"]:
+            parsed_data["links"].append(link)
     return parsed_data
 
 
@@ -85,11 +83,12 @@ def email_unpack(eml:Message, emails:list=None):
                 continue
             if content_type.startswith("message/"):
                 for nested_email in eml_part.get_payload():
+                    # TODO: error with decode=True
                     emails = email_unpack(nested_email, emails)
 
             payloads.append({
                 "content-type": eml_part.get_content_type(),
-                "payload": eml_part.get_payload(),
+                "payload": eml_part.get_payload(decode=True),
             })
         emails.append({
             "headers": headers,
@@ -101,7 +100,7 @@ def email_unpack(eml:Message, emails:list=None):
             "headers": headers,
             "payloads": [{
                 "content-type": eml.get_content_type(),
-                "payload": eml.get_payload(),
+                "payload": eml.get_payload(decode=True),
             }],
         })
     return emails
