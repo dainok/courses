@@ -37,30 +37,35 @@ def ignore_dirty_chars(text):
     return str(text).encode("utf-8", "ignore").decode("utf-8")
 
 
-def parse_eml(eml):
-    email_data = {}
-    for header, value in eml.items():
+def parse_ioc_from_eml_headers(headers):
+    parsed_data = {}
+    for header, value in headers:
         if header == "Delivered-To" and extract_email(value):
-            email_data["dst-email"] = extract_email(value)
+            parsed_data["dst-email"] = extract_email(value)
         if header == "To" and extract_email(value):
-            email_data["to-email"] = extract_email(value)
+            parsed_data["to-email"] = extract_email(value)
         if header == "From" and extract_email(value):
-            email_data["src-email"] = extract_email(value)
+            parsed_data["src-email"] = extract_email(value)
         if header == "Subject":
-            email_data["subject"] = ignore_dirty_chars(value)
-        if header == "Received-SPF" and not "src-ip" in email_data and extract_clientip(value):
-            email_data["src-ip"] = extract_clientip(value)
-        if header == "Received" and not "src-ip" in email_data and extract_fromip(value):
-            email_data["src-ip"] = extract_fromip(value)
+            parsed_data["subject"] = ignore_dirty_chars(value)
+        if header == "Received-SPF" and not "src-ip" in parsed_data and extract_clientip(value):
+            parsed_data["src-ip"] = extract_clientip(value)
+        if header == "Received" and not "src-ip" in parsed_data and extract_fromip(value):
+            parsed_data["src-ip"] = extract_fromip(value)
+    return parsed_data
 
-    for eml_body in eml.get_payload():
+
+def parse_ioc_from_eml_body(body):
+    parsed_data = {}
+    for eml_body in body:
         # Analyze body
         for link in extract_links(ignore_dirty_chars(eml_body)):
-            if "links" not in email_data:
-                email_data["links"] = []
-            if link not in email_data["links"]:
-                email_data["links"].append(link)
-    return email_data
+            if "links" not in parsed_data:
+                parsed_data["links"] = []
+            if link not in parsed_data["links"]:
+                parsed_data["links"].append(link)
+    return parsed_data
+
 
 def email_unpack(eml:Message, emails:list=None):
     """Unpack nested emails.

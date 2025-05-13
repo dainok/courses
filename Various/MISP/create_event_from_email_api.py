@@ -7,7 +7,7 @@ import urllib3
 import requests
 import yaml
 import email
-from functions import parse_eml
+from functions import parse_ioc_from_eml_headers, parse_ioc_from_eml_body
 
 logging.basicConfig(level=logging.INFO)
 
@@ -39,7 +39,8 @@ params_post = {
 with open(sys.argv[1]) as fh:
     eml = email.message_from_file(fh)
 
-email_data = parse_eml(eml)
+ioc_from_headers = parse_ioc_from_eml_headers(eml.items())
+ioc_from_body = parse_ioc_from_eml_body(eml.get_payload())
 
 
 # Disable SSL warning if cert validation is disabled
@@ -65,7 +66,7 @@ if not org_id:
 data = {
     "org_id": org_id,
     "distribution": int(config["event"]["distribution"]),
-    "info": f"{config['event']['title']} from {email_data['src-email']}",
+    "info": f"{config['event']['title']} from {ioc_from_headers['src-email']}",
     "published": False,
     "analysis": 0,
     "threat_level_id": int(config["event"]["threat_level"]),
@@ -88,32 +89,32 @@ req.raise_for_status()
 
 # Creating attributes
 misp_attributes = []
-if "src-email" in email_data:
+if "src-email" in ioc_from_headers:
     misp_attributes.append({
         "category": "Payload delivery",
         "type": "email-src",
         "distribution": 5,
-        "value": email_data["src-email"],
+        "value": ioc_from_headers["src-email"],
         "to_ids": True,
     })
-if "dst-email" in email_data:
+if "dst-email" in ioc_from_headers:
     misp_attributes.append({
         "category": "Payload delivery",
         "type": "email-dst",
         "distribution": 0,
-        "value": email_data["dst-email"],
+        "value": ioc_from_headers["dst-email"],
         "to_ids": False,
     })
-if "src-ip" in email_data:
+if "src-ip" in ioc_from_headers:
     misp_attributes.append({
         "category": "Network activity",
         "type": "ip-src",
         "distribution": 5,
-        "value": email_data["src-ip"],
+        "value": ioc_from_headers["src-ip"],
         "to_ids": True,
     })
-if email_data.get("links"):
-    for link in email_data.get("links"):
+if ioc_from_body.get("links"):
+    for link in ioc_from_body.get("links"):
         misp_attributes.append({
             "category": "Payload delivery",
             "type": "link",
