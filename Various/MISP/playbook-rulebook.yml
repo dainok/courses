@@ -1,0 +1,20 @@
+# Run with: 
+# ansible-rulebook -r playbook-rulebook.yml -i inventory.ini --vars secrets.yml -v
+- name: "LISTEN FOR EMAILS VIA IMAP"
+  hosts: all
+  sources:
+    - dainok.courses.imap:
+        imap_url: imap.gmail.com
+        username: "{{ imap.username }}"
+        password: "{{ imap.password }}"
+        folders:
+          - "INBOX"
+          - "[Gmail]/Spam"
+  rules:
+    - name: "RUN PLAYBOOK WHEN EMAIL IS RECEIVED"
+      condition: event.payloads is defined
+      actions:
+        - run_playbook:
+            name: playbook-misp-add-ioc.yml
+        # - print_event:
+        #     pretty: true
