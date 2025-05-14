@@ -83,24 +83,28 @@ def email_unpack(eml:Message, emails:list=None):
                 continue
             if content_type.startswith("message/"):
                 for nested_email in eml_part.get_payload():
-                    # TODO: error with decode=True
                     emails = email_unpack(nested_email, emails)
 
-            payloads.append({
-                "content-type": eml_part.get_content_type(),
-                "payload": eml_part.get_payload(decode=True),
+            payload = eml_part.get_payload(decode=True)
+            if payload:
+                payloads.append({
+                    "content-type": eml_part.get_content_type(),
+                    "payload": payload.decode(),
+                })
+        if payloads:
+            emails.append({
+                "headers": headers,
+                "payloads": payloads,
             })
-        emails.append({
-            "headers": headers,
-            "payloads": payloads,
-        })
     else:
         headers = eml.items()
-        emails.append({
-            "headers": headers,
-            "payloads": [{
-                "content-type": eml.get_content_type(),
-                "payload": eml.get_payload(decode=True),
-            }],
-        })
+        payload = eml.get_payload(decode=True)
+        if payload:
+            emails.append({
+                "headers": headers,
+                "payloads": [{
+                    "content-type": eml.get_content_type(),
+                    "payload": payload.decode(),
+                }],
+            })
     return emails
