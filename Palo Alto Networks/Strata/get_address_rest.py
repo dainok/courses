@@ -15,5 +15,6 @@ url = f"https://172.25.10.4/restapi/v10.2/Objects/Addresses?location=vsys&vsys=v
 req = requests.get(url, headers=headers, verify=False)
 req.raise_for_status()
 
-for entry in req.json()["result"]["entry"]:
-    print(f"{entry['@name']},{entry['ip-netmask']},{entry['@location']}")
+if req.json()["result"].get("entry"):
+    for entry in req.json()["result"]["entry"]:
+        print(f"{entry['@name']},{entry['ip-netmask']},{entry['@location']}")
