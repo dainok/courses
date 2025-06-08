@@ -7,11 +7,11 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 headers = {
     "Content-Type": "application/x-www-form-urlencoded",
-    "X-PAN-KEY": getpass(),
+    "X-PAN-KEY": getpass("Token: "),
 }
 
 # Getting configured elements
-url = f"https://172.25.10.4/restapi/v10.2/Objects/Addresses?location=vsys&vsys=vsys1"
+url = f"https://172.24.1.34/restapi/v10.2/Objects/Addresses?location=vsys&vsys=vsys1"
 req = requests.get(url, headers=headers, verify=False)
 req.raise_for_status()
 

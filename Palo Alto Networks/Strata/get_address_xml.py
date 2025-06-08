@@ -10,7 +10,7 @@ headers = {
     "Content-Type": "application/x-www-form-urlencoded",
 }
 
-token = getpass()
+token = getpass("Token: ")
 
 # Getting configured elements
 xpaths = [
@@ -18,7 +18,7 @@ xpaths = [
     "/config/devices/entry/vsys/entry[@name='vsys1']/address", # VSYS
 ]
 for xpath in xpaths:
-    url = f"https://172.25.10.4/api/?type=config&action=get&xpath={xpath}&key={token}"
+    url = f"https://172.24.1.34/api/?type=config&action=get&xpath={xpath}&key={token}"
     req = requests.get(url, headers=headers, verify=False)
     req.raise_for_status()
     if "/shared/" in xpath:

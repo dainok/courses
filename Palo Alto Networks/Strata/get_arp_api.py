@@ -9,8 +9,8 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 headers = {
     "Content-Type": "application/x-www-form-urlencoded",
 }
-url = "https://172.25.10.4/api/?type=op&cmd=<show><arp><entry name = 'all'/></arp></show>&key="
-url = url + getpass()
+url = "https://172.24.1.34/api/?type=op&cmd=<show><arp><entry name = 'all'/></arp></show>&key="
+url = url + getpass("Token: ")
 req = requests.get(url, headers=headers, verify=False)
 req.raise_for_status()
 

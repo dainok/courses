@@ -4,7 +4,7 @@ from netmiko import ConnectHandler
 
 device = {
     "device_type": "paloalto_panos",
-    "ip": "172.25.10.4",
+    "ip": "172.24.1.34",
     "username": "admin",
     "password": getpass(),
     "fast_cli": False,
