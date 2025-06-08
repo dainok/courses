@@ -14,14 +14,14 @@ headers = {
     "Content-Type": "application/x-www-form-urlencoded",
 }
 
-token = getpass()
+token = getpass("Token: ")
 
 # xpath = "/config/shared/address/entry" # Shared (Panorama)
 xpath = "/config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/address/entry" # VSYS
 
 # Create elements
 for name, ip in addresses.items():
-    url = f"https://172.25.10.4/api/?type=config&action=set&xpath={xpath}"
+    url = f"https://172.24.1.34/api/?type=config&action=set&xpath={xpath}"
     url = url + f"[@name='{name}']&element=<ip-netmask>{ip}</ip-netmask>"
     url = url + f"&key={token}"
     req = requests.get(url, headers=headers, verify=False)

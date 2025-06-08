@@ -11,12 +11,12 @@ addresses = {
 }
 headers = {
     "Content-Type": "application/json",
-    "X-PAN-KEY": getpass(),
+    "X-PAN-KEY": getpass("Token: "),
 }
 
 # Create elements
 for name, ip in addresses.items():
-    url = f"https://172.25.10.4/restapi/v10.2/Objects/Addresses?name={name}&location=vsys&vsys=vsys1"
+    url = f"https://172.24.1.34/restapi/v10.2/Objects/Addresses?name={name}&location=vsys&vsys=vsys1"
     data = {
         "entry": {
             "@name": name,
