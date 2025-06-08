@@ -11,7 +11,7 @@ headers = {
     "Content-Type": "application/x-www-form-urlencoded",
 }
 
-token = getpass()
+token = getpass("Token: ")
 
 # Commit
 url = f"https://172.25.10.4/api/?type=commit&cmd=<commit></commit>&key={token}"
@@ -32,7 +32,7 @@ if job_id:
     progress = 0
     result = None
     while progress < 100:
-        url = f"https://172.25.10.4/api/?type=op&cmd=<show><jobs><id>{job_id}</id></jobs></show>&key={token}"
+        url = f"https://172.24.1.34/api/?type=op&cmd=<show><jobs><id>{job_id}</id></jobs></show>&key={token}"
         req = requests.get(url, headers=headers, verify=False)
         req.raise_for_status()
         root = ET.fromstring(req.text)
