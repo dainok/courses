@@ -2,7 +2,6 @@
 from getpass import getpass
 import requests
 import urllib3
-import xml.etree.ElementTree as ET
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
