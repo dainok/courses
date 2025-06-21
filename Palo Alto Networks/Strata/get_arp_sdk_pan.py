@@ -7,11 +7,11 @@ token = getpass("Token: ")
 ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
-xapi = xapi.PanXapi(hostname="172.24.1.34", api_key=token, ssl_context=ctx)
+fw = xapi.PanXapi(hostname="172.24.1.34", api_key=token, ssl_context=ctx)
 
 # Getting elements
-xapi.op(cmd="<show><arp><entry name='all'/></arp></show>", cmd_xml=False)
-root = xapi.element_root
+fw.op(cmd="<show><arp><entry name='all'/></arp></show>", cmd_xml=False)
+root = fw.element_root
 for entry in root.iterfind(".//result/entries/"):
     interface = entry.find("interface").text
     ip = entry.find("ip").text
