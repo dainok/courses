@@ -1,0 +1,8 @@
+#!/usr/bin/env ansible-playbook
+- name: "CREATE IOC ON MISP"
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: "ADDING IOC"
+      debug:
+        msg: "HERE"
