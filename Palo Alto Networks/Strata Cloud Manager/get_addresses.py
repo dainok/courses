@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 import os
-from pprint import pprint
 from tabulate import tabulate
 from api import APIClient
 
