@@ -11,8 +11,8 @@ fw = xapi.PanXapi(hostname="172.24.1.34", api_key=token, ssl_context=ctx)
 
 # Getting configured elements
 xpaths = [
-    "/config/shared/address/entry", # Shared (Panorama)
-    "/config/devices/entry/vsys/entry[@name='vsys1']/address", # VSYS
+    "/config/shared/address/entry",  # Shared (Panorama)
+    "/config/devices/entry/vsys/entry[@name='vsys1']/address",  # VSYS
 ]
 for xpath in xpaths:
     if "/shared/" in xpath:

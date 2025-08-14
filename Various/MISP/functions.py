@@ -1,6 +1,7 @@
 import re
 from email.message import Message
 
+
 def extract_email(text):
     pattern = r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
     emails = re.findall(pattern, text)
@@ -18,7 +19,7 @@ def extract_clientip(text):
 
 
 def extract_fromip(text):
-    pattern = r'from\s+[^\s]+\s+\([^\)]+\s+\[([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)\]'
+    pattern = r"from\s+[^\s]+\s+\([^\)]+\s+\[([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)\]"
     from_ips = re.findall(pattern, text)
     if from_ips:
         return from_ips[0]
@@ -49,9 +50,17 @@ def parse_ioc_from_eml_headers(headers):
             parsed_data["src-email"] = extract_email(value)
         if header == "Subject":
             parsed_data["subject"] = ignore_dirty_chars(value)
-        if header == "Received-SPF" and not "src-ip" in parsed_data and extract_clientip(value):
+        if (
+            header == "Received-SPF"
+            and not "src-ip" in parsed_data
+            and extract_clientip(value)
+        ):
             parsed_data["src-ip"] = extract_clientip(value)
-        if header == "Received" and not "src-ip" in parsed_data and extract_fromip(value):
+        if (
+            header == "Received"
+            and not "src-ip" in parsed_data
+            and extract_fromip(value)
+        ):
             parsed_data["src-ip"] = extract_fromip(value)
     return parsed_data
 
@@ -66,9 +75,9 @@ def parse_ioc_from_eml_body(body):
     return parsed_data
 
 
-def email_unpack(eml:Message, emails:list=None):
+def email_unpack(eml: Message, emails: list = None):
     """Unpack nested emails.
-     
+
     Return a list of emails in terms of headers, content-type and attachments (payloads).
     """
     if not emails:
@@ -87,24 +96,32 @@ def email_unpack(eml:Message, emails:list=None):
 
             payload = eml_part.get_payload(decode=True)
             if payload:
-                payloads.append({
-                    "content-type": eml_part.get_content_type(),
-                    "payload": payload.decode(),
-                })
+                payloads.append(
+                    {
+                        "content-type": eml_part.get_content_type(),
+                        "payload": payload.decode(),
+                    }
+                )
         if payloads:
-            emails.append({
-                "headers": headers,
-                "payloads": payloads,
-            })
+            emails.append(
+                {
+                    "headers": headers,
+                    "payloads": payloads,
+                }
+            )
     else:
         headers = eml.items()
         payload = eml.get_payload(decode=True)
         if payload:
-            emails.append({
-                "headers": headers,
-                "payloads": [{
-                    "content-type": eml.get_content_type(),
-                    "payload": payload.decode(),
-                }],
-            })
+            emails.append(
+                {
+                    "headers": headers,
+                    "payloads": [
+                        {
+                            "content-type": eml.get_content_type(),
+                            "payload": payload.decode(),
+                        }
+                    ],
+                }
+            )
     return emails

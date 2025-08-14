@@ -22,6 +22,8 @@ xpaths = [
 ]
 # Deleting objects
 for xpath in xpaths:
-    url = f"https://172.24.1.34/api/?type=config&action=delete&xpath={xpath}&key={token}"
+    url = (
+        f"https://172.24.1.34/api/?type=config&action=delete&xpath={xpath}&key={token}"
+    )
     req = requests.get(url, headers=headers, verify=False)
     # req.raise_for_status()

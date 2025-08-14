@@ -19,7 +19,7 @@ fw = xapi.PanXapi(hostname="172.24.1.34", api_key=token, ssl_context=ctx)
 # Create elements
 for name, ip in addresses.items():
     # xpath = "/config/shared/address/entry" # Shared (Panorama)
-    xpath = "/config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/address/entry" # VSYS
+    xpath = "/config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/address/entry"  # VSYS
     xpath = xpath + f"[@name='{name}']"
     element = f"<ip-netmask>{ip}</ip-netmask>"
     fw.set(xpath=xpath, element=element)

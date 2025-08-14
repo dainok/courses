@@ -12,4 +12,3 @@
             name: playbook-backup.yml
         - print_event:
             pretty: true
-

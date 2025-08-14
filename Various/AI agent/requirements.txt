@@ -1,5 +1,0 @@
-ollama==0.4.7
-autogen-agentchat==0.4.5
-autogen-ext==0.4.5
-litellm[proxy]==1.60.2
-#autogen-agentchat~=0.2

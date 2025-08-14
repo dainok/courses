@@ -1,4 +1,4 @@
-# Run with: 
+# Run with:
 # ansible-rulebook -r playbook-rulebook.yml -i inventory.ini --vars secrets.yml -v
 - name: "LISTEN FOR EMAILS VIA IMAP"
   hosts: all
@@ -16,5 +16,5 @@
       actions:
         - run_playbook:
             name: playbook-misp-add-ioc.yml
-        # - print_event:
-        #     pretty: true
+      # - print_event:
+      #     pretty: true

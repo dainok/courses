@@ -5,8 +5,8 @@ misp:
 event:
   title: Suspicious email
   org: ORGNAME
-  distribution: 2 # Connected communities
-  threat_level: 4 # Undefined
+  distribution: 2  # Connected communities
+  threat_level: 4  # Undefined
 export:
   last_days: 180
   last_ioc: 5000

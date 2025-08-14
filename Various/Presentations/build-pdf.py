@@ -54,7 +54,8 @@ for slide in presentation_slides:
     print(f" - Adding slide {slide}")
     with open(slide, "r") as fh:
         md_document = fh.read()
-    md = markdown.Markdown(extensions=[
+    md = markdown.Markdown(
+        extensions=[
             "markdown.extensions.meta",
             "markdown.extensions.fenced_code",
             "markdown.extensions.codehilite",
@@ -64,7 +65,7 @@ for slide in presentation_slides:
             "markdown.extensions.md_in_html",
             "markdown_captions",
             "pymdownx.tilde",
-            "pymdownx.caret"
+            "pymdownx.caret",
         ]
     )
     slide_body = md.convert(md_document)

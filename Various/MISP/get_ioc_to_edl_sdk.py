@@ -5,7 +5,7 @@ import logging
 import urllib3
 from datetime import datetime, timedelta
 from pymisp import PyMISP
-from http.server import BaseHTTPRequestHandler,HTTPServer
+from http.server import BaseHTTPRequestHandler, HTTPServer
 import yaml
 import time
 
@@ -23,7 +23,9 @@ last_days_unix = int(time.mktime(last_days.timetuple()))
 if not config["misp"]["verify_cert"]:
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-misp = PyMISP(config["misp"]["url"], secrets["misp"]["key"], config["misp"]["verify_cert"], "json")
+misp = PyMISP(
+    config["misp"]["url"], secrets["misp"]["key"], config["misp"]["verify_cert"], "json"
+)
 
 
 # Search for IP addresses
@@ -34,7 +36,7 @@ res = misp.search(
     # to_ids=True, # Filter not working
     deleted=False,
     timestamp=last_days_unix,
-    order="timestamp desc", # Filter not working asc/desc
+    order="timestamp desc",  # Filter not working asc/desc
     limit=config["export"]["last_ioc"],
     pythonify=False,
 )
@@ -49,15 +51,18 @@ for item in res["Attribute"]:
 ioc_page = "\n".join(ip_list).encode("utf-8")
 print(f"Exporting {len(ip_list)} IP addresses")
 
+
 class pageHandler(BaseHTTPRequestHandler):
     """Handle webserver requests."""
+
     def do_GET(self):
         """Handle GET requests."""
         self.send_response(200)
-        self.send_header("Content-type","text/plain")
+        self.send_header("Content-type", "text/plain")
         self.end_headers()
         self.wfile.write(ioc_page)
         return
+
 
 try:
     # Start the webserver

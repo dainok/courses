@@ -5,7 +5,7 @@ import logging
 import urllib3
 from datetime import datetime, timedelta
 import requests
-from http.server import BaseHTTPRequestHandler,HTTPServer
+from http.server import BaseHTTPRequestHandler, HTTPServer
 import yaml
 import time
 
@@ -48,8 +48,14 @@ data = {
 url = f"{config['misp']['url']}/attributes/restSearch"
 req = requests.post(url, json=data, **params_post)
 req.raise_for_status()
-print("Most recent IoC: ", time.ctime(int(req.json()["response"]["Attribute"][0]["timestamp"])))
-print("Most old IoC:    ", time.ctime(int(req.json()["response"]["Attribute"][-1]["timestamp"])))
+print(
+    "Most recent IoC: ",
+    time.ctime(int(req.json()["response"]["Attribute"][0]["timestamp"])),
+)
+print(
+    "Most old IoC:    ",
+    time.ctime(int(req.json()["response"]["Attribute"][-1]["timestamp"])),
+)
 
 
 # Parse the result
@@ -59,15 +65,18 @@ for item in req.json()["response"]["Attribute"]:
 ioc_page = "\n".join(ip_list).encode("utf-8")
 print(f"Exporting {len(ip_list)} IP addresses")
 
+
 class pageHandler(BaseHTTPRequestHandler):
     """Handle webserver requests."""
+
     def do_GET(self):
         """Handle GET requests."""
         self.send_response(200)
-        self.send_header("Content-type","text/plain")
+        self.send_header("Content-type", "text/plain")
         self.end_headers()
         self.wfile.write(ioc_page)
         return
+
 
 try:
     # Start the webserver

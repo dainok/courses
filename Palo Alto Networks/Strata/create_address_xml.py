@@ -16,7 +16,7 @@ headers = {
 token = getpass("Token: ")
 
 # xpath = "/config/shared/address/entry" # Shared (Panorama)
-xpath = "/config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/address/entry" # VSYS
+xpath = "/config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/address/entry"  # VSYS
 
 # Create elements
 for name, ip in addresses.items():

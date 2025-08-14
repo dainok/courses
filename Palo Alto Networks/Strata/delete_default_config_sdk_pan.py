@@ -19,7 +19,6 @@ xpaths = [
     "/config/devices/entry/vsys/entry[@name='vsys1']/import/network/interface/member[text()='ethernet1/2']",
     "/config/devices/entry/network/interface/ethernet/entry[@name='ethernet1/1']",
     "/config/devices/entry/network/interface/ethernet/entry[@name='ethernet1/2']",
-
 ]
 for xpath in xpaths:
     fw.delete(xpath=xpath)

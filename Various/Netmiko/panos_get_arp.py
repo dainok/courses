@@ -21,4 +21,3 @@ with ConnectHandler(**device) as net_connect:
     net_connect.disconnect()
 
 print(output)
-

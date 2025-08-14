@@ -20,7 +20,7 @@ if job is not None:
     job_id = job.text
 else:
     msg = root.find("./msg")
-    
+
 # Wait for job
 if job_id:
     progress = 0

@@ -54,11 +54,11 @@ url = f"{config['misp']['url']}/organisations"
 req = requests.post(url, **params)
 req.raise_for_status()
 for org in req.json():
-    if org["Organisation"]["name"] == config['event']["org"]:
+    if org["Organisation"]["name"] == config["event"]["org"]:
         org_id = org["Organisation"]["id"]
         break
 if not org_id:
-    raise(ValueError(f"Organization {config['event']['org']} not found"))
+    raise (ValueError(f"Organization {config['event']['org']} not found"))
 
 
 # Creating event
@@ -79,7 +79,7 @@ event_id = req.json()["Event"]["id"]
 # Tag event
 data = {
     "event": event_id,
-    "tag":"tlp:green",
+    "tag": "tlp:green",
 }
 url = f"{config['misp']['url']}/events/AddTag"
 req = requests.post(url, json=data, **params_post)
@@ -89,52 +89,59 @@ req.raise_for_status()
 # Creating attributes
 misp_attributes = []
 if "src-email" in ioc_from_headers:
-    misp_attributes.append({
-        "category": "Payload delivery",
-        "type": "email-src",
-        "distribution": 5,
-        "value": ioc_from_headers["src-email"],
-        "to_ids": True,
-    })
+    misp_attributes.append(
+        {
+            "category": "Payload delivery",
+            "type": "email-src",
+            "distribution": 5,
+            "value": ioc_from_headers["src-email"],
+            "to_ids": True,
+        }
+    )
 if "dst-email" in ioc_from_headers:
-    misp_attributes.append({
-        "category": "Payload delivery",
-        "type": "email-dst",
-        "distribution": 0,
-        "value": ioc_from_headers["dst-email"],
-        "to_ids": False,
-    })
+    misp_attributes.append(
+        {
+            "category": "Payload delivery",
+            "type": "email-dst",
+            "distribution": 0,
+            "value": ioc_from_headers["dst-email"],
+            "to_ids": False,
+        }
+    )
 if "src-ip" in ioc_from_headers:
-    misp_attributes.append({
-        "category": "Network activity",
-        "type": "ip-src",
-        "distribution": 5,
-        "value": ioc_from_headers["src-ip"],
-        "to_ids": True,
-    })
+    misp_attributes.append(
+        {
+            "category": "Network activity",
+            "type": "ip-src",
+            "distribution": 5,
+            "value": ioc_from_headers["src-ip"],
+            "to_ids": True,
+        }
+    )
 for eml_body in eml.get_payload():
     ioc_from_body = parse_ioc_from_eml_body(eml_body)
     if ioc_from_body.get("links"):
         for link in ioc_from_body.get("links"):
-            misp_attributes.append({
-                "category": "Payload delivery",
-                "type": "link",
-                "distribution": 5,
-                "value": link,
-                "to_ids": True,
-            })
+            misp_attributes.append(
+                {
+                    "category": "Payload delivery",
+                    "type": "link",
+                    "distribution": 5,
+                    "value": link,
+                    "to_ids": True,
+                }
+            )
 for misp_attribute in misp_attributes:
     url = f"{config['misp']['url']}/attributes/add/{event_id}"
     req = requests.post(url, json=misp_attribute, **params_post)
     req.raise_for_status()
     attribute_id = req.json()["Attribute"]["id"]
 
-
     # Tag attribute
     if misp_attribute["type"] in ["email-dst"]:
         data = {
             "attribute": attribute_id,
-            "tag":"tlp:amber",
+            "tag": "tlp:amber",
         }
         url = f"{config['misp']['url']}/attributes/AddTag"
         req = requests.post(url, json=data, **params_post)

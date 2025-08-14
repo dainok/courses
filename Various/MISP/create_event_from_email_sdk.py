@@ -29,17 +29,19 @@ ioc_from_body = parse_ioc_from_eml_body(eml.get_payload())
 if not config["misp"]["verify_cert"]:
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-misp = PyMISP(config["misp"]["url"], secrets["misp"]["key"], config["misp"]["verify_cert"], "json")
+misp = PyMISP(
+    config["misp"]["url"], secrets["misp"]["key"], config["misp"]["verify_cert"], "json"
+)
 
 
 # Finding organization
 org = None
 for item in misp.organisations(pythonify=True):
-    if item.name == config['event']["org"]:
+    if item.name == config["event"]["org"]:
         org = item
         break
 if not org:
-    raise(ValueError(f"Organization {config['event']['org']} not found"))
+    raise (ValueError(f"Organization {config['event']['org']} not found"))
 
 
 # Creating event
@@ -54,46 +56,54 @@ event = misp.add_event(event, pythonify=True)
 
 
 # Tag event
-misp.tag(event, "tlp:green") 
+misp.tag(event, "tlp:green")
 
 
 # Creating attributes
 misp_attributes = []
 if "src-email" in ioc_from_headers:
-    misp_attributes.append({
-        "category": "Payload delivery",
-        "type": "email-src",
-        "distribution": 5,
-        "value": ioc_from_headers["src-email"],
-        "to_ids": True,
-    })
+    misp_attributes.append(
+        {
+            "category": "Payload delivery",
+            "type": "email-src",
+            "distribution": 5,
+            "value": ioc_from_headers["src-email"],
+            "to_ids": True,
+        }
+    )
 if "dst-email" in ioc_from_headers:
-    misp_attributes.append({
-        "category": "Payload delivery",
-        "type": "email-dst",
-        "distribution": 0,
-        "value": ioc_from_headers["dst-email"],
-        "to_ids": False,
-    })
+    misp_attributes.append(
+        {
+            "category": "Payload delivery",
+            "type": "email-dst",
+            "distribution": 0,
+            "value": ioc_from_headers["dst-email"],
+            "to_ids": False,
+        }
+    )
 if "src-ip" in ioc_from_headers:
-    misp_attributes.append({
-        "category": "Network activity",
-        "type": "ip-src",
-        "distribution": 5,
-        "value": ioc_from_headers["src-ip"],
-        "to_ids": True,
-    })
+    misp_attributes.append(
+        {
+            "category": "Network activity",
+            "type": "ip-src",
+            "distribution": 5,
+            "value": ioc_from_headers["src-ip"],
+            "to_ids": True,
+        }
+    )
 for eml_body in eml.get_payload():
     ioc_from_body = parse_ioc_from_eml_body(eml_body)
     if ioc_from_body.get("links"):
         for link in ioc_from_body.get("links"):
-            misp_attributes.append({
-                "category": "Payload delivery",
-                "type": "link",
-                "distribution": 5,
-                "value": link,
-                "to_ids": True,
-            })
+            misp_attributes.append(
+                {
+                    "category": "Payload delivery",
+                    "type": "link",
+                    "distribution": 5,
+                    "value": link,
+                    "to_ids": True,
+                }
+            )
 for misp_attribute in misp_attributes:
     attribute = MISPAttribute()
     attribute.category = misp_attribute["category"]
@@ -103,7 +113,6 @@ for misp_attribute in misp_attributes:
     attribute.to_ids = misp_attribute["to_ids"]
     misp.add_attribute(event=event, attribute=attribute, pythonify=True)
 
-
     # Tag attribute
     if misp_attribute["type"] in ["email-dst"]:
-        misp.tag(attribute, "tlp:amber") 
+        misp.tag(attribute, "tlp:amber")
