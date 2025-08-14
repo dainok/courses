@@ -29,6 +29,8 @@ for device in devices["data"]:
     interfaces = req.json()
 
     for interface in interfaces["data"]:
+        if "ethernet" not in interface["name"]:
+            continue
         interface_id = interface["id"]
 
         # Get interface details
