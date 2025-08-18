@@ -39,7 +39,7 @@ for device in devices["data"]:
     for interface in interfaces["data"]:
         interface_id = interface["id"]
         interface_name = interface["name"]
-        interface_description = interface["comment"]
+        interface_description = interface.get("comment", "")
         interface_type = None
         interface_ip = None
         if "layer3" in interface:
