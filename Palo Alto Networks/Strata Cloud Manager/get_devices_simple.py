@@ -27,9 +27,10 @@ token = req.json()["access_token"]
 # Get devices
 headers = {
     "Content-Type": "application/x-www-form-urlencoded",
-    "Authorization": f"Bearer {token}"
+    "Authorization": f"Bearer {token}",
 }
-req = requests.get("https://api.strata.paloaltonetworks.com/config/setup/v1/devices", headers=headers)
+req = requests.get(
+    "https://api.strata.paloaltonetworks.com/config/setup/v1/devices", headers=headers
+)
 req.raise_for_status()
 pprint(req.json())
-

@@ -44,15 +44,19 @@ for device in devices["data"]:
         interface_ip = None
         if "layer3" in interface:
             interface_type = "layer3"
-            interface_ip = ",".join(ip["name"] for ip in interface.get("layer3", {}).get("ip", []))
-        
+            interface_ip = ",".join(
+                ip["name"] for ip in interface.get("layer3", {}).get("ip", [])
+            )
+
         # Add line to the table
-        lines.append([
-            device_hostname,
-            interface_name,
-            interface_type,
-            interface_ip,
-            interface_description,
-        ])
+        lines.append(
+            [
+                device_hostname,
+                interface_name,
+                interface_type,
+                interface_ip,
+                interface_description,
+            ]
+        )
 
 print(tabulate(lines, headers=headers, tablefmt="grid"))

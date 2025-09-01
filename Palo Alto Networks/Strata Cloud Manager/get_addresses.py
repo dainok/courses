@@ -29,10 +29,12 @@ for item in req.json()["data"]:
         host = item["ip_netmask"]
     if "fqdn" in item:
         host = item["fqdn"]
-    lines.append([
-        item.get("folder", ""),
-        item.get("snippet", ""),
-        item.get("name", ""),
-        host,
-    ])
+    lines.append(
+        [
+            item.get("folder", ""),
+            item.get("snippet", ""),
+            item.get("name", ""),
+            host,
+        ]
+    )
 print(tabulate(lines, headers=headers, tablefmt="grid"))
