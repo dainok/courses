@@ -6,7 +6,6 @@ import yaml
 import markdown
 import weasyprint
 import lxml.html  # nosec
-from PIL import Image, ImageFont
 
 # See https://python-markdown.github.io/extensions/
 MARKDOWN_OPTIONS = {
@@ -117,8 +116,8 @@ with open(f"{book_folder}.html", "w") as fh:
         stylesheets=[
             weasyprint.CSS(filename="../templates/common/css/fonts.css"),
             weasyprint.CSS(filename="../templates/common/css/common.css"),
-            weasyprint.CSS(filename=f"../templates/book/css/paper_size.css"),
-            weasyprint.CSS(filename=f"../templates/book/css/style.css"),
+            weasyprint.CSS(filename="../templates/book/css/paper_size.css"),
+            weasyprint.CSS(filename="../templates/book/css/style.css"),
         ],
         font_config=font_config,
     )

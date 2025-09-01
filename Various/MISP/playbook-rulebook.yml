@@ -16,5 +16,5 @@
       actions:
         - run_playbook:
             name: playbook-misp-add-ioc.yml
-      # - print_event:
-      #     pretty: true
+        - print_event:
+            pretty: true

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 from getpass import getpass
-from panos.firewall import Firewall, FirewallCommit
+from panos.firewall import Firewall
 
 token = getpass("Token: ")
 fw = Firewall("172.24.1.34", api_key=token)

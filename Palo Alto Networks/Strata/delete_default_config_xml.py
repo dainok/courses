@@ -9,6 +9,8 @@ headers = {
     "Content-Type": "application/x-www-form-urlencoded",
 }
 
+token = getpass("Token: ")
+
 # Defining paths
 xpaths = [
     "/config/devices/entry/vsys/entry[@name='vsys1']/rulebase/security/rules/entry[@name='rule1']",

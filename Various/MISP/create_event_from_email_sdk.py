@@ -4,7 +4,7 @@
 import sys
 import logging
 import urllib3
-from pymisp import MISPEvent, MISPAttribute, PyMISP, MISPAttribute
+from pymisp import MISPEvent, MISPAttribute, PyMISP
 import yaml
 import email
 from functions import parse_ioc_from_eml_headers, parse_ioc_from_eml_body

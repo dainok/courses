@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import time
 from getpass import getpass
 import ssl
 from pan import xapi

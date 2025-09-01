@@ -41,8 +41,8 @@ for device in devices["data"]:
 
         # Edit comment
         interface_name = interface_details["name"]
-        interface_details[
-            "comment"
-        ] = f"{interface_name} managed via API ({api_timestamp})"
+        interface_details["comment"] = (
+            f"{interface_name} managed via API ({api_timestamp})"
+        )
         req = client.put(interface_url, json=interface_details)
         req.raise_for_status()

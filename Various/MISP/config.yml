@@ -1,6 +1,6 @@
 misp:
   url: https://172.24.1.18/
-  verify_cert: False
+  verify_cert: false
   timeout: 5
 event:
   title: Suspicious email

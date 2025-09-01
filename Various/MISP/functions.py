@@ -52,13 +52,13 @@ def parse_ioc_from_eml_headers(headers):
             parsed_data["subject"] = ignore_dirty_chars(value)
         if (
             header == "Received-SPF"
-            and not "src-ip" in parsed_data
+            and "src-ip" not in parsed_data
             and extract_clientip(value)
         ):
             parsed_data["src-ip"] = extract_clientip(value)
         if (
             header == "Received"
-            and not "src-ip" in parsed_data
+            and "src-ip" not in parsed_data
             and extract_fromip(value)
         ):
             parsed_data["src-ip"] = extract_fromip(value)

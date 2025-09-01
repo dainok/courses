@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 from getpass import getpass
 import ssl
-import xml.etree.ElementTree as ET
 from pan import xapi
 
 addresses = {

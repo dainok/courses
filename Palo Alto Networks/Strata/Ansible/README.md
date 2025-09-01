@@ -26,6 +26,6 @@ Playbooks are not production ready, but can serve as examples to build your own.
 
 ## References
 
-- Playbook examples: https://github.com/PaloAltoNetworks/ansible-playbooks
-- Ansible Doc: https://ansible-pan.readthedocs.io/en/latest/modules/index.html
-- Galaxy: https://galaxy.ansible.com/ui/repo/published/paloaltonetworks/panos/
+- [Playbook examples](https://github.com/PaloAltoNetworks/ansible-playbooks)
+- [Ansible Doc](https://ansible-pan.readthedocs.io/en/latest/modules/index.html)
+- [Galaxy](https://galaxy.ansible.com/ui/repo/published/paloaltonetworks/panos/)

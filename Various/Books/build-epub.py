@@ -56,17 +56,17 @@ metadata = {
     "rights": f"© {year} Andrea Dainese",
 }
 
-with open(f"metadata.yml", "w") as fh:
+with open("metadata.yml", "w") as fh:
     yaml.dump(metadata, fh, allow_unicode=True, sort_keys=True)
 
 # Create command
 book_cmd_epub = base_cmd_epub.copy()
-print(f" - Adding cover cover.jpg")
-book_cmd_epub.append(f"--epub-cover-image='cover.jpg'")
+print(" - Adding cover cover.jpg")
+book_cmd_epub.append("--epub-cover-image='cover.jpg'")
 print(f" - Output on {book_folder}.epub")
 book_cmd_epub.append(f"--output '../{book_folder}.epub'")
-print(f" - Adding metadata metadata.yml")
-book_cmd_epub.append(f"--metadata-file='metadata.yml'")
+print(" - Adding metadata metadata.yml")
+book_cmd_epub.append("--metadata-file='metadata.yml'")
 
 # Add chapters
 for chapter_file in chapter_files:

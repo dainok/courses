@@ -11,7 +11,7 @@ headers = {
 }
 
 # Getting configured elements
-url = f"https://172.24.1.34/restapi/v10.2/Objects/Addresses?location=vsys&vsys=vsys1"
+url = "https://172.24.1.34/restapi/v10.2/Objects/Addresses?location=vsys&vsys=vsys1"
 req = requests.get(url, headers=headers, verify=False)
 req.raise_for_status()
 

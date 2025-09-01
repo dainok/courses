@@ -182,9 +182,11 @@ for interface in interfaces:
             [
                 "device",
                 current_device,
-                int(device_compliant_interfaces / device_total_interfaces * 100)
-                if device_total_interfaces > 0
-                else "NA",
+                (
+                    int(device_compliant_interfaces / device_total_interfaces * 100)
+                    if device_total_interfaces > 0
+                    else "NA"
+                ),
                 device_compliant_interfaces,
                 device_total_interfaces,
             ]
@@ -207,9 +209,11 @@ else:
             [
                 "device",
                 current_device,
-                int(device_compliant_interfaces / device_total_interfaces * 100)
-                if device_total_interfaces > 0
-                else "NA",
+                (
+                    int(device_compliant_interfaces / device_total_interfaces * 100)
+                    if device_total_interfaces > 0
+                    else "NA"
+                ),
                 device_compliant_interfaces,
                 device_total_interfaces,
             ]
@@ -218,9 +222,11 @@ else:
             [
                 "overall",
                 "",
-                int(overall_compliant_interfaces / overall_total_interfaces * 100)
-                if overall_total_interfaces > 0
-                else "NA",
+                (
+                    int(overall_compliant_interfaces / overall_total_interfaces * 100)
+                    if overall_total_interfaces > 0
+                    else "NA"
+                ),
                 overall_compliant_interfaces,
                 overall_total_interfaces,
             ]

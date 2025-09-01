@@ -15,4 +15,4 @@ fw.commit(cmd=cmd, sync=True)
 if "no changes to commit" in fw.status_detail:
     pass
 elif fw.status != "success" or "successfully" not in fw.status_detail:
-    print("ERROR: failed to commit."
+    print("ERROR: failed to commit.")

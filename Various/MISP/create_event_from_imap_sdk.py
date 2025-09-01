@@ -6,7 +6,7 @@ import logging
 import email
 import yaml
 import urllib3
-from pymisp import MISPEvent, MISPAttribute, PyMISP, MISPAttribute
+from pymisp import MISPEvent, MISPAttribute, PyMISP
 from functions import parse_ioc_from_eml_body, parse_ioc_from_eml_headers, email_unpack
 
 username = "bithorn.it@gmail.com"

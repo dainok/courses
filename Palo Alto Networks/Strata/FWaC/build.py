@@ -154,7 +154,7 @@ for rule in rules:
 
 # Read rule hit count
 print("*" * 78)
-print(f"* Loading rule hit count")
+print("* Loading rule hit count")
 print("*" * 78)
 cmd_xml = f"<show><rule-hit-count><vsys><vsys-name><entry name='{VSYS}'><rule-base><entry name='security'><rules><all/></rules></entry></rule-base></entry></vsys-name></vsys></rule-hit-count></show>"
 xapi.op(cmd=cmd_xml)
@@ -181,7 +181,7 @@ print("* Clearing configuration")
 element_vsys = running_config.find(f".//vsys/entry[@name='{VSYS}']")
 
 element_rulebase = element_vsys.find("./rulebase")
-if not element_rulebase is not None:
+if element_rulebase is not None:
     element_rulebase = ElementTree.SubElement(element_vsys, "rulebase")
 
 element_address = element_vsys.find("./address")
