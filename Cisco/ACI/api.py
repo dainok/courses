@@ -1,7 +1,6 @@
 from datetime import datetime, timedelta
 import requests
 from requests.models import Response
-from requests.auth import HTTPBasicAuth
 
 
 class APIClient(requests.Session):
