@@ -1,0 +1,250 @@
+{
+    "totalCount": "1",
+    "imdata": [
+        {
+            "fvBD": {
+                "attributes": {
+                    "OptimizeWanBandwidth": "no",
+                    "annotation": "orchestrator:msc-shadow:no",
+                    "arpFlood": "yes",
+                    "bcastP": "225.0.56.96",
+                    "childAction": "",
+                    "configIssues": "",
+                    "descr": "",
+                    "dn": "uni/tn-TENANT-LAB/BD-BD-MI-0094-TEST",
+                    "enableRogueExceptMac": "no",
+                    "epClear": "no",
+                    "epMoveDetectMode": "",
+                    "extMngdBy": "",
+                    "hostBasedRouting": "no",
+                    "intersiteBumTrafficAllow": "no",
+                    "intersiteL2Stretch": "no",
+                    "ipLearning": "yes",
+                    "ipv6McastAllow": "no",
+                    "lcOwn": "local",
+                    "limitIpLearnToSubnets": "yes",
+                    "llAddr": "::",
+                    "mac": "00:22:BD:F8:19:FF",
+                    "mcastARPDrop": "yes",
+                    "mcastAllow": "no",
+                    "modTs": "2025-09-12T06:26:12.773+00:00",
+                    "monPolDn": "uni/tn-common/monepg-default",
+                    "mtu": "inherit",
+                    "multiDstPktAct": "bd-flood",
+                    "name": "BD-MI-0094-TEST",
+                    "nameAlias": "",
+                    "ownerKey": "",
+                    "ownerTag": "",
+                    "pcTag": "16395",
+                    "scope": "2818050",
+                    "seg": "14974956",
+                    "serviceBdRoutingDisable": "no",
+                    "status": "",
+                    "type": "regular",
+                    "uid": "0",
+                    "unicastRoute": "no",
+                    "unkMacUcastAct": "flood",
+                    "unkMcastAct": "flood",
+                    "userdom": ":all:",
+                    "v6unkMcastAct": "flood",
+                    "vmac": "not-applicable"
+                },
+                "children": [
+                    {
+                        "fvRsBDToNdP": {
+                            "attributes": {
+                                "annotation": "",
+                                "childAction": "",
+                                "extMngdBy": "",
+                                "forceResolve": "yes",
+                                "lcOwn": "local",
+                                "modTs": "2025-09-12T06:26:12.689+00:00",
+                                "monPolDn": "uni/tn-common/monepg-default",
+                                "rType": "mo",
+                                "rn": "rsBDToNdP",
+                                "state": "formed",
+                                "stateQual": "default-target",
+                                "status": "",
+                                "tCl": "ndIfPol",
+                                "tContextDn": "",
+                                "tDn": "uni/tn-common/ndifpol-default",
+                                "tRn": "ndifpol-default",
+                                "tType": "name",
+                                "tnNdIfPolName": "",
+                                "uid": "0",
+                                "userdom": ":all:"
+                            }
+                        }
+                    },
+                    {
+                        "fvRsBdToEpRet": {
+                            "attributes": {
+                                "annotation": "",
+                                "childAction": "",
+                                "extMngdBy": "",
+                                "forceResolve": "yes",
+                                "lcOwn": "local",
+                                "modTs": "2025-09-12T06:26:12.689+00:00",
+                                "monPolDn": "uni/tn-common/monepg-default",
+                                "rType": "mo",
+                                "resolveAct": "resolve",
+                                "rn": "rsbdToEpRet",
+                                "state": "formed",
+                                "stateQual": "default-target",
+                                "status": "",
+                                "tCl": "fvEpRetPol",
+                                "tContextDn": "",
+                                "tDn": "uni/tn-common/epRPol-default",
+                                "tRn": "epRPol-default",
+                                "tType": "name",
+                                "tnFvEpRetPolName": "",
+                                "uid": "0",
+                                "userdom": ":all:"
+                            }
+                        }
+                    },
+                    {
+                        "fvRsMldsn": {
+                            "attributes": {
+                                "annotation": "",
+                                "childAction": "",
+                                "extMngdBy": "",
+                                "forceResolve": "yes",
+                                "lcOwn": "local",
+                                "modTs": "2025-09-12T06:26:12.689+00:00",
+                                "monPolDn": "uni/tn-common/monepg-default",
+                                "rType": "mo",
+                                "rn": "rsmldsn",
+                                "state": "formed",
+                                "stateQual": "default-target",
+                                "status": "",
+                                "tCl": "mldSnoopPol",
+                                "tContextDn": "",
+                                "tDn": "uni/tn-common/mldsnoopPol-default",
+                                "tRn": "mldsnoopPol-default",
+                                "tType": "name",
+                                "tnMldSnoopPolName": "",
+                                "uid": "0",
+                                "userdom": ":all:"
+                            }
+                        }
+                    },
+                    {
+                        "fvRsCtx": {
+                            "attributes": {
+                                "annotation": "",
+                                "childAction": "",
+                                "extMngdBy": "",
+                                "forceResolve": "yes",
+                                "lcOwn": "local",
+                                "modTs": "2025-09-12T06:26:12.689+00:00",
+                                "monPolDn": "uni/tn-common/monepg-default",
+                                "rType": "mo",
+                                "rn": "rsctx",
+                                "state": "formed",
+                                "stateQual": "none",
+                                "status": "",
+                                "tCl": "fvCtx",
+                                "tContextDn": "",
+                                "tDn": "uni/tn-TENANT-LAB/ctx-VRF-default",
+                                "tRn": "ctx-VRF-default",
+                                "tType": "name",
+                                "tnFvCtxName": "VRF-default",
+                                "uid": "0",
+                                "userdom": ":all:"
+                            }
+                        }
+                    },
+                    {
+                        "fvRsIgmpsn": {
+                            "attributes": {
+                                "annotation": "",
+                                "childAction": "",
+                                "extMngdBy": "",
+                                "forceResolve": "yes",
+                                "lcOwn": "local",
+                                "modTs": "2025-09-12T06:26:12.689+00:00",
+                                "monPolDn": "uni/tn-common/monepg-default",
+                                "rType": "mo",
+                                "rn": "rsigmpsn",
+                                "state": "formed",
+                                "stateQual": "default-target",
+                                "status": "",
+                                "tCl": "igmpSnoopPol",
+                                "tContextDn": "",
+                                "tDn": "uni/tn-common/snPol-default",
+                                "tRn": "snPol-default",
+                                "tType": "name",
+                                "tnIgmpSnoopPolName": "",
+                                "uid": "0",
+                                "userdom": ":all:"
+                            }
+                        }
+                    },
+                    {
+                        "fvRtBd": {
+                            "attributes": {
+                                "childAction": "",
+                                "lcOwn": "local",
+                                "modTs": "2025-09-12T06:26:12.689+00:00",
+                                "rn": "rtbd-[uni/tn-TENANT-LAB/ap-APP-default/epg-EPG-MI-0094-TEST]",
+                                "status": "",
+                                "tCl": "fvAEPg",
+                                "tDn": "uni/tn-TENANT-LAB/ap-APP-default/epg-EPG-MI-0094-TEST"
+                            }
+                        }
+                    },
+                    {
+                        "fvSiteAssociated": {
+                            "attributes": {
+                                "annotation": "",
+                                "childAction": "",
+                                "descr": "",
+                                "extMngdBy": "",
+                                "lcOwn": "local",
+                                "modTs": "2025-09-12T06:27:13.464+00:00",
+                                "monPolDn": "uni/tn-common/monepg-default",
+                                "name": "",
+                                "nameAlias": "",
+                                "ownerKey": "",
+                                "ownerTag": "",
+                                "rn": "stAsc",
+                                "siteId": "2",
+                                "siteStretched": "unspecified",
+                                "status": "",
+                                "uid": "0",
+                                "userdom": ":all:"
+                            },
+                            "children": [
+                                {
+                                    "fvRemoteId": {
+                                        "attributes": {
+                                            "annotation": "",
+                                            "childAction": "",
+                                            "descr": "",
+                                            "extMngdBy": "",
+                                            "lcOwn": "local",
+                                            "modTs": "2025-09-12T06:27:13.464+00:00",
+                                            "monPolDn": "uni/tn-common/monepg-default",
+                                            "name": "1",
+                                            "nameAlias": "",
+                                            "ownerKey": "",
+                                            "ownerTag": "",
+                                            "remoteCtxPcTag": "any",
+                                            "remotePcTag": "14974947",
+                                            "rn": "site-1",
+                                            "siteId": "1",
+                                            "status": "",
+                                            "uid": "0",
+                                            "userdom": ":all:"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
