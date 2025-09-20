@@ -1,18 +1,61 @@
-# Choose your learning path: unlock the power of automation
+# Fundamentals of network automation series
 
-Embark on a journey to elevate your network engineering skills by choosing the right path in network automation. Whether you're looking to automate firewall management with Palo Alto Networks, streamline configurations with Ansible, or delve into advanced network emulation with UNetLab, this learning path has you covered. Tailored for IT professionals and network engineers, each series offers comprehensive knowledge and practical experience to help you master automation techniques and enhance your career in network operations. Select the series that aligns with your goals and take your network automation skills to the next level.
+In this series, we'll explore the core principles of network automation, essential tools, and practical techniques to streamline your networ
 
-* [Fundamentals of network automation series](https://www.patreon.com/posts/fundamentals-of-108910463): we'll explore the core principles of network automation, essential tools, and practical techniques to streamline your network operations. Whether you're new to the field or looking to sharpen your skills, our posts will provide the foundational knowledge you need to succeed.
-* [Ansible automation series](https://www.patreon.com/posts/ansible-series-108907546): unlock exclusive content focused on mastering Ansible for network automation. Dive into detailed tutorials and real-world use cases that will help you streamline your network configurations and automate complex tasks with ease. Stay ahead of the curve with practical insights and hands-on experience that will transform your approach to network management.
-* [Cisco automation series](https://www.patreon.com/posts/118070916): a comprehensive series of posts detailing how to automate Cisco solutions, covering best practices, tools, and techniques to streamline network management, improve efficiency, and reduce manual tasks.
-* [Nautobot automation series](https://www.patreon.com/posts/nautobot-series-107863147): gain exclusive access to content that will elevate your network management skills. Stay ahead of the curve and become proficient in using Nautobot for network automation.
-* [OT/ICS series](https://www.patreon.com/posts/120111860): focus on Operational Technology (OT) and Industrial Control Systems (ICS), covering lab setups, security best practices, hands-on learning experiences, and insights into securing and managing critical infrastructure.
-* [Palo Alto Networks automation series](https://www.patreon.com/posts/palo-alto-series-109901916): gain exclusive access to advanced content focused on automating Palo Alto Networks solutions. Explore in-depth tutorials and practical applications for automating firewall management, leveraging Cortex XDR for extended detection and response, and integrating Cortex XSOAR for security orchestration and automation.
-* [Threat Intelligence automation series](https://www.patreon.com/posts/128063674): automating threat intelligence is transforming cybersecurity by quickly detecting and responding to threats. This series explores how automation can enhance threat detection, improve response times, and strengthen your overall security strategy.
-* [UNetLab v3 development series](https://www.patreon.com/posts/unetlab-v3-108477005): gain exclusive access to a hands-on journey through the development of UNetLab. Follow along as we take you step by step through the evolution of this powerful network emulation tool.
+In this series, we'll explore the core principles of network automation, essential tools, and practical techniques to streamline your network operations. Whether you're new to the field or looking to sharpen your skills, our posts will provide the foundational knowledge you need to succeed. Join us on Patreon and transform the way you manage your network!
+
+## Theory, Design, and Approach
+
+Network automation is transforming IT operations, but the journey from theory to implementation requires a solid foundation in both design and approach. Review principles of efficient network design, practical strategies for configuration management, and frameworks for scalable, adaptable solutions.
+
+* [01. Key steps for Real-World success](https://www.patreon.com/posts/113343374)
+* [02. Review of SNMP Fundamentals](https://www.patreon.com/posts/114164191)
+* [03. Parsing text with TextFSM](https://www.patreon.com/posts/127494112)
+* [04. TextFSM: parsing non-tabular text](https://www.patreon.com/posts/127501366)  (paid members only)
+* [05. TextFSM: parsing tabular text](https://www.patreon.com/posts/127515978) (paid members only)
+
+## Git Essentials: A Step-by-Step Guide to Version Control Basics
+
+Learn the fundamentals of Git, the powerful version control system used by developers worldwide. Perfect for beginners or those looking to solidify their understanding of Git basics!
+
+* [01. Git fundamentals for developers and IT professionals](https://www.patreon.com/posts/111155980)
+* [02. Collaborating with Git by working with remote repositories and forks](https://www.patreon.com/posts/111643903)
+* [03. Advanced Git commands](https://www.patreon.com/posts/112035451)
+* [04. Contributing to NTC Templates with Git and GitHub](https://www.patreon.com/posts/112037177) (paid members only)
+
+## Application Security with OAuth: Essential Insights
+
+Discover essential insights on application security and OAuth, from basic concepts to advanced practices, designed to help you secure your apps effectively.
+
+* [01. Diving into OAuth 2.0](https://www.patreon.com/posts/110393956)
+* [02. OAuth Authorization Code flow with Patreon](https://www.patreon.com/posts/110398171)
+* [03. OAuth Client Credentials flow with Patreon](https://www.patreon.com/posts/110456633)
+
+## EVE-NG Workbook for DevNetOps
+
+Ready to build your network automation lab? In this path, we’ll show you how to set up EVE-NG, the powerful network emulator, to create an effective testing environment. Ideal for all skill levels.
+
+* [01. Introduction to EVE-NG platform](https://www.patreon.com/posts/108911063)
+* [02. Prerequisites for EVE-NG](https://www.patreon.com/posts/108911243)
+* [03. Installing Ubuntu Linux](https://www.patreon.com/posts/108911499)
+* [04. Installing EVE-NG 5](https://www.patreon.com/posts/108920885)
+* [05. Installing EVE-NG 6](https://www.patreon.com/posts/113363744)
+* [06. Customizing EVE-NG](https://www.patreon.com/posts/108921627)
+* [07. EVE-NG network interfaces explained](https://www.patreon.com/posts/123373240)
+* [08. Troubleshooting EVE-NG nodes that fail to start](https://www.patreon.com/posts/135457010)
+* [08. Automating EVE-NG installation](https://www.patreon.com/posts/108922608) (paid members only)
+
+## Other automation topics
+
+In this series of posts, we'll dive into the world of automation, exploring how it can streamline processes, improve efficiency, and reduce manual workloads. From automating documentation workflows to implementing robust CI/CD pipelines, these posts cover a variety of topics aimed at helping you harness the power of automation in your own projects. Whether you're looking to optimize your personal workflow or improve business operations, this series will provide practical insights and strategies to make automation work for you.
+
+* [Simplifying documentation with Markdown and CI/CD](https://www.patreon.com/posts/119837605/)
+* [Writing presentations with Markdown](https://www.patreon.com/posts/125518379)
 
 ## Get Started Today
 
-By joining this Patreon series, you’ll gain exclusive access to content that will elevate your network management skills. Thank you for your support! Let’s embark on this journey to revolutionize network automation.
+By joining this Patreon series, you’ll gain exclusive access to content that will elevate your network management skills. Stay ahead of the curve and become proficient in using Nautobot for network automation.
+
+Thank you for your support! Let’s embark on this journey to revolutionize network automation with Nautobot together.
 
 If you found this information useful, consider supporting us on Patreon for more in-depth guides and tutorials.

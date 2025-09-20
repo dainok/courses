@@ -177,6 +177,8 @@ cython_debug/
 *.zip
 iourc
 *.bkp
+EVE-NG\ setup/files/iol
+EVE-NG\ setup/files/qemu
 
 # Secret files
 secrets.yml
