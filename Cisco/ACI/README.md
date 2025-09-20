@@ -18,6 +18,9 @@ This section is dedicated to Cisco ACI, Cisco’s flagship SDN solution for data
 * [04. Cisco ACI object model explained](https://www.patreon.com/posts/137148380)
 * [05. Logging into Cisco ACI](https://www.patreon.com/posts/137867414/)
 * [06. From Single-Site to Multi-Site with NDO](https://www.patreon.com/posts/139120165/) (released on 24/09)
+* [07. Circular Dependencies with NDO](https://www.patreon.com/posts/139121389/) (released on 01/10)
+* [08. Frameworks for Projects with Cisco ACI and NDO](https://www.patreon.com/posts/139319477/) (released on 12/10)
+* [09. Simplifying the Data Structure](https://www.patreon.com/posts/139320986/)
 
 ## Other posts about Cisco equipments
 

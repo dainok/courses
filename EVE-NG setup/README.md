@@ -9,10 +9,11 @@ In this series, we'll explore the core principles of network automation, essenti
 Network automation is transforming IT operations, but the journey from theory to implementation requires a solid foundation in both design and approach. Review principles of efficient network design, practical strategies for configuration management, and frameworks for scalable, adaptable solutions.
 
 * [01. Key steps for Real-World success](https://www.patreon.com/posts/113343374)
-* [02. Review of SNMP Fundamentals](https://www.patreon.com/posts/114164191)
-* [03. Parsing text with TextFSM](https://www.patreon.com/posts/127494112)
-* [04. TextFSM: parsing non-tabular text](https://www.patreon.com/posts/127501366)  (paid members only)
-* [05. TextFSM: parsing tabular text](https://www.patreon.com/posts/127515978) (paid members only)
+* [02. Simplifying the Data Structure](https://www.patreon.com/posts/139320986/)
+* [03. Review of SNMP Fundamentals](https://www.patreon.com/posts/114164191)
+* [04. Parsing text with TextFSM](https://www.patreon.com/posts/127494112)
+* [05. TextFSM: parsing non-tabular text](https://www.patreon.com/posts/127501366)  (paid members only)
+* [06. TextFSM: parsing tabular text](https://www.patreon.com/posts/127515978) (paid members only)
 
 ## Git Essentials: A Step-by-Step Guide to Version Control Basics
 
@@ -44,6 +45,7 @@ Ready to build your network automation lab? In this path, we’ll show you how t
 * [07. EVE-NG network interfaces explained](https://www.patreon.com/posts/123373240)
 * [08. Troubleshooting EVE-NG nodes that fail to start](https://www.patreon.com/posts/135457010)
 * [08. Automating EVE-NG installation](https://www.patreon.com/posts/108922608) (paid members only)
+* [09. EVE-NG Linux VM SSH troubleshooting](https://www.patreon.com/posts/139321409/)
 
 ## Other automation topics
 
