@@ -1,18 +1,48 @@
-# Choose your learning path: unlock the power of automation
+# Ansible automation series
 
-Embark on a journey to elevate your network engineering skills by choosing the right path in network automation. Whether you're looking to automate firewall management with Palo Alto Networks, streamline configurations with Ansible, or delve into advanced network emulation with UNetLab, this learning path has you covered. Tailored for IT professionals and network engineers, each series offers comprehensive knowledge and practical experience to help you master automation techniques and enhance your career in network operations. Select the series that aligns with your goals and take your network automation skills to the next level.
+Welcome to our series focused on **Ansible Automation**! In this comprehensive series, we'll delve into Ansible, an incredibly powerful tool designed to automate a wide range of IT tasks and streamline the management of complex deployments. From configuration management to application deployment, Ansible simplifies the orchestration of your IT infrastructure, allowing you to manage systems more efficiently and effectively.
 
-* [Fundamentals of network automation series](https://www.patreon.com/posts/fundamentals-of-108910463): we'll explore the core principles of network automation, essential tools, and practical techniques to streamline your network operations. Whether you're new to the field or looking to sharpen your skills, our posts will provide the foundational knowledge you need to succeed.
-* [Ansible automation series](https://www.patreon.com/posts/ansible-series-108907546): unlock exclusive content focused on mastering Ansible for network automation. Dive into detailed tutorials and real-world use cases that will help you streamline your network configurations and automate complex tasks with ease. Stay ahead of the curve with practical insights and hands-on experience that will transform your approach to network management.
-* [Cisco automation series](https://www.patreon.com/posts/118070916): a comprehensive series of posts detailing how to automate Cisco solutions, covering best practices, tools, and techniques to streamline network management, improve efficiency, and reduce manual tasks.
-* [Nautobot automation series](https://www.patreon.com/posts/nautobot-series-107863147): gain exclusive access to content that will elevate your network management skills. Stay ahead of the curve and become proficient in using Nautobot for network automation.
-* [OT/ICS series](https://www.patreon.com/posts/120111860): focus on Operational Technology (OT) and Industrial Control Systems (ICS), covering lab setups, security best practices, hands-on learning experiences, and insights into securing and managing critical infrastructure.
-* [Palo Alto Networks automation series](https://www.patreon.com/posts/palo-alto-series-109901916): gain exclusive access to advanced content focused on automating Palo Alto Networks solutions. Explore in-depth tutorials and practical applications for automating firewall management, leveraging Cortex XDR for extended detection and response, and integrating Cortex XSOAR for security orchestration and automation.
-* [Threat Intelligence automation series](https://www.patreon.com/posts/128063674): automating threat intelligence is transforming cybersecurity by quickly detecting and responding to threats. This series explores how automation can enhance threat detection, improve response times, and strengthen your overall security strategy.
-* [UNetLab v3 development series](https://www.patreon.com/posts/unetlab-v3-108477005): gain exclusive access to a hands-on journey through the development of UNetLab. Follow along as we take you step by step through the evolution of this powerful network emulation tool.
+Throughout this journey, we'll start with the basics and gradually move towards advanced topics, providing you with hands-on examples, best practices, and expert insights. Whether you're new to automation or looking to enhance your existing skills, there's something here for everyone.
+
+Join us as we explore the world of Ansible and unlock the potential of automation together!
+
+## Ansible Workbook for DevNetOps
+
+Whether you're new to automation or looking to deepen your skills, this series will guide you through every step of mastering Ansible. From the basics to advanced techniques, we'll cover everything you need to become proficient in automating IT tasks.
+
+* [01. Introduction to network automation with Ansible](https://www.patreon.com/posts/108909067)
+* [02. Preparing your Ansible environment](https://www.patreon.com/posts/108960424)
+* [03. Introduction to Ansible Automation](https://www.patreon.com/posts/108961368)
+* [04. Ansible inventory](https://www.patreon.com/posts/109014399)
+* [05. Ansible configuration](https://www.patreon.com/posts/109398567) (paid members only)
+* [06. Ansible ad hoc commands](https://www.patreon.com/posts/109110222) (paid members only)
+* [07. Ansible Playbooks and variables](https://www.patreon.com/posts/109844619)
+* [08. Defining and using variables in Ansible](https://www.patreon.com/posts/109846061)
+* [09. Ansible statements](https://www.patreon.com/posts/111918170)
+* [10. Strategies for troubleshooting Ansible errors](https://www.patreon.com/posts/112219183)
+* [11. Handling errors in Ansible playbooks](https://www.patreon.com/posts/112423659)
+* [12. Using Ansible handlers for optimized task execution](https://www.patreon.com/posts/112431507/)
+* [13. Ansible parsers and filters](https://www.patreon.com/posts/112609724)
+* [14. Password Management with Ansible](https://www.patreon.com/posts/114699180)
+* [15. Enhancing Ansible output](https://www.patreon.com/posts/114700214)
+* [16. Boosting Ansible performance](https://www.patreon.com/posts/112734638) (paid members only)
+* [17. Running Ansible playbooks through a Bastion host](https://www.patreon.com/posts/112735645) (paid members only)
+* [18. Key steps for Real-World success](https://www.patreon.com/posts/113343374)
+* [19. Ansible orchestrators and integration tools](https://www.patreon.com/posts/114741859)
+* [20. Key takeaways from the Ansible course](https://www.patreon.com/posts/114697261)
+* [21. Comprehensive Ansible Lab](https://www.patreon.com/posts/114693719) (paid members only)
+* [A1. Managing CLI prompts with Ansible](https://www.patreon.com/posts/123082401) (paid members only)
+* [A2. Reboot a device with Ansible and wait for it to come online](https://www.patreon.com/posts/123083385) (paid members only)
+* [A3. Event-Driven Ansible](https://www.patreon.com/posts/123986566) (paid members only)
+* [A4. Ansible reporting with ARA](https://www.patreon.com/posts/123963177) (paid members only)
+* [A5. Orchestrating playbooks with Ansible AWX](https://www.patreon.com/posts/123375703) (paid members only)
+* [A6. Ansible Galaxy](https://www.patreon.com/posts/124129133) (paid members only)
+* [A7. Delegate Ansible tasks to a different host](https://www.patreon.com/posts/123912656) (paid members only)
+* [A8. Nautobot automation series](https://www.patreon.com/posts/nautobot-series-107863147)
+* [Ansible Workbook for DevNetOps slides](https://www.patreon.com/posts/114697569) (paid memebers only)
 
 ## Get Started Today
 
-By joining this Patreon series, you’ll gain exclusive access to content that will elevate your network management skills. Thank you for your support! Let’s embark on this journey to revolutionize network automation.
+By joining this Patreon series, you'll unlock exclusive content focused on mastering Ansible for network automation. Dive into detailed tutorials and real-world use cases that will help you streamline your network configurations and automate complex tasks with ease. Stay ahead of the curve with practical insights and hands-on experience that will transform your approach to network management.
 
 If you found this information useful, consider supporting us on Patreon for more in-depth guides and tutorials.

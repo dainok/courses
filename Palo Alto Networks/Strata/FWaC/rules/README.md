@@ -1,18 +1,43 @@
-# Choose your learning path: unlock the power of automation
+# Palo Alto Networks automation series
 
-Embark on a journey to elevate your network engineering skills by choosing the right path in network automation. Whether you're looking to automate firewall management with Palo Alto Networks, streamline configurations with Ansible, or delve into advanced network emulation with UNetLab, this learning path has you covered. Tailored for IT professionals and network engineers, each series offers comprehensive knowledge and practical experience to help you master automation techniques and enhance your career in network operations. Select the series that aligns with your goals and take your network automation skills to the next level.
+This series of Patreon posts dives deep into the automation of **Palo Alto Networks** devices and software, offering you a comprehensive guide to streamlining and optimizing your security operations. Throughout the series, we explore how to automate various components, including firewalls, Cortex XDR, and Cortex XSOAR, to enhance your network security and incident response capabilities.
 
-* [Fundamentals of network automation series](https://www.patreon.com/posts/fundamentals-of-108910463): we'll explore the core principles of network automation, essential tools, and practical techniques to streamline your network operations. Whether you're new to the field or looking to sharpen your skills, our posts will provide the foundational knowledge you need to succeed.
-* [Ansible automation series](https://www.patreon.com/posts/ansible-series-108907546): unlock exclusive content focused on mastering Ansible for network automation. Dive into detailed tutorials and real-world use cases that will help you streamline your network configurations and automate complex tasks with ease. Stay ahead of the curve with practical insights and hands-on experience that will transform your approach to network management.
-* [Cisco automation series](https://www.patreon.com/posts/118070916): a comprehensive series of posts detailing how to automate Cisco solutions, covering best practices, tools, and techniques to streamline network management, improve efficiency, and reduce manual tasks.
-* [Nautobot automation series](https://www.patreon.com/posts/nautobot-series-107863147): gain exclusive access to content that will elevate your network management skills. Stay ahead of the curve and become proficient in using Nautobot for network automation.
-* [OT/ICS series](https://www.patreon.com/posts/120111860): focus on Operational Technology (OT) and Industrial Control Systems (ICS), covering lab setups, security best practices, hands-on learning experiences, and insights into securing and managing critical infrastructure.
-* [Palo Alto Networks automation series](https://www.patreon.com/posts/palo-alto-series-109901916): gain exclusive access to advanced content focused on automating Palo Alto Networks solutions. Explore in-depth tutorials and practical applications for automating firewall management, leveraging Cortex XDR for extended detection and response, and integrating Cortex XSOAR for security orchestration and automation.
-* [Threat Intelligence automation series](https://www.patreon.com/posts/128063674): automating threat intelligence is transforming cybersecurity by quickly detecting and responding to threats. This series explores how automation can enhance threat detection, improve response times, and strengthen your overall security strategy.
-* [UNetLab v3 development series](https://www.patreon.com/posts/unetlab-v3-108477005): gain exclusive access to a hands-on journey through the development of UNetLab. Follow along as we take you step by step through the evolution of this powerful network emulation tool.
+By the end of this series, you'll have a solid understanding of how to leverage automation across Palo Alto Networks' solutions, enabling you to enhance your security posture while saving valuable time and resources. Whether you're new to automation or looking to refine your skills, these posts provide practical insights and actionable steps to take your security operations to the next level.
+
+## Mastering Cortex XSOAR
+
+We delve into automating incident response with Cortex XSOAR. We guide you through setting up automated playbooks, integrating third-party tools, and managing the entire incident lifecycle to reduce manual efforts and improve response times.
+
+* [01. Introducing Cortex XSOAR](https://www.patreon.com/posts/109902206)
+* [02. Setting Up Your Cortex XSOAR Lab Environment](https://www.patreon.com/posts/109936138)
+* [03. Configuring Incident Classification in Cortex XSOAR](https://www.patreon.com/posts/110023409)
+* ...
+
+## Firewall automation: enhancing security and efficiency
+
+Palo Alto firewall automation streamlines network security management by leveraging APIs, scripts, and tools like Ansible, Terraform, and PAN-OS automation features. With automation, organizations can efficiently deploy, configure, and update firewall policies, reducing manual errors and response times to threats. Integrating automation with SIEM and SOAR platforms further enhances threat detection and mitigation. This approach not only improves security posture but also boosts operational efficiency, making it easier to manage complex and dynamic network environments.
+
+* [Introduction to Palo Alto firewall automation](https://www.patreon.com/posts/129191502)
+* [Automating Palo Alto Firewall via CLI](https://www.patreon.com/posts/129191880)
+* [Automating Palo Alto Firewall via XML API](https://www.patreon.com/posts/131055775)
+* [Automating Palo Alto Firewall via REST API](https://www.patreon.com/posts/131062799)
+* [Automating Palo Alto Firewall via Python PAN-OS SDK](https://www.patreon.com/posts/131656054)
+* [Automating Palo Alto Firewall via Python PAN SDK](https://www.patreon.com/posts/132016750)
+* [Industrial network segmentation with VLAN Insertion](https://www.patreon.com/posts/120956666)
+
+## Automating Palo Alto cloud based services
+
+Palo Alto Networks’ cloud solutions enable centralized, API-driven management across multi-cloud and hybrid environments. Using REST APIs, SDKs, and tools like Terraform or Ansible, teams can automate policy deployment, configuration, and monitoring at scale. This approach ensures consistent security, faster provisioning, and reduced operational overhead in dynamic, distributed networks.
+
+* [Automating operations with Strata Cloud Manager](https://www.patreon.com/posts/136478576) (released on 31/08/2025)
+* [Authenticating to the Strata Cloud Manager API](https://www.patreon.com/posts/136479164) (released on 07/09/2025)
+* [Optimizing Strata Cloud Manager API usage](https://www.patreon.com/posts/136479656) (paid members only) (released on 14/09/2025)
+* [Retrieving firewall interfaces with Strata Cloud Manager](https://www.patreon.com/posts/136480239) (released on 21/09/2025)
+* [Modifying an object in Strata Cloud Manager](https://www.patreon.com/posts/136480528) (released on 28/09/2025)
+* [Creating an interface in Strata Cloud Manager](https://www.patreon.com/posts/136480852) (released on 05/10/2025)
 
 ## Get Started Today
 
-By joining this Patreon series, you’ll gain exclusive access to content that will elevate your network management skills. Thank you for your support! Let’s embark on this journey to revolutionize network automation.
+By joining this Patreon series, you'll gain exclusive access to advanced content focused on automating Palo Alto Networks solutions. Explore in-depth tutorials and practical applications for automating firewall management, leveraging Cortex XDR for extended detection and response, and integrating Cortex XSOAR for security orchestration and automation.
 
 If you found this information useful, consider supporting us on Patreon for more in-depth guides and tutorials.
