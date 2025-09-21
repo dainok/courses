@@ -29,10 +29,10 @@ Palo Alto firewall automation streamlines network security management by leverag
 
 Palo Alto Networks’ cloud solutions enable centralized, API-driven management across multi-cloud and hybrid environments. Using REST APIs, SDKs, and tools like Terraform or Ansible, teams can automate policy deployment, configuration, and monitoring at scale. This approach ensures consistent security, faster provisioning, and reduced operational overhead in dynamic, distributed networks.
 
-* [Automating operations with Strata Cloud Manager](https://www.patreon.com/posts/136478576) (released on 31/08/2025)
-* [Authenticating to the Strata Cloud Manager API](https://www.patreon.com/posts/136479164) (released on 07/09/2025)
-* [Optimizing Strata Cloud Manager API usage](https://www.patreon.com/posts/136479656) (paid members only) (released on 14/09/2025)
-* [Retrieving firewall interfaces with Strata Cloud Manager](https://www.patreon.com/posts/136480239) (released on 21/09/2025)
+* [Automating operations with Strata Cloud Manager](https://www.patreon.com/posts/136478576)
+* [Authenticating to the Strata Cloud Manager API](https://www.patreon.com/posts/136479164)
+* [Optimizing Strata Cloud Manager API usage](https://www.patreon.com/posts/136479656) (paid members only)
+* [Retrieving firewall interfaces with Strata Cloud Manager](https://www.patreon.com/posts/136480239)
 * [Modifying an object in Strata Cloud Manager](https://www.patreon.com/posts/136480528) (released on 28/09/2025)
 * [Creating an interface in Strata Cloud Manager](https://www.patreon.com/posts/136480852) (released on 05/10/2025)
 
