@@ -21,6 +21,7 @@ This section is dedicated to Cisco ACI, Cisco’s flagship SDN solution for data
 * [07. Circular Dependencies with NDO](https://www.patreon.com/posts/139121389/) (released on 01/10/2025)
 * [08. Frameworks for Projects with Cisco ACI and NDO](https://www.patreon.com/posts/139319477/) (released on 12/10/2025)
 * [09. Simplifying the Data Structure](https://www.patreon.com/posts/139320986/)
+* [10. Managing Cisco NDO Limitations from the APIC](https://www.patreon.com/posts/139724658/) (released on 26/10/2025)
 
 ## Other posts about Cisco equipments
 
