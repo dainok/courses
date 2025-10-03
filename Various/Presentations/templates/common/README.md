@@ -19,4 +19,4 @@ If you found this information useful, consider supporting us on Patreon for more
 
 ## About me
 
-Connect with me on [LinkedIn](http://linkedin.com/in/adainese/), support my work on [Patreon](https://www.patreon.com/c/adainese), join the discussion on [Reddit](https://www.reddit.com/user/a_dainese/), and explore more insights on my [blog](https://www.adainese.it).
+Connect with me on [LinkedIn](http://linkedin.com/in/adainese/), support my work on [Patreon](https://www.patreon.com/c/adainese), join the discussion on [Reddit](https://www.reddit.com/user/a_dainese/), explore more insights on my [blog](https://www.adainese.it), and discover my projects on [GitHub](https://github.com/dainok)
