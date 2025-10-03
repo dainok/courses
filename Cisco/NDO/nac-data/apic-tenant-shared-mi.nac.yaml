@@ -1,0 +1,164 @@
+apic:
+  tenants:
+    - application_profiles:
+        - endpoint_groups:
+            - bridge_domain: SHARED-0111-PROD-DMZ_BD
+              intra_epg_isolation: false
+              name: SHARED-0111-PROD-DMZ_EPG
+              ndo_managed: true
+              physical_domains:
+                - Phy_Domain
+              proxy_arp: false
+              static_ports:
+                - deployment_immediacy: immediate
+                  mode: regular
+                  module: 1
+                  node_id: 101
+                  pod_id: 1
+                  port: 3
+                  vlan: 111
+                - deployment_immediacy: immediate
+                  mode: regular
+                  module: 1
+                  node_id: 101
+                  pod_id: 1
+                  port: 4
+                  vlan: 111
+                - deployment_immediacy: immediate
+                  mode: regular
+                  module: 1
+                  node_id: 101
+                  pod_id: 1
+                  port: 5
+                  vlan: 111
+                - deployment_immediacy: immediate
+                  mode: regular
+                  module: 1
+                  node_id: 101
+                  pod_id: 1
+                  port: 6
+                  vlan: 111
+                - channel: MI-BLADE-1_PolGrp
+                  deployment_immediacy: immediate
+                  mode: regular
+                  module: 1
+                  node2_id: 102
+                  node_id: 101
+                  pod_id: 1
+                  vlan: 111
+                - channel: MI-FW-1_PolGrp
+                  deployment_immediacy: immediate
+                  mode: regular
+                  module: 1
+                  node2_id: 102
+                  node_id: 101
+                  pod_id: 1
+                  vlan: 111
+            - bridge_domain: SHARED-0112-PROD-APP_BD
+              intra_epg_isolation: false
+              name: SHARED-0112-PROD-APP_EPG
+              ndo_managed: true
+              physical_domains:
+                - Phy_Domain
+              proxy_arp: false
+              static_ports:
+                - deployment_immediacy: immediate
+                  mode: regular
+                  module: 1
+                  node_id: 101
+                  pod_id: 1
+                  port: 3
+                  vlan: 112
+                - deployment_immediacy: immediate
+                  mode: regular
+                  module: 1
+                  node_id: 101
+                  pod_id: 1
+                  port: 4
+                  vlan: 112
+                - deployment_immediacy: immediate
+                  mode: regular
+                  module: 1
+                  node_id: 101
+                  pod_id: 1
+                  port: 5
+                  vlan: 112
+                - deployment_immediacy: immediate
+                  mode: regular
+                  module: 1
+                  node_id: 101
+                  pod_id: 1
+                  port: 6
+                  vlan: 112
+                - channel: MI-BLADE-1_PolGrp
+                  deployment_immediacy: immediate
+                  mode: regular
+                  module: 1
+                  node2_id: 102
+                  node_id: 101
+                  pod_id: 1
+                  vlan: 112
+                - channel: MI-FW-1_PolGrp
+                  deployment_immediacy: immediate
+                  mode: regular
+                  module: 1
+                  node2_id: 102
+                  node_id: 101
+                  pod_id: 1
+                  vlan: 112
+            - bridge_domain: SHARED-0113-PROD-STRETCHED_BD
+              intra_epg_isolation: false
+              name: SHARED-0113-PROD-STRETCHED_EPG
+              ndo_managed: true
+              physical_domains:
+                - Phy_Domain
+              proxy_arp: false
+              static_ports:
+                - deployment_immediacy: immediate
+                  mode: regular
+                  module: 1
+                  node_id: 101
+                  pod_id: 1
+                  port: 3
+                  vlan: 113
+                - deployment_immediacy: immediate
+                  mode: regular
+                  module: 1
+                  node_id: 101
+                  pod_id: 1
+                  port: 4
+                  vlan: 113
+                - deployment_immediacy: immediate
+                  mode: regular
+                  module: 1
+                  node_id: 101
+                  pod_id: 1
+                  port: 5
+                  vlan: 113
+                - deployment_immediacy: immediate
+                  mode: regular
+                  module: 1
+                  node_id: 101
+                  pod_id: 1
+                  port: 6
+                  vlan: 113
+                - channel: MI-BLADE-1_PolGrp
+                  deployment_immediacy: immediate
+                  mode: regular
+                  module: 1
+                  node2_id: 102
+                  node_id: 101
+                  pod_id: 1
+                  vlan: 113
+                - channel: MI-FW-1_PolGrp
+                  deployment_immediacy: immediate
+                  mode: regular
+                  module: 1
+                  node2_id: 102
+                  node_id: 101
+                  pod_id: 1
+                  vlan: 113
+          name: SHARED-default_App
+          ndo_managed: true
+      name: Prod
+      ndo_managed: true

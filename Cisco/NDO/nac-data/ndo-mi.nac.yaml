@@ -1,0 +1,75 @@
+ndo:
+  schemas:
+    - name: SCHEMA-ALL
+      templates:
+        - application_profiles:
+            - endpoint_groups:
+                - bridge_domain:
+                    name: MI-0011-INFRA-DMZ_BD
+                  intra_epg_isolation: false
+                  name: MI-0011-INFRA-DMZ_EPG
+                  proxy_arp: false
+                  useg: false
+                  vrf:
+                    name: default_VRF
+                    template: Template-Stretched-VRF
+                - bridge_domain:
+                    name: MI-0012-INFRA-APP_BD
+                  intra_epg_isolation: false
+                  name: MI-0012-INFRA-APP_EPG
+                  proxy_arp: false
+                  useg: false
+                  vrf:
+                    name: default_VRF
+                    template: Template-Stretched-VRF
+              name: MI-default_App
+            - endpoint_groups:
+                - bridge_domain:
+                    name: MI-0121-ROUTED-REPLICA_BD
+                  intra_epg_isolation: false
+                  name: MI-0121-ROUTED-REPLICA_EPG
+                  proxy_arp: false
+                  useg: false
+                  vrf:
+                    name: replica_VRF
+                    template: Template-Stretched-VRF
+              name: MI-replica_App
+          bridge_domains:
+            - arp_flooding: true
+              intersite_bum_traffic: false
+              l2_stretch: false
+              l2_unknown_unicast: flood
+              name: MI-0011-INFRA-DMZ_BD
+              unicast_routing: false
+              vrf:
+                name: default_VRF
+                template: Template-Stretched-VRF
+            - arp_flooding: true
+              intersite_bum_traffic: false
+              l2_stretch: false
+              l2_unknown_unicast: flood
+              name: MI-0012-INFRA-APP_BD
+              unicast_routing: false
+              vrf:
+                name: default_VRF
+                template: Template-Stretched-VRF
+            - arp_flooding: true
+              intersite_bum_traffic: false
+              l2_stretch: false
+              l2_unknown_unicast: flood
+              name: MI-0121-ROUTED-REPLICA_BD
+              sites:
+                - name: MI-FABRIC
+                  subnets:
+                    - ip: 10.1.123.1/24
+                      primary: true
+                      scope: private
+              unicast_routing: true
+              vrf:
+                name: replica_VRF
+                template: Template-Stretched-VRF
+          deploy_order: 2
+          name: Template-MI
+          sites:
+            - MI-FABRIC
+          tenant: Prod

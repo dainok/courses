@@ -1,0 +1,68 @@
+ndo:
+  schemas:
+    - name: SCHEMA-ALL
+      templates:
+        - application_profiles:
+            - endpoint_groups:
+                - bridge_domain:
+                    name: SHARED-0111-PROD-DMZ_BD
+                  intra_epg_isolation: false
+                  name: SHARED-0111-PROD-DMZ_EPG
+                  proxy_arp: false
+                  useg: false
+                  vrf:
+                    name: default_VRF
+                    template: Template-Stretched-VRF
+                - bridge_domain:
+                    name: SHARED-0112-PROD-APP_BD
+                  intra_epg_isolation: false
+                  name: SHARED-0112-PROD-APP_EPG
+                  proxy_arp: false
+                  useg: false
+                  vrf:
+                    name: default_VRF
+                    template: Template-Stretched-VRF
+                - bridge_domain:
+                    name: SHARED-0113-PROD-STRETCHED_BD
+                  intra_epg_isolation: false
+                  name: SHARED-0113-PROD-STRETCHED_EPG
+                  proxy_arp: false
+                  useg: false
+                  vrf:
+                    name: default_VRF
+                    template: Template-Stretched-VRF
+              name: SHARED-default_App
+          bridge_domains:
+            - arp_flooding: true
+              intersite_bum_traffic: false
+              l2_stretch: false
+              l2_unknown_unicast: flood
+              name: SHARED-0111-PROD-DMZ_BD
+              unicast_routing: false
+              vrf:
+                name: default_VRF
+                template: Template-Stretched-VRF
+            - arp_flooding: true
+              intersite_bum_traffic: false
+              l2_stretch: false
+              l2_unknown_unicast: flood
+              name: SHARED-0112-PROD-APP_BD
+              unicast_routing: false
+              vrf:
+                name: default_VRF
+                template: Template-Stretched-VRF
+            - arp_flooding: true
+              intersite_bum_traffic: true
+              l2_stretch: true
+              l2_unknown_unicast: flood
+              name: SHARED-0113-PROD-STRETCHED_BD
+              unicast_routing: false
+              vrf:
+                name: default_VRF
+                template: Template-Stretched-VRF
+          deploy_order: 2
+          name: Template-Stretched
+          sites:
+            - MI-FABRIC
+            - RM-FABRIC
+          tenant: Prod

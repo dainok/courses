@@ -1,0 +1,9 @@
+fabric:
+  access_policies:
+    policies:
+      switch:
+        vpc_default:
+          - name: Leaf-101-102_vPCSecPol
+            switch1: '101'
+            switch2: '102'
+            vpc_explicit_protection_group_id: '101'

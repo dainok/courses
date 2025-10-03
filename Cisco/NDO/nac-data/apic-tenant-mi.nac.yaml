@@ -1,0 +1,130 @@
+apic:
+  tenants:
+    - application_profiles:
+        - endpoint_groups:
+            - bridge_domain: MI-0011-INFRA-DMZ_BD
+              intra_epg_isolation: false
+              name: MI-0011-INFRA-DMZ_EPG
+              ndo_managed: true
+              physical_domains:
+                - Phy_Domain
+              proxy_arp: false
+              static_ports:
+                - deployment_immediacy: immediate
+                  mode: regular
+                  module: 1
+                  node_id: 101
+                  pod_id: 1
+                  port: 3
+                  vlan: 11
+                - deployment_immediacy: immediate
+                  mode: regular
+                  module: 1
+                  node_id: 101
+                  pod_id: 1
+                  port: 4
+                  vlan: 11
+                - deployment_immediacy: immediate
+                  mode: regular
+                  module: 1
+                  node_id: 101
+                  pod_id: 1
+                  port: 5
+                  vlan: 11
+                - deployment_immediacy: immediate
+                  mode: regular
+                  module: 1
+                  node_id: 101
+                  pod_id: 1
+                  port: 6
+                  vlan: 11
+                - channel: MI-BLADE-1_PolGrp
+                  deployment_immediacy: immediate
+                  mode: regular
+                  module: 1
+                  node2_id: 102
+                  node_id: 101
+                  pod_id: 1
+                  vlan: 11
+                - channel: MI-FW-1_PolGrp
+                  deployment_immediacy: immediate
+                  mode: regular
+                  module: 1
+                  node2_id: 102
+                  node_id: 101
+                  pod_id: 1
+                  vlan: 11
+            - bridge_domain: MI-0012-INFRA-APP_BD
+              intra_epg_isolation: false
+              name: MI-0012-INFRA-APP_EPG
+              ndo_managed: true
+              physical_domains:
+                - Phy_Domain
+              proxy_arp: false
+              static_ports:
+                - deployment_immediacy: immediate
+                  mode: regular
+                  module: 1
+                  node_id: 101
+                  pod_id: 1
+                  port: 3
+                  vlan: 12
+                - deployment_immediacy: immediate
+                  mode: regular
+                  module: 1
+                  node_id: 101
+                  pod_id: 1
+                  port: 4
+                  vlan: 12
+                - deployment_immediacy: immediate
+                  mode: regular
+                  module: 1
+                  node_id: 101
+                  pod_id: 1
+                  port: 5
+                  vlan: 12
+                - deployment_immediacy: immediate
+                  mode: regular
+                  module: 1
+                  node_id: 101
+                  pod_id: 1
+                  port: 6
+                  vlan: 12
+                - channel: MI-BLADE-1_PolGrp
+                  deployment_immediacy: immediate
+                  mode: regular
+                  module: 1
+                  node2_id: 102
+                  node_id: 101
+                  pod_id: 1
+                  vlan: 12
+                - channel: MI-FW-1_PolGrp
+                  deployment_immediacy: immediate
+                  mode: regular
+                  module: 1
+                  node2_id: 102
+                  node_id: 101
+                  pod_id: 1
+                  vlan: 12
+          name: MI-default_App
+          ndo_managed: true
+        - endpoint_groups:
+            - bridge_domain: MI-0121-ROUTED-REPLICA_BD
+              intra_epg_isolation: false
+              name: MI-0121-ROUTED-REPLICA_EPG
+              ndo_managed: true
+              physical_domains:
+                - Phy_Domain
+              proxy_arp: false
+              static_ports:
+                - deployment_immediacy: immediate
+                  mode: untagged
+                  module: 1
+                  node_id: 101
+                  pod_id: 1
+                  port: 10
+                  vlan: 121
+          name: MI-replica_App
+          ndo_managed: true
+      name: Prod
+      ndo_managed: true

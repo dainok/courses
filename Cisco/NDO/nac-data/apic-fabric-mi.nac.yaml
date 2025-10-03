@@ -1,0 +1,85 @@
+apic:
+  access_policies:
+    leaf_interface_policy_groups:
+      - aaep: Phy_AAEP
+        cdp_policy: DISABLE_CDP_IntPol
+        lldp_policy: DISABLE_LLDP_IntPol
+        name: MI-BLADE-1_PolGrp
+        port_channel_policy: ENABLE_LACP_PO_IntPol
+        type: vpc
+      - aaep: Phy_AAEP
+        cdp_policy: DISABLE_CDP_IntPol
+        lldp_policy: DISABLE_LLDP_IntPol
+        name: MI-FW-1_PolGrp
+        port_channel_policy: ENABLE_LACP_PO_IntPol
+        type: vpc
+    leaf_interface_profiles:
+      - name: Leaf-101_IntProf
+        selectors:
+          - name: MI-STORAGE_Sel
+            policy_group: TrustedPort_PolGrp
+            port_blocks:
+              - description: to Storage
+                from_port: 10
+                name: Block10
+          - name: MI-SERVER-1A_Sel
+            policy_group: TrustedPort_PolGrp
+            port_blocks:
+              - description: to Server 1
+                from_port: 3
+                name: Block3
+              - description: to Server 1
+                from_port: 4
+                name: Block4
+          - name: MI-SERVER-1B_Sel
+            policy_group: TrustedPort_PolGrp
+            port_blocks:
+              - description: to Server 1
+                from_port: 5
+                name: Block5
+              - description: to Server 1
+                from_port: 6
+                name: Block6
+      - name: Leaf-102_IntProf
+        selectors: []
+      - name: Leaf-101-102_IntProf
+        selectors:
+          - name: MI-BLADE-1_Sel
+            policy_group: MI-BLADE-1_PolGrp
+            port_blocks:
+              - description: vPC to Blade Servers Chassis 1
+                from_port: 1
+                name: Block1
+          - name: MI-FW-1_Sel
+            policy_group: MI-FW-1_PolGrp
+            port_blocks:
+              - description: vPC to Firewall 1
+                from_port: 2
+                name: Block2
+    leaf_switch_profiles:
+      - interface_profiles:
+          - Leaf-101_IntProf
+        name: Leaf-101_LeafProf
+        selectors:
+          - name: Leaf-101_Sel
+            node_blocks:
+              - from: 101
+                name: Block101
+      - interface_profiles:
+          - Leaf-102_IntProf
+        name: Leaf-102_LeafProf
+        selectors:
+          - name: Leaf-102_Sel
+            node_blocks:
+              - from: 102
+                name: Block102
+      - interface_profiles:
+          - Leaf-101-102_IntProf
+        name: Leaf-101-102_LeafProf
+        selectors:
+          - name: Leaf-101-102_Sel
+            node_blocks:
+              - from: 101
+                name: Block101
+              - from: 102
+                name: Block102

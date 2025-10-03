@@ -1,0 +1,71 @@
+ndo:
+  schemas:
+    - name: SCHEMA-ALL
+      templates:
+        - contracts:
+            - filters:
+                - name: ANY_Filter
+              name: vzAny-default_Contract
+              scope: context
+              type: bothWay
+            - filters:
+                - name: ANY_Filter
+              name: vzAny-replica_Contract
+              scope: context
+              type: bothWay
+          deploy_order: 1
+          filters:
+            - entries:
+                - ethertype: unspecified
+                  name: Any
+              name: ANY_Filter
+          name: Template-Contracts
+          sites:
+            - MI-FABRIC
+            - RM-FABRIC
+          tenant: Prod
+        - deploy_order: 3
+          name: Template-Stretched-ExtEPG
+          sites:
+            - MI-FABRIC
+            - RM-FABRIC
+          tenant: Prod
+        - deploy_order: 1
+          name: Template-Stretched-VRF
+          sites:
+            - MI-FABRIC
+            - RM-FABRIC
+          tenant: Prod
+          vrfs:
+            - contracts:
+                consumers:
+                  - name: vzAny-default_Contract
+                    template: Template-Contracts
+                providers:
+                  - name: vzAny-default_Contract
+                    template: Template-Contracts
+              data_plane_learning: true
+              name: default_VRF
+              vzany: true
+            - contracts:
+                consumers:
+                  - name: vzAny-replica_Contract
+                    template: Template-Contracts
+                providers:
+                  - name: vzAny-replica_Contract
+                    template: Template-Contracts
+              data_plane_learning: true
+              name: replica_VRF
+              vzany: true
+  sites:
+    - apic_urls:
+        - https://192.168.1.1/
+      name: MI-FABRIC
+    - apic_urls:
+        - https://192.168.2.1/
+      name: RM-FABRIC
+  tenants:
+    - name: Prod
+      sites:
+        - name: MI-FABRIC
+        - name: RM-FABRIC

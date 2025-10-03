@@ -1,0 +1,63 @@
+apic:
+  access_policies:
+    aaeps:
+      - name: Phy_AAEP
+        routed_domains:
+          - PhyL3Out_RoutedDomain
+        physical_domains:
+          - Phy_Domain
+    interface_policies:
+      cdp_policies:
+        - name: ENABLE_CDP_IntPol
+          admin_state: true
+        - name: DISABLE_CDP_IntPol
+          admin_state: true
+      lldp_policies:
+        - name: ENABLE_LLDP_IntPol
+          admin_rx_state: true
+          admin_tx_state: true
+        - name: DISABLE_LLDP_IntPol
+          admin_rx_state: false
+          admin_tx_state: false
+      port_channel_policies:
+        - name: ENABLE_LACP_PO_IntPol
+          mode: active
+          suspend_individual: true
+          graceful_convergence: true
+        - name: ENABLE_STATIC_PO_IntPol
+          mode: off
+          suspend_individual: true
+          graceful_convergence: true
+    leaf_interface_policy_groups:
+      - name: TrustedPort_PolGrp
+        type: access
+        cdp_policy: DISABLE_CDP_IntPol
+        lldp_policy: ENABLE_LLDP_IntPol
+        aaep: Phy_AAEP
+      - name: UntrustedPort_PolGrp
+        type: access
+        cdp_policy: DISABLE_CDP_IntPol
+        lldp_policy: DISABLE_LLDP_IntPol
+        aaep: Phy_AAEP
+    physical_domains:
+      - name: Phy_Domain
+        vlan_pool: Phy_VlanPool
+    routed_domains:
+      - name: PhyL3Out_RoutedDomain
+        vlan_pool: PhyL3Out_VlanPool
+    vlan_pools:
+      - name: Phy_VlanPool
+        allocation: static
+        ranges:
+          - from: 1
+            to: 1001
+            role: external
+          - from: 1006
+            to: 3499
+            role: external
+      - name: PhyL3Out_VlanPool
+        allocation: static
+        ranges:
+          - from: 3500
+            to: 3999
+            role: external
