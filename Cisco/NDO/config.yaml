@@ -1,0 +1,66 @@
+apics:
+  mi:
+    name: MI-FABRIC
+    url: https://192.168.1.1
+    url_insecure: true
+  rm:
+    name: RM-FABRIC
+    url: https://192.168.2.1
+    url_insecure: true
+ndo:
+  url: https://192.168.0.1
+  url_insecure: true
+  schema: SCHEMA-ALL
+  tenant: Prod
+  templates:
+    contracts:
+      name: Template-Contracts
+      deploy_order: 1
+    stretched_extepg:
+      name: Template-Stretched-ExtEPG
+      deploy_order: 3
+    stretched_vrf:
+      name: Template-Stretched-VRF
+      deploy_order: 1
+    site_mi:
+      name: Template-MI
+      deploy_order: 2
+    site_rm:
+      name: Template-RM
+      deploy_order: 2
+    site_stretched:
+      name: Template-Stretched
+      deploy_order: 2
+      contracts: []
+      filters:
+        - name: ANY_Filter
+          entries:
+            - name: Any
+              ethertype: unspecified
+fabric:
+  physical_domain: Phy_Domain
+  port_channel_policies:
+    TrustedLACPVPC:
+      type: vpc
+      cdp_policy: DISABLE_CDP_IntPol
+      lldp_policy: DISABLE_LLDP_IntPol
+      aaep: Phy_AAEP
+      port_channel_policy: ENABLE_LACP_PO_IntPol
+    TrustedStaticVPC:
+      type: vpc
+      cdp_policy: DISABLE_CDP_IntPol
+      lldp_policy: DISABLE_LLDP_IntPol
+      aaep: Phy_AAEP
+      port_channel_policy: ENABLE_STATIC_PO_IntPol
+    UntrustedLACPVPC:
+      type: vpc
+      cdp_policy: DISABLE_CDP_IntPol
+      lldp_policy: DISABLE_LLDP_IntPol
+      aaep: Phy_AAEP
+      port_channel_policy: ENABLE_LACP_PO_IntPol
+    UntrustedStaticVPC:
+      type: vpc
+      cdp_policy: DISABLE_CDP_IntPol
+      lldp_policy: DISABLE_LLDP_IntPol
+      aaep: Phy_AAEP
+      port_channel_policy: ENABLE_STATIC_PO_IntPol
