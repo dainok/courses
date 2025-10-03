@@ -34,3 +34,7 @@ In this section, we focus on automation beyond the data center, covering tools a
 By joining this Patreon series, you'll unlock exclusive content focused on mastering Ansible for network automation. Dive into detailed tutorials and real-world use cases that will help you streamline your network configurations and automate complex tasks with ease. Stay ahead of the curve with practical insights and hands-on experience that will transform your approach to network management.
 
 If you found this information useful, consider supporting us on Patreon for more in-depth guides and tutorials.
+
+## About me
+
+Connect with me on [LinkedIn](http://linkedin.com/in/adainese/), support my work on [Patreon](https://www.patreon.com/c/adainese), join the discussion on [Reddit](https://www.reddit.com/user/a_dainese/), and explore more insights on my [blog](https://www.adainese.it).

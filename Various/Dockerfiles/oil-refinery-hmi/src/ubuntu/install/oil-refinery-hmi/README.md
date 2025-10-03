@@ -16,3 +16,7 @@ Embark on a journey to elevate your network engineering skills by choosing the r
 By joining this Patreon series, you’ll gain exclusive access to content that will elevate your network management skills. Thank you for your support! Let’s embark on this journey to revolutionize network automation.
 
 If you found this information useful, consider supporting us on Patreon for more in-depth guides and tutorials.
+
+## About me
+
+Connect with me on [LinkedIn](http://linkedin.com/in/adainese/), support my work on [Patreon](https://www.patreon.com/c/adainese), join the discussion on [Reddit](https://www.reddit.com/user/a_dainese/), and explore more insights on my [blog](https://www.adainese.it).

@@ -41,3 +41,7 @@ Palo Alto Networks’ cloud solutions enable centralized, API-driven management 
 By joining this Patreon series, you'll gain exclusive access to advanced content focused on automating Palo Alto Networks solutions. Explore in-depth tutorials and practical applications for automating firewall management, leveraging Cortex XDR for extended detection and response, and integrating Cortex XSOAR for security orchestration and automation.
 
 If you found this information useful, consider supporting us on Patreon for more in-depth guides and tutorials.
+
+## About me
+
+Connect with me on [LinkedIn](http://linkedin.com/in/adainese/), support my work on [Patreon](https://www.patreon.com/c/adainese), join the discussion on [Reddit](https://www.reddit.com/user/a_dainese/), and explore more insights on my [blog](https://www.adainese.it).
