@@ -33,8 +33,8 @@ Palo Alto Networks’ cloud solutions enable centralized, API-driven management 
 * [Authenticating to the Strata Cloud Manager API](https://www.patreon.com/posts/136479164)
 * [Optimizing Strata Cloud Manager API usage](https://www.patreon.com/posts/136479656) (paid members only)
 * [Retrieving firewall interfaces with Strata Cloud Manager](https://www.patreon.com/posts/136480239)
-* [Modifying an object in Strata Cloud Manager](https://www.patreon.com/posts/136480528) (released on 28/09/2025)
-* [Creating an interface in Strata Cloud Manager](https://www.patreon.com/posts/136480852) (released on 05/10/2025)
+* [Modifying an object in Strata Cloud Manager](https://www.patreon.com/posts/136480528)
+* [Creating an interface in Strata Cloud Manager](https://www.patreon.com/posts/136480852)
 
 ## Get Started Today
 
