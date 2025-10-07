@@ -42,14 +42,14 @@ fabric:
   port_channel_policies:
     TrustedLACPVPC:
       type: vpc
-      cdp_policy: DISABLE_CDP_IntPol
-      lldp_policy: DISABLE_LLDP_IntPol
+      cdp_policy: ENABLE_CDP_IntPol
+      lldp_policy: ENABLE_LLDP_IntPol
       aaep: Phy_AAEP
       port_channel_policy: ENABLE_LACP_PO_IntPol
     TrustedStaticVPC:
       type: vpc
-      cdp_policy: DISABLE_CDP_IntPol
-      lldp_policy: DISABLE_LLDP_IntPol
+      cdp_policy: ENABLE_CDP_IntPol
+      lldp_policy: ENABLE_LLDP_IntPol
       aaep: Phy_AAEP
       port_channel_policy: ENABLE_STATIC_PO_IntPol
     UntrustedLACPVPC:

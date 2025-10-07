@@ -2,14 +2,14 @@ apic:
   access_policies:
     leaf_interface_policy_groups:
       - aaep: Phy_AAEP
-        cdp_policy: DISABLE_CDP_IntPol
-        lldp_policy: DISABLE_LLDP_IntPol
+        cdp_policy: ENABLE_CDP_IntPol
+        lldp_policy: ENABLE_LLDP_IntPol
         name: RM-BLADE-1_PolGrp
         port_channel_policy: ENABLE_LACP_PO_IntPol
         type: vpc
       - aaep: Phy_AAEP
-        cdp_policy: DISABLE_CDP_IntPol
-        lldp_policy: DISABLE_LLDP_IntPol
+        cdp_policy: ENABLE_CDP_IntPol
+        lldp_policy: ENABLE_LLDP_IntPol
         name: RM-FW-1_PolGrp
         port_channel_policy: ENABLE_LACP_PO_IntPol
         type: vpc
