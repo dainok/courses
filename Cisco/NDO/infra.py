@@ -1,6 +1,6 @@
 import csv
 from enum import Enum
-from typing import List, Optional, Union
+from typing import List, Optional
 from pydantic import (
     BaseModel,
     Field,
@@ -717,38 +717,6 @@ class Infra:
                 application_profile["ndo_managed"] = True
 
             for network in self.get_networks_by_site_vrf(site=site, vrf=vrf):
-                # Build site customization
-                # sites = []
-                # if site.name == Site.SHARED:
-                #     # Add all sites
-                #     for apic_name in self.get_apic_names():
-                #         sites.append(
-                #             {
-                #                 "name": apic_name,
-                #                 "physical_domains": [
-                #                     {
-                #                         "name": "Phy_Domain",  # TODO: make a parameter, coming from APIC
-                #                         "deployment_immediacy": "immediate",
-                #                         "resolution_immediacy": "immediate",
-                #                     }
-                #                 ],
-                #             }
-                #         )
-                # else:
-                #     # Add specific site
-                #     sites.append(
-                #         {
-                #             "name": self.get_apic_name_by_site(Site(site.name)),
-                #             "physical_domains": [
-                #                 {
-                #                     "name": "Phy_Domain",  # TODO: make a parameter, coming from APIC
-                #                     "deployment_immediacy": "immediate",
-                #                     "resolution_immediacy": "immediate",
-                #                 }
-                #             ],
-                #         }
-                #     )
-
                 # For each BD, create an EPG
                 endpoint_group = {
                     "name": f"{site.name}-{network.vlan:04d}-{network.name}_EPG",
