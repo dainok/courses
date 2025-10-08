@@ -1,6 +1,6 @@
-textfsm==2.1.0
-openpyxl==3.1.5
-PyYAML==6.0.2
 Jinja2==3.1.6
-python-slugify==8.0.4
+openpyxl==3.1.5
 pydantic==2.11.9
+python-slugify==8.0.4
+PyYAML==6.0.2
+textfsm==2.1.0

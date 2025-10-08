@@ -33,4 +33,3 @@ time.sleep(630)
 print("FAIL")
 res = client.get("/node/class/fvTenant.json")
 print(res.status_code)
-
