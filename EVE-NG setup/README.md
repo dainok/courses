@@ -1,7 +1,5 @@
 # Fundamentals of network automation series
 
-In this series, we'll explore the core principles of network automation, essential tools, and practical techniques to streamline your networ
-
 In this series, we'll explore the core principles of network automation, essential tools, and practical techniques to streamline your network operations. Whether you're new to the field or looking to sharpen your skills, our posts will provide the foundational knowledge you need to succeed. Join us on Patreon and transform the way you manage your network!
 
 ## Theory, Design, and Approach

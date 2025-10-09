@@ -1,7 +1,5 @@
 # Cisco automation series
 
-Welcome to our series on Cisco Automation Solutions! In this series, we’ll explore how Cisco’s powerful tools and technologies, like Catalys
-
 Welcome to our series on Cisco Automation Solutions! In this series, we’ll explore how Cisco’s powerful tools and technologies, like Catalyst Center, APIs, and SDKs, can help automate network management, optimize configurations, and improve device monitoring. From simplifying complex tasks to ensuring compliance, Cisco's automation capabilities can streamline your IT infrastructure and boost efficiency.
 
 We'll start with the fundamentals, then dive into advanced strategies with hands-on examples and best practices. Whether you're new to automation or looking to elevate your skills, this series has something for everyone.
