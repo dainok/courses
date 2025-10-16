@@ -1,3 +1,5 @@
+# This is just an example about including Terraform configuration not supported by NaC.
+# vPC Explicit protection group is supported by NaC in apic -> node_policies -> vpc_groups
 locals {
   custom_config = yamldecode(file("${path.cwd}/../nac-data/apic-{{site}}.terraform.yaml"))
 }
