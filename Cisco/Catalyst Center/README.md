@@ -18,7 +18,7 @@ This section is dedicated to Cisco ACI, Cisco’s flagship SDN solution for data
 * [06. From Single-Site to Multi-Site with NDO](https://www.patreon.com/posts/139120165/)
 * [07. Circular Dependencies with NDO](https://www.patreon.com/posts/139121389/)
 * [08. Frameworks for Projects with Cisco ACI and NDO](https://www.patreon.com/posts/139319477/)
-* [09. Simplifying the Data Structure](https://www.patreon.com/posts/139320986/) (released on 19/10/2025)
+* [09. Simplifying the Data Structure](https://www.patreon.com/posts/139320986/)
 * [10. Managing Cisco NDO Limitations from the APIC](https://www.patreon.com/posts/139724658/) (released on 26/10/2025)
 * [11. A practical Cisco NDO multi-site use case: modelling](https://www.patreon.com/posts/140490898/) (released on 02/11/2025)
 * [12. A practical Cisco NDO multi-site use case: additional configuration](https://www.patreon.com/posts/140724207/) (released on 09/11/2025)
