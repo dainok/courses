@@ -1,0 +1,375 @@
+{
+  "name": "User Management",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "http://127.0.0.1:8000/api/user/",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.3,
+      "position": [
+        480,
+        288
+      ],
+      "id": "48effc78-5e9e-44bf-af3f-228d764e44ae",
+      "name": "GetUserList",
+      "credentials": {
+        "httpCustomAuth": {
+          "id": "x0Ji7DCDTUvk2P3b",
+          "name": "Django"
+        },
+        "httpHeaderAuth": {
+          "id": "QBOlSp1gEhWNZRLQ",
+          "name": "Eg0n API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=http://127.0.0.1:8000/api/user/{{ $fromAI('id') }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.3,
+      "position": [
+        608,
+        288
+      ],
+      "id": "4f36282b-2f84-4350-9db8-fe2a4a1d2aaa",
+      "name": "GetUserDetail",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "QBOlSp1gEhWNZRLQ",
+          "name": "Eg0n API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "http://127.0.0.1:8000/api/user/",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "search",
+              "value": "={{ $fromAI('search') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.3,
+      "position": [
+        736,
+        288
+      ],
+      "id": "6f219cab-d04e-4efc-bfdb-83f485a9cba3",
+      "name": "SearchUser",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "QBOlSp1gEhWNZRLQ",
+          "name": "Eg0n API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:8000/api/user/",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "first_name",
+              "value": "={{ $fromAI('first_name') }}"
+            },
+            {
+              "name": "last_name",
+              "value": "={{ $fromAI('last_name') }}"
+            },
+            {
+              "name": "username",
+              "value": "={{ $fromAI('username') }}"
+            },
+            {
+              "name": "is_active",
+              "value": "=True"
+            },
+            {
+              "name": "is_staff",
+              "value": "={{ $fromAI('is_staff') }}"
+            },
+            {
+              "name": "is_superuser",
+              "value": "={{ $fromAI('is_superuser') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.3,
+      "position": [
+        864,
+        288
+      ],
+      "id": "4e21fc4b-f7dd-407d-80af-67bbc82c4e61",
+      "name": "CreateUser",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "QBOlSp1gEhWNZRLQ",
+          "name": "Eg0n API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=http://127.0.0.1:8000/api/user/{{ $fromAI('id') }}/",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "is_active",
+              "value": "false"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.3,
+      "position": [
+        992,
+        288
+      ],
+      "id": "f470b13e-65b7-4316-9010-e6cc430b7b72",
+      "name": "DisableUser",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "QBOlSp1gEhWNZRLQ",
+          "name": "Eg0n API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=http://127.0.0.1:8000/api/user/{{ $fromAI('id') }}/",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "is_active",
+              "value": "true"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.3,
+      "position": [
+        1120,
+        288
+      ],
+      "id": "ae628639-7b36-4134-80e2-371658cf84e2",
+      "name": "ActivateUser",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "QBOlSp1gEhWNZRLQ",
+          "name": "Eg0n API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "public": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        0,
+        64
+      ],
+      "id": "3a18c6a3-4b45-43ee-b392-d0f2fd6b7922",
+      "name": "Chat trigger",
+      "webhookId": "ab6fd830-5588-482a-978f-4b6702467bb8"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        224,
+        288
+      ],
+      "id": "00427aa0-75d0-40d5-b8c0-01f448cf980c",
+      "name": "Gemini LLM",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "qhcLkd5d3lTftrXB",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        352,
+        288
+      ],
+      "id": "fa5a1ead-44bc-4c84-bb46-59f5cb33f8db",
+      "name": "Bot storage",
+      "notesInFlow": false
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are an intelligent personal assistant responsible for the safe and efficient management of users and groups within a corporate system. Your task is to provide information, guide the user, and perform administrative operations using only the tools available. When necessary, you may query the tools by passing parameters in JSON format.\n\n**Permissions and capabilities:**\n\n* You can read the complete list of users.\n* You can read the details of each individual user.\n* You can search for a user.\n* You can create a new user.\n* You can activate an existing user.\n* You can disable an existing user.\n* You cannot delete users.\n\n**User structure:**\n\n* id (integer, unique, set by the server and not editable)\n* username (required and unique string)\n* first_name (optional string)\n* last_name (optional string)\n* is_staff (boolean, default false)\n* is_superuser (boolean, default false)\n\n**Available tools (parameters must always be passed in JSON):**\n\n* GetUserList (read-only) → no parameters\n* GetUserDetail (read-only) → { \"id\": <number> }\n* SearchUser (read-only) → { \"search\": \"<str>\" }\n* DisableUser (read-write) → { \"id\": <number> }\n* ActivateUser (read-write) → { \"id\": <number> }\n* CreateUser (read-write) → { \"username\": <str>, \"first_name\": <str>, \"last_name\": <str>, \"is_staff\": <bool>, \"is_superuser\": <bool> }\n\n**Operational rules:**\n\n* To obtain a user’s id, always use the “SearchUser” tool, unless the user already provides the id.\n* Before creating a user, check with “SearchUser” that the username does not already exist.\n* Before activating or disabling a user, verify that they exist using “SearchUser” or “GetUserDetail”.\n* Read-only operations never modify data.\n* For every read-write operation, you must ask the user for confirmation before calling the tool.\n* Never assume default values for sensitive fields (is_staff, is_superuser) without confirmation.\n* Always convert timestamps into the DD/MM/YYYY HH:mm format.\n* When calling a tool, always pass only the necessary parameters, formatted in JSON.\n\n**Style and behavior:**\n\n* Respond clearly, neatly, and concisely.\n* Guide the user toward possible next actions.\n* Never invent information: if you don’t know something, use the appropriate tool.\n* If the user requests a modifying action, first summarize the parameters and ask for confirmation.\n\n**Example of behavior:**\n\nIf the user asks: “Create the staff user `mrossi`.”\n\nYou respond:\n\n“I am about to create the user ‘mrossi’ with: first_name='', last_name='', is_staff=true, is_superuser=false. Do you confirm?”\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        608,
+        64
+      ],
+      "id": "7ac2313c-635c-4ce4-834e-1d7add0b4539",
+      "name": "IAM Bot"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "GetUserList": {
+      "ai_tool": [
+        []
+      ]
+    },
+    "GetUserDetail": {
+      "ai_tool": [
+        [
+          {
+            "node": "IAM Bot",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SearchUser": {
+      "ai_tool": [
+        [
+          {
+            "node": "IAM Bot",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CreateUser": {
+      "ai_tool": [
+        [
+          {
+            "node": "IAM Bot",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DisableUser": {
+      "ai_tool": [
+        [
+          {
+            "node": "IAM Bot",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ActivateUser": {
+      "ai_tool": [
+        [
+          {
+            "node": "IAM Bot",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat trigger": {
+      "main": [
+        [
+          {
+            "node": "IAM Bot",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemini LLM": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "IAM Bot",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Bot storage": {
+      "ai_memory": [
+        [
+          {
+            "node": "IAM Bot",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IAM Bot": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "e2d040ff-3409-4bee-b780-a55a7dbae704",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "a19554df4b8038f4cc123ec35425583142dba9b5ad071f736103f52e619c969f"
+  },
+  "id": "ljdUDuH1yKFalVJi",
+  "tags": []
+}
