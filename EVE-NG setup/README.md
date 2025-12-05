@@ -44,6 +44,8 @@ Ready to build your network automation lab? In this path, we’ll show you how t
 * [08. Troubleshooting EVE-NG nodes that fail to start](https://www.patreon.com/posts/135457010)
 * [08. Automating EVE-NG installation](https://www.patreon.com/posts/108922608) (paid members only)
 * [09. EVE-NG Linux VM SSH troubleshooting](https://www.patreon.com/posts/139321409/)
+* [11. EVE-NG Linux VM SSH troubleshooting](https://www.patreon.com/posts/eve-ng-linux-vm-139321409/)
+* [10. EVE-NG (SW architecture and docker support)](https://www.patreon.com/posts/144165869/)
 
 ## Other automation topics
 
@@ -51,6 +53,8 @@ In this series of posts, we'll dive into the world of automation, exploring how 
 
 * [Simplifying documentation with Markdown and CI/CD](https://www.patreon.com/posts/119837605/)
 * [Writing presentations with Markdown](https://www.patreon.com/posts/125518379)
+* [An introduction to workflow and process automation with N8N and Camunda](https://www.patreon.com/posts/144206553/) (released on 07/12/2025)
+* [Automating user management with n8n and AI Agents](https://www.patreon.com/posts/144380046/) (release on 14/12/2025)
 
 ## Get Started Today
 

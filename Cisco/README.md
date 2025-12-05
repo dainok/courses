@@ -21,10 +21,10 @@ This section is dedicated to Cisco ACI, Cisco’s flagship SDN solution for data
 * [09. Simplifying the Data Structure](https://www.patreon.com/posts/139320986/)
 * [10. Managing Cisco NDO Limitations from the APIC](https://www.patreon.com/posts/139724658/)
 * [11. A practical Cisco NDO multi-site use case: modelling](https://www.patreon.com/posts/140490898/)
-* [12. A practical Cisco NDO multi-site use case: additional configuration](https://www.patreon.com/posts/140724207/) (released on 09/11/2025)
-* [13. A practical Cisco NDO multi-site use case: data validation](https://www.patreon.com/posts/140726870/) (released on 16/11/2025)
-* [14.](https://www.patreon.com/posts/140725527/) [A practical Cisco NDO multi-site use case:](https://www.patreon.com/posts/140724207/) [building the parser](https://www.patreon.com/posts/140725527/) (released on 23/11/2025)
-* [15. A practical Cisco NDO multi-site use case: config deploy](https://www.patreon.com/posts/140726030/) (released on 30/11/2025)
+* [12. A practical Cisco NDO multi-site use case: additional configuration](https://www.patreon.com/posts/140724207/)
+* [13. A practical Cisco NDO multi-site use case: data validation](https://www.patreon.com/posts/140726870/)
+* [14.](https://www.patreon.com/posts/140725527/) [A practical Cisco NDO multi-site use case:](https://www.patreon.com/posts/140724207/) [building the parser](https://www.patreon.com/posts/140725527/)
+* [15. A practical Cisco NDO multi-site use case: config deploy](https://www.patreon.com/posts/140726030/)
 
 ## Other posts about Cisco equipments
 
