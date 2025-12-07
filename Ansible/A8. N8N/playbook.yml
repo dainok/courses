@@ -1,0 +1,14 @@
+#!/usr/bin/env ansible-playbook
+- name: SIMPLE PLAYBOOK
+  hosts: localhost
+  gather_facts: true
+  tasks:
+    - name: FIRST SIMPLE TASK
+      ansible.builtin.command: echo first simple task
+      changed_when: false
+    - name: SECOND SIMPLE TASK
+      ansible.builtin.command: echo second simple task
+      changed_when: true
+    - name: THIRD SIMPLE TASK
+      ansible.builtin.command: echo third simple task
+      changed_when: false

@@ -44,7 +44,6 @@ Ready to build your network automation lab? In this path, we’ll show you how t
 * [08. Troubleshooting EVE-NG nodes that fail to start](https://www.patreon.com/posts/135457010)
 * [08. Automating EVE-NG installation](https://www.patreon.com/posts/108922608) (paid members only)
 * [09. EVE-NG Linux VM SSH troubleshooting](https://www.patreon.com/posts/139321409/)
-* [11. EVE-NG Linux VM SSH troubleshooting](https://www.patreon.com/posts/eve-ng-linux-vm-139321409/)
 * [10. EVE-NG (SW architecture and docker support)](https://www.patreon.com/posts/144165869/)
 
 ## Other automation topics
