@@ -52,6 +52,7 @@ for node in res.json()["imdata"]:
             interface = item["l1PhysIf"]["attributes"]
 
             # Get CDP neighbors
+            
             url = f"https://{apic_address}/api/node/mo/topology/pod-1/node-{leaf['id']}/sys/cdp/inst/if-[{interface['id']}].json?query-target=children&target-subtree-class=cdpAdjEp&challenge={token}"
             res = session.get(url, verify=False)
             res.raise_for_status()
@@ -67,4 +68,5 @@ for node in res.json()["imdata"]:
                 ])
 
 # Print output
+
 print(tabulate(data, headers=headers))
