@@ -17,7 +17,7 @@ Integrate Nautobot with Ansible! We'll dive into how to use Nautobot's powerful 
 * [05. Integrating Ansible with Nautobot](https://www.patreon.com/posts/integrating-with-107936613)
 * [06. The Ansible role breakdown](https://www.patreon.com/posts/107992110)
 * [07. Orchestrating Ansible playbooks for Nautobot integration](https://www.patreon.com/posts/107992345)
-* [08. Key insights from developing Nautobot and Ansible integrations](https://www.patreon.com/posts/107992468) (paid members only)
+* [08. Key insights from developing Nautobot and Ansible integrations](https://www.patreon.com/posts/107992468)
 
 ## Get Started Today
 

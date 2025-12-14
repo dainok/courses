@@ -10,8 +10,8 @@ Network automation is transforming IT operations, but the journey from theory to
 * [02. Simplifying the Data Structure](https://www.patreon.com/posts/139320986/)
 * [03. Review of SNMP Fundamentals](https://www.patreon.com/posts/114164191)
 * [04. Parsing text with TextFSM](https://www.patreon.com/posts/127494112)
-* [05. TextFSM: parsing non-tabular text](https://www.patreon.com/posts/127501366)  (paid members only)
-* [06. TextFSM: parsing tabular text](https://www.patreon.com/posts/127515978) (paid members only)
+* [05. TextFSM: parsing non-tabular text](https://www.patreon.com/posts/127501366)
+* [06. TextFSM: parsing tabular text](https://www.patreon.com/posts/127515978)
 
 ## Git Essentials: A Step-by-Step Guide to Version Control Basics
 
@@ -20,7 +20,7 @@ Learn the fundamentals of Git, the powerful version control system used by devel
 * [01. Git fundamentals for developers and IT professionals](https://www.patreon.com/posts/111155980)
 * [02. Collaborating with Git by working with remote repositories and forks](https://www.patreon.com/posts/111643903)
 * [03. Advanced Git commands](https://www.patreon.com/posts/112035451)
-* [04. Contributing to NTC Templates with Git and GitHub](https://www.patreon.com/posts/112037177) (paid members only)
+* [04. Contributing to NTC Templates with Git and GitHub](https://www.patreon.com/posts/112037177)
 
 ## Application Security with OAuth: Essential Insights
 
@@ -42,7 +42,7 @@ Ready to build your network automation lab? In this path, we’ll show you how t
 * [06. Customizing EVE-NG](https://www.patreon.com/posts/108921627)
 * [07. EVE-NG network interfaces explained](https://www.patreon.com/posts/123373240)
 * [08. Troubleshooting EVE-NG nodes that fail to start](https://www.patreon.com/posts/135457010)
-* [08. Automating EVE-NG installation](https://www.patreon.com/posts/108922608) (paid members only)
+* [08. Automating EVE-NG installation](https://www.patreon.com/posts/108922608)
 * [09. EVE-NG Linux VM SSH troubleshooting](https://www.patreon.com/posts/139321409/)
 * [10. EVE-NG (SW architecture and docker support)](https://www.patreon.com/posts/144165869/)
 
@@ -52,8 +52,8 @@ In this series of posts, we'll dive into the world of automation, exploring how 
 
 * [Simplifying documentation with Markdown and CI/CD](https://www.patreon.com/posts/119837605/)
 * [Writing presentations with Markdown](https://www.patreon.com/posts/125518379)
-* [An introduction to workflow and process automation with N8N and Camunda](https://www.patreon.com/posts/144206553/) (released on 07/12/2025)
-* [Automating user management with n8n and AI Agents](https://www.patreon.com/posts/144380046/) (release on 14/12/2025)
+* [An introduction to workflow and process automation with N8N and Camunda](https://www.patreon.com/posts/144206553/)
+* [Automating user management with n8n and AI Agents](https://www.patreon.com/posts/144380046/)
 
 ## Get Started Today
 
