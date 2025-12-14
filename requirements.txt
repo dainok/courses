@@ -21,3 +21,4 @@ python-slugify==8.0.1
 PyYAML==6.0.1
 ttp-templates==0.3.6
 xmltodict==0.13.0
+httpx==0.28.1
