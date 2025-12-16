@@ -1,5 +1,7 @@
+import asyncio
+from collections.abc import AsyncIterator
 import time
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 import httpx
 
 
@@ -27,6 +29,7 @@ class APIClient:
         self.__password = password
         self.__token = None
         self.client = httpx.Client(verify=verify, timeout=timeout)
+        self.token_expires_at: datetime | None = None
 
         # Perform the initial authentication right away
         self.__authenticate()
@@ -51,7 +54,7 @@ class APIClient:
         }
 
         # Send the POST request to the auth server
-        now = datetime.utcnow()
+        now = datetime.now(timezone.utc)
         url = f"{self.base_url}/aaaLogin.json"
         res = self.client.post(url, json=payload, headers=headers)
         res.raise_for_status()
@@ -74,7 +77,7 @@ class APIClient:
             "Accept": "application/json",
             "Authorization": f"Bearer {self.__token}",
         }
-        now = datetime.now()
+        now = datetime.now(timezone.utc)
         if (
             not self.token_expires_at
             or now + timedelta(seconds=30) > self.token_expires_at
@@ -157,7 +160,7 @@ class APIClient:
 
     def patch(self, url: str, **kwargs) -> httpx.Response:
         """PATCH wrapper."""
-        return self.request("put", url, **kwargs)
+        return self.request("patch", url, **kwargs)
 
     def put(self, url: str, **kwargs) -> httpx.Response:
         """PUT wrapper."""
@@ -211,6 +214,8 @@ class AsyncAPIClient:
         self.__password = password
         self.__token = None
         self.client = httpx.AsyncClient(verify=verify, timeout=timeout)
+        self.token_expires_at: datetime | None = None
+        self._auth_lock = asyncio.Lock()
 
     async def __aenter__(self):
         """Perform the initial authentication right away."""
@@ -244,7 +249,7 @@ class AsyncAPIClient:
         }
 
         # Send the POST request to the auth server
-        now = datetime.utcnow()
+        now = datetime.now(timezone.utc)
         url = f"{self.base_url}/aaaLogin.json"
         res = await self.client.post(url, json=payload, headers=headers)
         res.raise_for_status()
@@ -262,29 +267,30 @@ class AsyncAPIClient:
     async def __check_token(self) -> None:
         """Check token expiration and refresh if needed."""
 
-        # Set headers
-        headers = {
-            "Accept": "application/json",
-            "Authorization": f"Bearer {self.__token}",
-        }
-        now = datetime.now()
-        if (
-            not self.token_expires_at
-            or now + timedelta(seconds=30) > self.token_expires_at
-        ):
-            url = f"{self.base_url}/aaaRefresh.json"
-            res = await self.client.get(url, headers=headers)
-            if res.is_success:
-                self.token_expires_at = now + timedelta(
-                    seconds=int(
-                        res.json()["imdata"][0]["aaaLogin"]["attributes"][
-                            "refreshTimeoutSeconds"
-                        ]
+        async with self._auth_lock:
+            # Set headers
+            headers = {
+                "Accept": "application/json",
+                "Authorization": f"Bearer {self.__token}",
+            }
+            now = datetime.now(timezone.utc)
+            if (
+                not self.token_expires_at
+                or now + timedelta(seconds=30) > self.token_expires_at
+            ):
+                url = f"{self.base_url}/aaaRefresh.json"
+                res = await self.client.get(url, headers=headers)
+                if res.is_success:
+                    self.token_expires_at = now + timedelta(
+                        seconds=int(
+                            res.json()["imdata"][0]["aaaLogin"]["attributes"][
+                                "refreshTimeoutSeconds"
+                            ]
+                        )
                     )
-                )
-            else:
-                # Reauth
-                await self.__authenticate()
+                else:
+                    # Reauth
+                    await self.__authenticate()
 
     async def logout(self):
         """Logout from APIC."""
@@ -323,7 +329,8 @@ class AsyncAPIClient:
 
             if res.status_code == 403 and "Token was invalid" in res.text:
                 # Token expired -> retry once
-                self.__authenticate()
+                async with self._auth_lock:
+                    await self.__authenticate()
                 continue
             if res.status_code == 429:
                 # Rate limit exceeded
@@ -332,7 +339,7 @@ class AsyncAPIClient:
                     sleep_time = int(retry_after)
                 else:
                     sleep_time = backoff
-                time.sleep(sleep_time)
+                await asyncio.sleep(sleep_time)
                 backoff *= 2  # Exponential backoff
                 continue
 
@@ -350,7 +357,7 @@ class AsyncAPIClient:
 
     async def patch(self, url: str, **kwargs) -> httpx.Response:
         """PATCH wrapper."""
-        return await self.request("put", url, **kwargs)
+        return await self.request("patch", url, **kwargs)
 
     async def put(self, url: str, **kwargs) -> httpx.Response:
         """PUT wrapper."""
@@ -360,7 +367,7 @@ class AsyncAPIClient:
         """DELETE wrapper."""
         return await self.request("delete", url, **kwargs)
 
-    async def get_objects(self, url: str, **kwargs):
+    async def get_objects(self, url: str, **kwargs) -> AsyncIterator[dict]:
         """GET objects handling pagination."""
         page = 0
         url = url + "&" if "?" in url else url + "?"
@@ -378,3 +385,7 @@ class AsyncAPIClient:
                 yield item
             # Next page
             page += 1
+
+    async def get_objects_list(self, url: str, **kwargs) -> list[dict]:
+        """Return a list of objects."""
+        return [obj async for obj in self.get_objects(url, **kwargs)]
