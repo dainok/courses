@@ -21,6 +21,9 @@ Learn the fundamentals of Git, the powerful version control system used by devel
 * [02. Collaborating with Git by working with remote repositories and forks](https://www.patreon.com/posts/111643903)
 * [03. Advanced Git commands](https://www.patreon.com/posts/112035451)
 * [04. Contributing to NTC Templates with Git and GitHub](https://www.patreon.com/posts/112037177)
+* [05. GitLab as the backbone of IaC](https://www.patreon.com/posts/148295631/) (released on 25/01/2026)
+* [06. Designing a GitLab CI/CD pipeline for IaC](https://www.patreon.com/posts/148295721/) (released on 01/02/2026)
+* [07. GitLab CI/CD + IaC in action](https://www.patreon.com/posts/148295724/) (released on 08/02/2026)
 
 ## Application Security with OAuth: Essential Insights
 
