@@ -19,7 +19,7 @@ This section is dedicated to Cisco ACI, Cisco’s flagship SDN solution for data
 * [07. Cisco ACI Classes](https://www.patreon.com/posts/145810731/)
 * [08. Finding Cisco ACI Classes with Visore](https://www.patreon.com/posts/145813654/)
 * [09. Filtering Cisco API Output](https://www.patreon.com/posts/145813929/)
-* [10. Pagination with Cisco ACI](https://www.patreon.com/posts/145883187/) (released on 18/01/2026)
+* [10. Pagination with Cisco ACI](https://www.patreon.com/posts/145883187/)
 * [11. From Single-Site to Multi-Site with NDO](https://www.patreon.com/posts/139120165/)
 * [12. Circular Dependencies with NDO](https://www.patreon.com/posts/139121389/)
 * [13. Frameworks for Projects with Cisco ACI and NDO](https://www.patreon.com/posts/139319477/)
@@ -30,7 +30,7 @@ This section is dedicated to Cisco ACI, Cisco’s flagship SDN solution for data
 * [18. A practical Cisco NDO multi-site use case: data validation](https://www.patreon.com/posts/140726870/)
 * [19.](https://www.patreon.com/posts/140725527/) [A practical Cisco NDO multi-site use case:](https://www.patreon.com/posts/140724207/) [building the parser](https://www.patreon.com/posts/140725527/)
 * [20. A practical Cisco NDO multi-site use case: config deploy](https://www.patreon.com/posts/140726030/)
-* [21. GitLab as the backbone of IaC](https://www.patreon.com/posts/148295631/) (released on 25/01/2026)
+* [21. GitLab as the backbone of IaC](https://www.patreon.com/posts/148295631/)
 * [22. Designing a GitLab CI/CD pipeline for IaC](https://www.patreon.com/posts/148295721/) (released on 01/02/2026)
 * [23. GitLab CI/CD + IaC in action](https://www.patreon.com/posts/148295724/) (released on 08/02/2026)
 
