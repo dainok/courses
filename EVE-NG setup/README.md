@@ -12,6 +12,8 @@ Network automation is transforming IT operations, but the journey from theory to
 * [04. Parsing text with TextFSM](https://www.patreon.com/posts/127494112)
 * [05. TextFSM: parsing non-tabular text](https://www.patreon.com/posts/127501366)
 * [06. TextFSM: parsing tabular text](https://www.patreon.com/posts/127515978)
+* [07. Pexpect as a tool of last resort](https://www.patreon.com/posts/150247371/) (released on 15/12/2026)
+* [08. Automated reachability tests for EVE-NG templates](https://www.patreon.com/posts/150247374/) (released on 22/12/2026)
 
 ## Git Essentials: A Step-by-Step Guide to Version Control Basics
 
