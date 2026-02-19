@@ -70,6 +70,15 @@ IGNORED_TENANTS = [
     "common",
 ]
 
+def parse_boolean(s):
+    if s.lower() in ["yes", "true"]:
+        return True
+    if s.lower() in ["no", "false"]:
+        return False
+    if not s:
+        return False
+    return bool(s)
+    
 def get_nac_module(cls):
     for map in MAPPING:
         if cls == map["class"]:
@@ -161,6 +170,9 @@ for tenant in fvTenant_objs:
         add_import_cmd(cls="fvRsCtx", path=f"{tenant.name}/{bd.name}", dn=f"{bd.dn}/rsctx")
         nac_bd_data = {}
         nac_bd_data["name"] = bd.name
+        nac_bd_data["multicast_arp_drop"] = parse_boolean(bd.mcastARPDrop)
+        nac_bd_data["ip_dataplane_learning"] = parse_boolean(bd.ipLearning)
+        nac_bd_data["unknown_unicast"] = bd.unkMacUcastAct
         if bd.descr:
             nac_bd_data["description"] = bd.descr
         nac_tenant_data["bridge_domains"].append(nac_bd_data)
