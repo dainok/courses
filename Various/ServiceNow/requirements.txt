@@ -1,0 +1,5 @@
+ansible==8.1.0
+paramiko==4.0.0
+ansible-pylibssh
+requests==2.33.1
+ansible-runner==2.4.3

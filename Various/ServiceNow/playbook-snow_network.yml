@@ -1,0 +1,35 @@
+#!/usr/bin/env ansible-playbook
+# Invoke: playbook-snow_network.yaml -e network_name="Test-VLAN" -e network_vlan="77" -e network_ip_address="10.0.0.1/24"
+- name: ServiceNow Network Provisioning
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: VLAN Provisioning
+      cisco.ios.ios_vlans:
+        config:
+          - name: "{{ network_name }}"
+            vlan_id: "{{ network_vlan }}"
+            state: active
+            shutdown: disabled
+        state: merged
+    - name: SVI Provisioning
+      cisco.ios.ios_l3_interfaces:
+        config:
+          - name: "Vlan{{ network_vlan }}"
+            ipv4:
+              - address: "{{ network_ip_address }}"
+        state: merged
+      when: network_ip_address is defined and network_ip_address != ""
+    - name: Interface Provisioning
+      cisco.ios.ios_interfaces:
+        config:
+          - name: "Vlan{{ network_vlan }}"
+            description: "{{ network_vlan }}"
+            enabled: true
+        state: merged
+      when: network_ip_address is defined and network_ip_address != ""
+  post_tasks:
+    - name: SAVING CONFIG
+      tags: always
+      cisco.ios.ios_config:
+        save_when: modified
