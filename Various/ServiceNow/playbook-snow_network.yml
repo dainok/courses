@@ -1,7 +1,7 @@
 #!/usr/bin/env ansible-playbook
-# Invoke: playbook-snow_network.yaml -e network_name="Test-VLAN" -e network_vlan="77" -e network_ip_address="10.0.0.1/24"
+# Invoke: playbook-snow_network.yml -e network_name="Test-VLAN" -e network_vlan="77" -e network_ip_address="10.0.0.1/24"
 - name: ServiceNow Network Provisioning
-  hosts: all
+  hosts: sw
   gather_facts: false
   tasks:
     - name: VLAN Provisioning

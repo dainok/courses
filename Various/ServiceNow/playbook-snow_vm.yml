@@ -1,0 +1,81 @@
+#!/usr/bin/env ansible-playbook
+# Invoke: playbook-snow_vm.yml -e vm_name="vm-name" -e vm_cpu="1" -e vm_ram="4" -e vm_storage="10"
+- name: ServiceNow VM Provisioning
+  hosts: vcenter
+  gather_facts: false
+  vars:
+    vcenter_auth: &vcenter_auth
+      hostname: "{{ ansible_host }}"
+      username: "{{ ansible_user }}"
+      password: "{{ ansible_password }}"
+      validate_certs: false
+  tasks:
+    - name: VM Provisioning
+      vmware.vmware.vm:
+        <<: *vcenter_auth
+        name: "{{ vm_name }}"
+        datacenter: "{{ vm_datacenter }}"
+        cluster: "{{ vm_cluster }}"
+        datastore: "{{ vm_datastore }}"
+        guest_id: amazonlinux3_64Guest
+        cpu:
+          cores: "{{ vm_cpu }}"
+          cores_per_socket: 1
+          enable_hot_add: true
+          enable_hot_remove: true
+        memory:
+          size_mb: "{{ vm_ram }}"
+          enable_hot_add: true
+          reserve_all_memory: true
+        disks:
+          - size: "{{ vm_storage }}gb"
+            provisioning: thin
+            device_node: SCSI(0:0)
+        scsi_controllers:
+          - controller_type: paravirtual
+            bus_number: 0
+          - controller_type: paravirtual
+            bus_number: 1
+            bus_sharing: virtualSharing
+        sata_controllers:
+          - bus_number: 0
+        cdroms:
+          - connect_at_power_on: true
+            iso_media_path: '[172.25.10.11-SSD] ISO/ubuntu-26.04-server-amd64-autoinstall.iso'
+            device_node: SATA(0:0)
+        network_adapters:
+          - network: "{{ vm_network }}"
+            adapter_type: vmxnet3
+            connected: true
+            connect_at_power_on: true
+      register: vm
+    - name: Power on VM
+      vmware.vmware.vm_powerstate:
+        <<: *vcenter_auth
+        moid: "{{ vm.vm.moid }}"
+        datacenter: DC01
+        state: powered-on
+    - name: Wait for cloud-init completition
+      community.vmware.vmware_vm_shell:
+        <<: *vcenter_auth
+        datacenter: "{{ vm_datacenter }}"
+        vm_id: "{{ vm_name }}"
+        vm_username: "ubuntu"
+        vm_password: "password"
+        vm_shell: /usr/bin/test
+        vm_shell_args: "-f /var/lib/cloud/instance/boot-finished"
+        wait_for_process: true
+      register: cloud_init_result
+      until: cloud_init_result.exit_code is defined and cloud_init_result.exit_code == 0
+      retries: 60
+      delay: 15
+      changed_when: false
+    - name: Get VM info
+      community.vmware.vmware_guest_info:
+        <<: *vcenter_auth
+        datacenter: "{{ vm_datacenter }}"
+        moid: "{{ vm.vm.moid }}"
+      register: vm_info
+    - name: Print VM IP address
+      debug:
+        msg: "{{ vm_info.instance.hw_eth0.ipaddresses.0 }}"
