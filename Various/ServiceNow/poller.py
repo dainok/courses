@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import requests
+import uuid
 import ansible_runner
 
 SN_INSTANCE = "https://dev354802.service-now.com/"
@@ -19,6 +20,7 @@ STATE_MAP = {
 CATALOG_MAP = {
     "network_request": "8ea0b64593908710be22fd245d03d61b",
     "whitelist_request": "e91336da4fff0200086eeed18110c7a3",
+    "vm_request": "f3937ada4fff0200086eeed18110c7f2",
 }
 
 DATA_MAP = {
@@ -127,6 +129,7 @@ def update_ritm(ritm_sys_id, state, output=None):
     req_sys_id = get_req_from_ritm(ritm_sys_id)
     ritm_list = get_all_ritm_from_req(req_sys_id)
     if all_ritm_closed(ritm_list):
+        print("Closing request")
         close_req(req_sys_id)
 
 def run_ansible_network(name, vlan, ip_address):
@@ -148,8 +151,29 @@ def run_ansible_network(name, vlan, ip_address):
     )
     return run
 
+def run_ansible_vm(cpu, ram, storage):
+    """Run Ansible."""
+    extravars = {
+        'vm_name': f'vm-snow-portal-{str(uuid.uuid4())}',
+        'vm_ram': int(ram) * 1024,
+        'vm_cpu': int(cpu),
+        'vm_storage': storage,
+    }
+    print("Running Ansible playbook with", extravars)
+    run = ansible_runner.run(
+        private_data_dir='.',
+        playbook=f'playbook-snow_vm.yml',
+        extravars=extravars,
+        envvars={
+            "ANSIBLE_FORCE_COLOR": "false",
+            "NO_COLOR": "1",
+        }
+    )
+    return run
+
 def main():
     requests_list = get_ritms(category="network_request")
+    requests_list = get_ritms()
 
     for req in requests_list:
         print(f"Processing {req['number']}")
@@ -158,18 +182,41 @@ def main():
         sys_id = req["sys_id"]
         variables = get_ritm_variables(sys_id)
 
-        # Mark ticket as WIP
-        update_ritm(sys_id, "work_in_progress")
+        if req["cat_item"]["value"] == CATALOG_MAP["network_request"]:
+            print(f"{sys_id} is a network request")
 
-        # Run Ansible
-        result = run_ansible_network(**variables)
-        rc = result.rc
-        stdout = result.stdout.read()
-        stderr = result.stderr.read()
-        if rc == 0:
-            update_ritm(sys_id, "closed_complete", stdout)
-        else:
-            update_ritm(sys_id, "closed_incomplete", stdout + "\n" * 3 + stderr)
+            # Mark ticket as WIP
+            update_ritm(sys_id, "work_in_progress")
+
+            # Run Ansible
+            result = run_ansible_network(name=variables.get("name"), vlan=variables.get("vlan"), ip_address=variables.get("ip_address"))
+            rc = result.rc
+            stdout = result.stdout.read()
+            stderr = result.stderr.read()
+            if rc == 0:
+                update_ritm(sys_id, "closed_complete", stdout)
+            else:
+                update_ritm(sys_id, "closed_incomplete", stdout + "\n" * 3 + stderr)
+        elif req["cat_item"]["value"] == CATALOG_MAP["vm_request"]:
+            print(f"{sys_id} is a vm request")
+
+            # Mark ticket as WIP
+            update_ritm(sys_id, "work_in_progress")
+
+            # Run Ansible
+            print(variables)
+            storage=variables.get("storage")
+            storage=storage.replace(" GB", "")
+            storage=storage.replace(" TB", "000")
+            storage=int(storage)
+            result = run_ansible_vm(cpu=variables.get("cpu"), ram=variables.get("ram"), storage=storage)
+            rc = result.rc
+            stdout = result.stdout.read()
+            stderr = result.stderr.read()
+            if rc == 0:
+                update_ritm(sys_id, "closed_complete", stdout)
+            else:
+                update_ritm(sys_id, "closed_incomplete", stdout + "\n" * 3 + stderr)
 
 if __name__ == "__main__":
     main()

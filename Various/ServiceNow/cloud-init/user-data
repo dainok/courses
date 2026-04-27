@@ -1,0 +1,13 @@
+#cloud-config
+autoinstall:
+  version: 1
+  identity:
+    hostname: myserver
+    username: ubuntu
+    # echo password | mkpasswd -m sha-512 -s
+    password: "$6$Lyb2/s0n8bZA1Orw$2v/JLCxyoX4uTvkbBFPzijfaLTJ1J6q56VPFoFsZHH2sD48.6TZRqyyePTTZz3NMjzlg5qxrHlTqV7cL9Vzge/"
+  storage:
+    layout:
+      name: direct
+  late-commands:
+    - shutdown -r now

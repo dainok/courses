@@ -78,4 +78,4 @@
       register: vm_info
     - name: Print VM IP address
       debug:
-        msg: "{{ vm_info.instance.hw_eth0.ipaddresses.0 }}"
+        msg: "{{ vm_info.instance.hw_eth0.ipaddresses }}"
